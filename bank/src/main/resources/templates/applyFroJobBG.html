@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Form</title>
+    <link rel="stylesheet" href="/css/applyForJob.css">
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Form submission canceled for now.'); // This is just a placeholder action
+        }
+    </script>
+    <!-- Добавено: Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23234659'><path d='M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z'/></svg>" type="image/svg+xml" />
+</head>
+<body>
+
+    <a href="openPositionsBG.html" class="back-button">Обратно към Началната Страница</a>
+
+    <div class="formbold-main-wrapper">
+        <div class="formbold-form-wrapper">
+            <img src="/images/jobSearchBG.png" alt="Job Application Image" class="formbold-img">
+            <form onsubmit="handleSubmit(event)">
+                <div class="formbold-input-flex">
+                    <div>
+                        <label for="firstname" class="formbold-form-label"> Първо име </label>
+                        <input
+                            type="text"
+                            name="firstname"
+                            id="firstname"
+                            placeholder="Първо име"
+                            class="formbold-form-input"
+                        />
+                    </div>
+                    <div>
+                        <label for="lastname" class="formbold-form-label"> Фамилно име </label>
+                        <input
+                            type="text"
+                            name="lastname"
+                            id="lastname"
+                            placeholder="Фамилно име"
+                            class="formbold-form-input"
+                        />
+                    </div>
+                </div>
+                <div class="formbold-input-flex">
+                    <div>
+                        <label for="email" class="formbold-form-label"> Имейл </label>
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="example@email.com"
+                            class="formbold-form-input"
+                        />
+                    </div>
+                    <div>
+                        <label class="formbold-form-label">Пол</label>
+                        <select class="formbold-form-input" name="gender" id="gender">
+                            <option value="male">Мъж</option>
+                            <option value="female">Жена</option>
+                            <option value="others">Друг</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="formbold-mb-3">
+                    <label for="phone" class="formbold-form-label"> Телефон </label>
+                    <input
+                        type="text"
+                        name="phone"
+                        id="phone"
+                        placeholder="Телефонен номер"
+                        class="formbold-form-input"
+                    />
+                </div>
+                <div class="formbold-mb-3">
+                    <label for="position" class="formbold-form-label"> Кандидатстване за позиция: </label>
+                    <input
+                        type="text"
+                        name="position"
+                        id="position"
+                        class="formbold-form-input"
+                    />
+                </div>
+                <div class="formbold-mb-3">
+                    <label for="start_date" class="formbold-form-label">Кога можете да започнете? </label>
+                    <input type="date" name="start_date" id="start_date" class="formbold-form-input" />
+                </div>
+                <div class="formbold-mb-3">
+                    <label for="address" class="formbold-form-label"> Адрес </label>
+                    <input
+                        type="text"
+                        name="address"
+                        id="address"
+                        placeholder="Адрес 1"
+                        class="formbold-form-input formbold-mb-3"
+                    />
+                    <input
+                        type="text"
+                        name="address2"
+                        id="address2"
+                        placeholder="Адрес 2"
+                        class="formbold-form-input"
+                    />
+                </div>
+                <div class="formbold-mb-3">
+                    <label for="message" class="formbold-form-label"> Мотивационно писмо </label>
+                    <textarea
+                        rows="6"
+                        name="message"
+                        id="message"
+                        class="formbold-form-input"
+                    ></textarea>
+                </div>
+                <div class="formbold-form-file-flex">
+                    <label for="upload" class="formbold-form-label"> Качете автобиографията си: </label>
+                    <input
+                        type="file"
+                        name="upload"
+                        id="upload"
+                        class="formbold-form-file"
+                    />
+                </div>
+                <button class="formbold-btn">Кандидатствайте сега</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wave Financial</title>
+    <link rel="stylesheet" href="/css/login.css">
+     <!-- Добавено: Favicon -->
+     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23234659'><path d='M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z'/></svg>" type="image/svg+xml" />
+   
+</head>
+<body>
+
+    <a href="indexBG.html" class="back-button">Обратно към Началната Страница</a>
+    
+    <div class="login-container">
+        <div class="language-switch">
+            <a href="loginEN.html">EN</a>
+        </div>
+        <div class="login-header">
+            <img src="/img/logo1.png" alt="Wave Financial" class="logo">
+        </div>
+        <div class="login-header">
+            <img src="/img/logo2.png" alt="Wave Financial" class="e-logo">
+            <span class="tagline">Влез в системата на Wave Financial</span>
+        </div>
+        <form class="login-form">
+            <input type="text" id="username" name="username" placeholder="Потребител" required="true"
+            maxlength="20" pattern="[a-zA-Z0-9]+" autocomplete="off" />
+            <p id="errorsforinputs">
+                Невалиден потребител.
+            </p>
+
+                <!-- title="Only letters and numbers are allowed" -->
+
+            <input type="password" id="password" name="password" placeholder="Парола" required="true"
+            autocomplete="off" minlength="8" maxlength="20"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"/>
+
+            <p id="errorsforinputs">
+                Невалидна парола.
+            </p>    
+
+                <!-- title="Password must contain at least one digit, one lowercase and one uppercase letter, and be at least 8 characters long." -->
+
+
+            <button type="submit" name="submit" class="login-button">ВХОД</button>
+
+               <!--Ако едно от полетата или двете полета не са попълнени или 
+                 паролата и потребителя са грешни да излиза "Невалиден потребител или парола"
+                 да има хикс отгоре и ок, което да го затваря и да оставя на същата страница-->
+        </form>
+
+        
+        <div class="remember-me-container">
+            <input type="checkbox" name="saveme" id="saveme" value="Запомни ме">
+            <label for="saveme">Запомни ме</label>
+        </div>
+
+        <div class="login-footer">
+            <a href="forgotPassBG.html" class="forgot-password-link">Забравена парола</a>
+            <br>
+            <a href="#" class="security-tips-link">Съвети за сигурност</a>
+            <p><a href="/contact.html">Свържете се с нас</a> | <a href="">Условия за ползване и конфиденциалност</a></p>
+        </div>
+    </div>
+</body>
+</html>
