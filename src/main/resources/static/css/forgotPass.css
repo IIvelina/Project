@@ -1,0 +1,234 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('/img/wave.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+}
+
+.language-switch {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.language-switch a {
+    color: #09242F;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.language-switch a:hover {
+    text-decoration: underline;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    max-width: 200px;
+    height: auto;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.tab {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    background: #f1f1f1;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: default; 
+}
+
+.tab.active {
+    background: #ffffff;
+    border-bottom: 2px solid #09242F;
+    font-weight: bold;
+}
+
+.tab:not(.disabled) {
+    cursor: pointer;
+}
+
+.form-container {
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.instruction {
+    color: red;
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+form input,
+form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #dfdede;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.contact-method {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.contact-method label {
+    margin: 0 20px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap; 
+}
+
+.contact-method input {
+    margin-right: 5px;
+}
+
+button {
+    background: #09242F;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+    background: #005a8b;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 18px;
+    margin-bottom: 0px;
+}
+
+form input, form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    margin: 0;
+}
+
+.popup-message {
+    text-decoration: underline;
+    color: white;
+}
+
+.back-button {
+    position: absolute;
+    
+
+    top: 10px;
+    right: 10px;
+    background-color: #0f3f52;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background-color: #2e87ab;
+    color: #e8eced;
+   font-weight: bold
+    ;
+    cursor: pointer;
+}
+
+.save-button {
+    background-color: #09242F;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.save-link {
+    color: white;
+    text-decoration: none;
+}
+
+.save-link:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.save-button:hover {
+    background-color: #005a8b;
+}
+
+button.save-button a {
+    color: white;
+    text-decoration: none;
+}
+
+button.save-button a:hover {
+    text-decoration: none;
+    color: white;
+}

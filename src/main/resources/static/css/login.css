@@ -1,0 +1,161 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('/img/wave.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 350px;
+    width: 100%;
+    position: relative;
+}
+
+.language-switch {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.language-switch a {
+    color: #09242F;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.language-switch a:hover {
+    text-decoration: underline;
+}
+
+.login-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.login-header .logo {
+    max-width: 190px;
+    margin-bottom: 10px;
+}
+
+.login-header .e-logo {
+    max-width: 300px;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    color: #333;
+    font-size: 15px;
+    text-style: oblique;
+    margin-bottom: 10px;
+}
+
+.login-form input,
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.login-button {
+    background-color: #09242F;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #24455A;
+}
+
+.remember-me-container {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.remember-me-container input {
+    margin-right: 5px;
+    padding: 0px;
+}
+
+.login-footer {
+    margin-top: 20px;
+}
+
+.login-footer a {
+    color: #24455A;
+    text-decoration: none;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}
+
+.login-footer p {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #666;
+}
+
+.login-footer p a {
+    display: inline;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #0f3f52;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background-color: #2e87ab;
+    color: #e8eced;
+   font-weight: bold
+    ;
+    cursor: pointer;
+}
+
+#errorsforinputs {
+    background-color: rgb(231, 211, 188);
+    color: rgb(97, 23, 23);
+    font-weight: bold;
+    border: 1px solid #ccc;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    letter-spacing: 0.1px;
+    font-size: 15px;
+}
+
+#username{
+    margin-bottom: 0;
+}
+
+#password{
+    margin-bottom: 0;
+}

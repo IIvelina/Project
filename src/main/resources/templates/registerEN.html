@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23234659'><path d='M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z'/></svg>" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/registerEN.css">
+</head>
+<body>
+
+<a href="index.html" class="back-button">Back to Home Page</a>
+
+<div class="container">
+    <header>
+        <div class="header-content">
+            <img src="/img/logo1.png" alt="Logo" class="logo">
+            <h1>Registration</h1>
+            <div class="language-switch" id="language-switch">
+                <button onclick="window.location.href='registerEN.html'">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <form th:action="@{/users/register}" th:method="post" th:object="${userRegisterDTO}" id="registration-form">
+        <div class="registration-form">
+            <h2>Social Security Number</h2>
+            <p>To complete the online registration, you must be at least 18 years old.</p>
+            <div class="input-group">
+                <label for="egn">SSN</label>
+                <input th:field="*{SSN}" th:errorclass="bg-danger" type="text" id="egn" name="egn" required pattern="\d{10}" title="PN must be exactly 10 digits" placeholder="1234567890">
+                <p th:if="${#fields.hasErrors('SSN')}" th:errors="*{SSN}" class="errorsforinputs">SSN must be exactly 10 digits.</p>
+            </div>
+           
+            <h2>Identification</h2>
+            <p>Please provide additional identification information.</p>
+            <div class="input-group">
+                <label for="name">Full name </label>
+                
+                <input th:field="*{fullName}" th:errorclass="bg-danger" type="text" id="name" name="name" required placeholder="Full name">
+                <p th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="errorsforinputs">Full name is required.</p>
+            </div>
+            <div class="input-group">
+                <label for="gender">Gender</label>
+                <select th:field="*{gender}" th:errorclass="bg-danger" id="gender" name="gender" class="custom-select" required>
+                    <option value="" disabled selected>Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+                <p th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" class="errorsforinputs">Gender is required.</p>
+            </div>
+            
+            
+            <div class="input-group">
+                <label for="id-number">ID Card Number</label>
+                <input th:field="*{cardIdNumber}" th:errorclass="bg-danger" type="text" id="id-number" name="cardIdNumber" required pattern="\d{9}" title="ID card number must be exactly 9 digits" placeholder="123456789">
+                <p th:if="${#fields.hasErrors('cardIdNumber')}" th:errors="*{cardIdNumber}" class="errorsforinputs">ID card number must be exactly 9 digits.</p>
+            </div>
+            <div class="input-group">
+                <label for="phone-number">Phone Number</label>
+                <input th:field="*{phoneNumber}" th:errorclass="bg-danger" type="text" id="phone-number" name="phoneNumber" placeholder="+359 123456789" required>
+                <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="errorsforinputs">Phone number is required.</p>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input th:field="*{email}" th:errorclass="bg-danger" type="email" id="email" name="email" placeholder="Email" required>
+                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="errorsforinputs">Email is required.</p>
+            </div>
+            <h2>Login Settings</h2>
+            <p>Please create your login settings.</p>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input th:field="*{username}" th:errorclass="bg-danger" type="text" id="username" name="username" placeholder="Username" required>
+                <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="errorsforinputs">Username is required and should be between 2 and 20 symbols.</p>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input th:field="*{password}" th:errorclass="bg-danger" type="password" id="password" name="password" placeholder="Password" required>
+                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="errorsforinputs">Password is required and should be at least five symbols.</p>
+            </div>
+            <div class="input-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input th:field="*{confirmPassword}" th:errorclass="bg-danger" type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm Password" required>
+                <p th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="errorsforinputs">Password should match.</p>
+            </div>
+            <h2>Confirmation</h2>
+            <p>Please review and confirm the entered details.</p>
+            <div class="input-group">
+                <input type="checkbox" id="confirmation" name="confirmation" required>
+                <label id="confirmationLabel" for="confirmation">Confirm Registration</label>
+            </div>
+            <button type="submit" id="step4-button" class="login-button">FINISH</button>
+        </div>
+    </form>
+    <div class="footer">
+        <img src="/img/logo2.png" alt="e-Wave Financial" class="logo">
+    </div>
+</div>
+
+</body>
+</html>
