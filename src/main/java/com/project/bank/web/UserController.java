@@ -17,6 +17,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/users")
 public class UserController {
 
+    //Отговаря за управлението на потребителите, тяхната регистрация и аутентикация.
+    //
+    //Регистрация на нов потребител
+    //Логин
+    //Виждане на потребителски профил (USER)
+    //Управление на потребителите (ADMIN)
+    //Добавяне и премахване на роли
+
     public UserController(ModelMapper modelMapper, UserService userService) {
         this.modelMapper = modelMapper;
         this.userService = userService;

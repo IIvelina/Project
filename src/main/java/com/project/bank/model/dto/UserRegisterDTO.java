@@ -1,5 +1,6 @@
 package com.project.bank.model.dto;
 
+import com.project.bank.model.enums.UserGenderEnum;
 import com.project.bank.model.enums.UserRoleEnum;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -40,6 +41,8 @@ public class UserRegisterDTO {
     private String confirmPassword;
 
     private UserRoleEnum role = UserRoleEnum.CLIENT;
+
+    private UserGenderEnum gender;
 
     public UserRegisterDTO() {
     }
@@ -114,5 +117,13 @@ public class UserRegisterDTO {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public UserGenderEnum getGender() {
+        return gender;
+    }
+
+    public void setGender(UserGenderEnum gender) {
+        this.gender = gender;
     }
 }
