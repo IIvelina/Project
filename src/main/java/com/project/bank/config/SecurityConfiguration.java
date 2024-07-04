@@ -1,4 +1,4 @@
-package com.project.bank.model.config;
+package com.project.bank.config;
 
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
