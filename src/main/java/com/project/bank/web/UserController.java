@@ -47,27 +47,74 @@ public class UserController {
     }
 
 
+//    @PostMapping("/register")
+//    public String registerConfirm(@Valid UserRegisterDTO userRegisterDTO,
+//                                  BindingResult bindingResult,
+//                                  RedirectAttributes redirectAttributes){
+//        if (bindingResult.hasErrors() || !userRegisterDTO.getPassword()
+//                .equals(userRegisterDTO.getConfirmPassword())){
+//
+//            redirectAttributes.addFlashAttribute("userRegisterDTO",
+//                    userRegisterDTO);
+//
+//            redirectAttributes.addFlashAttribute(
+//                    "org.springframework.validation.BindingResult.userRegisterDTO",
+//                    bindingResult);
+//
+//            return "redirect:register";
+//        }
+//
+//        userService.registerUser(modelMapper.map(userRegisterDTO, UserServiceModel.class));
+//
+//        return "redirect:login";
+//    }
+
     @PostMapping("/register")
     public String registerConfirm(@Valid UserRegisterDTO userRegisterDTO,
                                   BindingResult bindingResult,
-                                  RedirectAttributes redirectAttributes){
-        if (bindingResult.hasErrors() || !userRegisterDTO.getPassword()
-                .equals(userRegisterDTO.getConfirmPassword())){
+                                  RedirectAttributes redirectAttributes) {
+        boolean hasError = false;
 
-            redirectAttributes.addFlashAttribute("userRegisterDTO",
-                    userRegisterDTO);
+        if (bindingResult.hasErrors() || !userRegisterDTO.getPassword().equals(userRegisterDTO.getConfirmPassword())) {
+            hasError = true;
+        }
 
-            redirectAttributes.addFlashAttribute(
-                    "org.springframework.validation.BindingResult.userRegisterDTO",
-                    bindingResult);
+        if (userService.existsBySSN(userRegisterDTO.getSSN())) {
+            bindingResult.rejectValue("SSN", "error.userRegisterDTO", "This SSN is already in use.");
+            hasError = true;
+        }
 
+        if (userService.existsByIdCardNumber(userRegisterDTO.getCardIdNumber())) {
+            bindingResult.rejectValue("cardIdNumber", "error.userRegisterDTO", "This ID Card Number is already in use.");
+            hasError = true;
+        }
+
+        if (userService.existsByEmail(userRegisterDTO.getEmail())) {
+            bindingResult.rejectValue("email", "error.userRegisterDTO", "This email is already in use.");
+            hasError = true;
+        }
+
+        if (userService.existsByUsername(userRegisterDTO.getUsername())) {
+            bindingResult.rejectValue("username", "error.userRegisterDTO", "This username is already in use.");
+            hasError = true;
+        }
+
+        if (userService.existsByPhoneNumber(userRegisterDTO.getPhoneNumber())) {
+            bindingResult.rejectValue("phoneNumber", "error.userRegisterDTO", "This phone number is already in use.");
+            hasError = true;
+        }
+
+        if (hasError) {
+            redirectAttributes.addFlashAttribute("userRegisterDTO", userRegisterDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegisterDTO", bindingResult);
             return "redirect:register";
         }
 
         userService.registerUser(modelMapper.map(userRegisterDTO, UserServiceModel.class));
-
         return "redirect:login";
     }
+
+
 
     @ModelAttribute
     public UserRegisterDTO userRegisterDTO(){

@@ -11,4 +11,14 @@ public interface UserService {
     void loginUser(Long id, String username);
 
     User findById(Long id);
+
+    boolean existsBySSN(String ssn);
+
+    boolean existsByIdCardNumber(String cardIdNumber);
+
+    boolean existsByEmail(String email);
+
+    boolean existsByUsername(String username);
+
+    boolean existsByPhoneNumber(String phoneNumber);
 }

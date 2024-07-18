@@ -99,5 +99,30 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).orElse(null);
     }
 
+    @Override
+    public boolean existsBySSN(String ssn) {
+        return userRepository.existsBySsn(ssn);
+    }
+
+    @Override
+    public boolean existsByIdCardNumber(String cardIdNumber) {
+        return userRepository.existsByIdCardNumber(cardIdNumber);
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
+    @Override
+    public boolean existsByPhoneNumber(String phoneNumber) {
+        return userRepository.existsByPhoneNumber(phoneNumber);
+    }
+
 
 }

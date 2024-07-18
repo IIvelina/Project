@@ -26,6 +26,18 @@ public class HomeController {
         return "about";
     }
 
+
+    @GetMapping("terms")
+    public String terms(){
+        return "terms";
+    }
+
+    //forgot-password
+    @GetMapping("forgot-password")
+    public String forgotPassword(){
+        return "forgotPassword";
+    }
+
     @GetMapping("/productAndService")
     public String productAndService(){
         return "service";
