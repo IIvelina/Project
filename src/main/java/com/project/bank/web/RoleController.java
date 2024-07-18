@@ -22,5 +22,14 @@ public class RoleController {
 //        return "profileEN";
 //    }
 
+    //href="/user/director"
+    @GetMapping("director")
+    public String loginAsDirector(){
+        return "loginAsDirector";
+    }
 
+    @GetMapping("admin")
+    public String loginAsAdmin(){
+        return "loginAsAdmin";
+    }
 }
