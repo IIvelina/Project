@@ -19,8 +19,8 @@ public abstract class Account extends BaseEntity {
     @Column(nullable = false) // Премахнат уникалния индекс
     private String clientNumber;
 
-    @Column
-    private BigDecimal rate;
+   // @Column
+   // private BigDecimal rate;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -53,13 +53,13 @@ public abstract class Account extends BaseEntity {
         this.clientNumber = clientNumber;
     }
 
-    public BigDecimal getRate() {
-        return rate;
-    }
-
-    public void setRate(BigDecimal rate) {
-        this.rate = rate;
-    }
+//    public BigDecimal getRate() {
+//        return rate;
+//    }
+//
+//    public void setRate(BigDecimal rate) {
+//        this.rate = rate;
+//    }
 
     public User getUser() {
         return user;

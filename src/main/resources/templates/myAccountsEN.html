@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/css/myAccounts.css">
     <!-- Добавено: Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23234659'><path d='M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z'/></svg>" type="image/svg+xml" />
-
     <!-- Добавено: Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Добавено: Material Icons -->
@@ -32,19 +31,23 @@
     </nav>
     <div class="profile-content">
         <h2 id="title">My Accounts</h2>
+
         <div class="product-options">
             <div th:each="checkingAccount : ${checkingAccounts}" class="product-option">
                 <i class="fas fa-id-card fa-2x" style="color: #0f3f52;"></i>
                 <p th:text="${checkingAccount.clientNumber} + ' - CHECKING'"></p>
                 <p th:text="${checkingAccount.balance} + ' BGN'"></p>
+                <a th:href="@{/account/checking}" class="info-button">Show info</a>
             </div>
             <div th:each="savingsAccount : ${savingsAccounts}" class="product-option">
                 <i class="fas fa-piggy-bank fa-2x" style="color: #0f3f52;"></i>
                 <p th:text="${savingsAccount.clientNumber} + ' - SAVINGS'"></p>
                 <p th:text="${savingsAccount.balance} + ' BGN'"></p>
+                <a th:href="@{/account/saving}" class="info-button">Show info</a>
             </div>
         </div>
     </div>
+    <div id="account-details" class="account-details"></div>
     <div class="footer">
         <img src="/img/logo2.png" alt="e-Wave Financial" class="logo">
     </div>

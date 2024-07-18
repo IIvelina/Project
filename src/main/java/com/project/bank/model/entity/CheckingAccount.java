@@ -2,6 +2,8 @@ package com.project.bank.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Random;
+
 @Entity
 @Table(name = "checking_accounts")
 public class CheckingAccount extends Account {
@@ -11,7 +13,11 @@ public class CheckingAccount extends Account {
     @Column(nullable = false)
     private String debitCardPin;
 
+    @OneToOne
+    private User user;
+
     public CheckingAccount() {
+        super();
     }
 
     public String getDebitCardNumber() {
@@ -28,5 +34,20 @@ public class CheckingAccount extends Account {
 
     public void setDebitCardPin(String debitCardPin) {
         this.debitCardPin = debitCardPin;
+    }
+
+    // Добавете този метод, за да генерирате стойности
+    public void setDebitCardDetails() {
+        this.debitCardNumber = generateRandomNumber(12);
+        this.debitCardPin = generateRandomNumber(4);
+    }
+
+    private String generateRandomNumber(int digits) {
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < digits; i++) {
+            sb.append(random.nextInt(10)); // Генерира случайно число между 0 и 9
+        }
+        return sb.toString();
     }
 }

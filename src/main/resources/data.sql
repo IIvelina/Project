@@ -28,33 +28,43 @@ WHERE NOT EXISTS (
 );
 
 -- Вмъкване на разплащателна сметка за Ivan Ivanov
-INSERT INTO accounts (type, balance, client_number, rate, user_id)
-SELECT 'CHECKING', 20000.00, 'CN987654321-CHECKING', 0.02, (SELECT id FROM users WHERE username = 'ivan')
+INSERT INTO accounts (type, balance, client_number, user_id)
+SELECT 'CHECKING', 20000.00, 'CN987654321', (SELECT id FROM users WHERE username = 'ivan')
 WHERE NOT EXISTS (
     SELECT 1 FROM accounts
-    WHERE client_number = 'CN987654321-CHECKING' AND type = 'CHECKING'
+    WHERE client_number = 'CN987654321' AND type = 'CHECKING'
 );
 
 -- Вмъкване на специфична информация за разплащателната сметка в таблицата checking_accounts
 INSERT INTO checking_accounts (debit_card_number, debit_card_pin, id)
-SELECT '1234567812345678', '1234', (SELECT id FROM accounts WHERE client_number = 'CN987654321-CHECKING' AND type = 'CHECKING')
+SELECT '123456781234', '1234', (SELECT id FROM accounts WHERE client_number = 'CN987654321' AND type = 'CHECKING')
 WHERE NOT EXISTS (
     SELECT 1 FROM checking_accounts
-    WHERE id = (SELECT id FROM accounts WHERE client_number = 'CN987654321-CHECKING' AND type = 'CHECKING')
+    WHERE id = (SELECT id FROM accounts WHERE client_number = 'CN987654321' AND type = 'CHECKING')
 );
 
+-- Актуализиране на полето checking_account_id в таблицата users
+UPDATE users
+SET checking_account_id = (SELECT id FROM accounts WHERE client_number = 'CN987654321' AND type = 'CHECKING')
+WHERE username = 'ivan';
+
 -- Вмъкване на спестовна сметка за Ivan Ivanov
-INSERT INTO accounts (type, balance, client_number, rate, user_id)
-SELECT 'SAVINGS', 20000.00, 'CN987654321-SAVINGS', 0.01, (SELECT id FROM users WHERE username = 'ivan')
+INSERT INTO accounts (type, balance, client_number, user_id)
+SELECT 'SAVINGS', 20000.00, 'CN987654321', (SELECT id FROM users WHERE username = 'ivan')
 WHERE NOT EXISTS (
     SELECT 1 FROM accounts
-    WHERE client_number = 'CN987654321-SAVINGS' AND type = 'SAVINGS'
+    WHERE client_number = 'CN987654321' AND type = 'SAVINGS'
 );
 
 -- Вмъкване на специфична информация за спестовната сметка в таблицата savings_accounts
 INSERT INTO savings_accounts (safety_deposit_box, safety_deposit_key, id)
-SELECT '987', '5678', (SELECT id FROM accounts WHERE client_number = 'CN987654321-SAVINGS' AND type = 'SAVINGS')
+SELECT '987', '5678', (SELECT id FROM accounts WHERE client_number = 'CN987654321' AND type = 'SAVINGS')
 WHERE NOT EXISTS (
     SELECT 1 FROM savings_accounts
-    WHERE id = (SELECT id FROM accounts WHERE client_number = 'CN987654321-SAVINGS' AND type = 'SAVINGS')
+    WHERE id = (SELECT id FROM accounts WHERE client_number = 'CN987654321' AND type = 'SAVINGS')
 );
+
+-- Актуализиране на полето savings_account_id в таблицата users
+UPDATE users
+SET savings_account_id = (SELECT id FROM accounts WHERE client_number = 'CN987654321' AND type = 'SAVINGS')
+WHERE username = 'ivan';

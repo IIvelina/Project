@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saving Account Info</title>
+    <link rel="stylesheet" href="/css/showInfo.css">
+</head>
+<body>
+<div class="container">
+    <div class="language-switch" id="language-switch">
+        <button onclick="window.location.href='#'">BG</button>
+    </div>
+    <img src="/img/logo1.png" alt="Лого" class="logo" id="logowf">
+    <nav class="nav">
+        <ul>
+            <li><a th:href="@{/users/profile}">My Profile</a></li>
+            <li><a th:href="@{/user/accounts}">My Accounts</a></li>
+            <li><a th:href="@{/user/transactions}">Recent Transactions</a></li>
+            <li><a th:href="@{/user/request-new-product}">Request New Product</a></li>
+            <li><a th:href="@{/user/add-money}">Add Money</a></li>
+            <li><a th:href="@{/user/withdraw}">Withdraw</a></li>
+            <li><a th:href="@{/user/transfer}">Transfer</a></li>
+        </ul>
+    </nav>
+    <div class="profile-content">
+        <h2 id="title">Saving Account</h2>
+        <div class="account-details" th:if="${savingsAccount != null}">
+            <p><strong>Safety Deposit Box:</strong> <span th:text="${savingsAccount.safetyDepositBox}">Box 1234</span></p>
+            <p><strong>Safety Deposit Key:</strong> <span th:text="${savingsAccount.safetyDepositKey}">Key 5678</span></p>
+        </div>
+        <div class="account-details" th:if="${savingsAccount == null}">
+            <p><strong th:text="${error}">No savings account found.</strong></p>
+        </div>
+
+    </div>
+    <div class="footer">
+        <img src="/img/logo2.png" alt="e-Wave Financial" class="logo">
+    </div>
+</div>
+</body>
+<a href="/" class="back-button">Back to Home Page</a>
+</html>

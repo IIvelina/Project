@@ -32,4 +32,15 @@ public class SavingsAccountServiceImpl implements SavingsAccountService {
     public SavingsAccount findByClientNumber(String clientNumber) {
         return savingsAccountRepository.findByClientNumber(clientNumber);
     }
+
+
+    @Override
+    public SavingsAccount findByUsername(String username) {
+        return savingsAccountRepository.findByUsername(username).orElse(null);
+    }
+
+    @Override
+    public SavingsAccount findById(Long id) {
+        return savingsAccountRepository.findById(id).orElse(null);
+    }
 }

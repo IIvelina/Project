@@ -34,4 +34,15 @@ public class CheckingAccountServiceImpl implements CheckingAccountService {
 
     }
 
+    @Override
+    public CheckingAccount findByUsername(String username) {
+        return checkingAccountRepository.findByUsername(username).orElse(null);
+    }
+
+    @Override
+    public CheckingAccount findById(Long id) {
+        return checkingAccountRepository.findById(id).orElse(null);
+    }
+
+
 }
