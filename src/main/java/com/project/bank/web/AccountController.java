@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -115,10 +114,7 @@ public class AccountController {
         return "myAccountsEN";
     }
 
-    @GetMapping("/user/transactions")
-    public String recentTransactions() {
-        return "lastTransactionsEN";
-    }
+
 
     @GetMapping("/user/request-new-product")
     public String requestNewProduct(Model model) {
@@ -137,20 +133,17 @@ public class AccountController {
         return "newProductEN";
     }
 
-    @GetMapping("/user/add-money")
-    public String addMoney() {
-        return "addMoney";
-    }
+
 
     @GetMapping("/user/withdraw")
     public String withdraw() {
         return "withdraw";
     }
 
-    @GetMapping("/user/transfer")
-    public String transfer() {
-        return "transferEN";
-    }
+ @GetMapping("/user/transfer")
+        public String transfer() {
+            return "transferEN";
+        }
 
 //th:href="/account/saving"
 

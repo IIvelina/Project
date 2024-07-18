@@ -1,19 +1,21 @@
 package com.project.bank.security;
 
+import com.project.bank.model.entity.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
 @Component
 @SessionScope
 public class CurrentUser {
+    private static final Logger logger = LoggerFactory.getLogger(CurrentUser.class);
+
     private Long id;
     private String username;
     private String fullName;
-
     private String clientNumber;
-
     private String email;
-
 
 
     public CurrentUser() {
@@ -42,8 +44,6 @@ public class CurrentUser {
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
-
-
 
     public String getClientNumber() {
         return clientNumber;

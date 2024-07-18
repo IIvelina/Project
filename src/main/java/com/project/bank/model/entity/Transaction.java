@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "transactions")
 public class Transaction extends BaseEntity {
+
+
     @ManyToOne
     @JoinColumn(name = "from_account_id")
     private Account fromAccount;
@@ -57,4 +59,6 @@ public class Transaction extends BaseEntity {
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
+
+
 }
