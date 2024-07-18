@@ -21,4 +21,7 @@ public interface UserService {
     boolean existsByUsername(String username);
 
     boolean existsByPhoneNumber(String phoneNumber);
+
+    User findByUsername(String username);
+
 }

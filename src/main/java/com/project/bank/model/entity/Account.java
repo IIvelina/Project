@@ -16,10 +16,10 @@ public abstract class Account extends BaseEntity {
     @Column(nullable = false)
     private BigDecimal balance;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false) // Премахнат уникалния индекс
     private String clientNumber;
 
-    @Column(nullable = false)
+    @Column
     private BigDecimal rate;
 
     @ManyToOne

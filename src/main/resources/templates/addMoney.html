@@ -16,13 +16,13 @@
         <img src="/img/logo1.png" alt="Лого" class="logo" id="logowf">
         <nav class="nav">
             <ul>
-                <li><a href="profileEN.html">My Profile</a></li>
-                <li><a href="myAccountsEN.html">My Accounts</a></li>
-                <li><a href="lastTransactionsEN.html">Recent Transactions</a></li>
-                <li><a href="/newProductEN.html">Request New Product</a></li>
-                <li><a href="/addMoney.html">Add Money</a></li>
-                <li><a href="/withdraw.html">Withdraw</a></li>
-                <li><a href="/transferEN.html">Transfer</a></li>
+                <li><a th:href="@{/users/profile}">My Profile</a></li>
+                <li><a th:href="@{/user/accounts}">My Accounts</a></li>
+                <li><a th:href="@{/user/transactions}">Recent Transactions</a></li>
+                <li><a th:href="@{/user/request-new-product}">Request New Product</a></li>
+                <li><a th:href="@{/user/add-money}">Add Money</a></li>
+                <li><a th:href="@{/user/withdraw}">Withdraw</a></li>
+                <li><a th:href="@{/user/transfer}">Transfer</a></li>
             </ul>
         </nav>
         <div class="profile-content">

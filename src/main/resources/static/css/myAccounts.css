@@ -107,18 +107,19 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    gap: 20px;
 }
 
 .product-option {
     background: rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 10px;
-    width: 200px;
+    width: 200px; /* или друга подходяща ширина */
     text-align: center;
     transition: background 0.3s;
     color: #0c2d3a;
     font-weight: bold;
-    
+    white-space: nowrap;
 }
 
 .product-option:hover {

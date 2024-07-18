@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService {
     private final RoleService roleService;
 
     private final CurrentUser currentUser;
-    @Autowired
 
+    @Autowired
     public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, RoleService roleService, CurrentUser currentUser) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
@@ -43,21 +43,17 @@ public class UserServiceImpl implements UserService {
         User user = modelMapper.map(userServiceModel, User.class);
         user.setPassword(passwordEncoder.encode(userServiceModel.getPassword()));
 
-        // Generate and set a unique client number
+        // Генериране и задаване на уникален клиентски номер
         String clientNumber = generateUniqueClientNumber();
         user.setClientNumber(clientNumber);
 
         Role clientRole = roleService.findRoleByRoleName(UserRoleEnum.CLIENT);
-
         user.setRoles(new HashSet<>(Collections.singletonList(clientRole)));
         user.setGender(userServiceModel.getGender());
         user.setUsername(userServiceModel.getUsername());
         User savedUser = userRepository.save(user);
         return modelMapper.map(savedUser, UserServiceModel.class);
     }
-
-
-
 
     private String generateUniqueClientNumber() {
         String clientNumber;
@@ -71,11 +67,10 @@ public class UserServiceImpl implements UserService {
         Random random = new Random();
         StringBuilder sb = new StringBuilder(length);
         for (int i = 0; i < length; i++) {
-            sb.append(random.nextInt(10)); // Generates a random digit between 0 and 9
+            sb.append(random.nextInt(10)); // Генерира случайно число между 0 и 9
         }
         return sb.toString();
     }
-
 
     @Override
     public UserServiceModel findByUsernameAndPassword(String username, String password) {
@@ -85,8 +80,6 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
-
-
 
     @Override
     public void loginUser(Long id, String username) {
@@ -124,5 +117,8 @@ public class UserServiceImpl implements UserService {
         return userRepository.existsByPhoneNumber(phoneNumber);
     }
 
-
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("User not found"));
+    }
 }
