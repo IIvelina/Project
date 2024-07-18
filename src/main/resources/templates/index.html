@@ -41,7 +41,6 @@
 </div>
 <!-- Spinner End -->
 
-
 <!-- Topbar Start -->
 <div class="container-fluid bg-dark px-5 d-none d-lg-block">
     <div class="row gx-0">
@@ -65,89 +64,101 @@
 </div>
 <!-- Topbar End -->
 
-
 <!-- Navbar & Carousel Start -->
 <div class="container-fluid position-relative p-0">
 
-    <div class="container-fluid position-relative p-0">
-        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
-            <a th:href="@{/}" class="navbar-brand p-0">
-                <h1>
-                    <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="50px" fill="#ffffff">
-                        <path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/>
-                    </svg>
-                    Wave Financial
-                </h1>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-0">
-                    <a th:href="@{/}" class="nav-item nav-link active">HOME</a>
-                    <a href="about.html" class="nav-item nav-link">ABOUT US</a>
-                    <a href="service.html" class="nav-item nav-link">PRODUCTS AND SERVICES</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">CAREERS</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="openPositions.html" class="dropdown-item">Open Positions</a>
-                            <a href="application-process.html" class="dropdown-item">Application process</a>
-                            <a href="benefits.html" class="dropdown-item">Our Benefits</a>
-                        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+        <a th:href="@{/}" class="navbar-brand p-0">
+            <h1>
+                <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="50px" fill="#ffffff">
+                    <path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/>
+                </svg>
+                Wave Financial
+            </h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a th:href="@{/}" class="nav-item nav-link active">HOME</a>
+                <a th:href="@{/about}" class="nav-item nav-link">ABOUT US</a>
+                <a th:href="@{/productAndService}" class="nav-item nav-link">PRODUCTS AND SERVICES</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">CAREERS</a>
+                    <div class="dropdown-menu m-0">
+                        <a th:href="@{/openPositions}" class="dropdown-item">Open Positions</a>
+                        <a th:href="@{/applicationProcess}" class="dropdown-item">Application process</a>
+                        <a th:href="@{/benefits}" class="dropdown-item">Our Benefits</a>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">CONTACTS</a>
-                    <a th:href="@{/users/register}" class="nav-item nav-link">BECOME A CLIENT</a>
                 </div>
-                <button type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button>
-                <a href="/loginEN.html" class="btn btn-primary py-2 px-4 ms-3">Login</a>
-                <a href="" class="btn btn-primary py-2 px-4 ms-3">Logout</a>
-                <a href="" class="btn btn-primary py-2 px-4 ms-3">BG</a>
+                <a th:href="@{/contact}" class="nav-item nav-link">CONTACTS</a>
+                <th:block th:if="${@currentUser.id == null}">
+                <a th:href="@{/users/register}" class="nav-item nav-link">BECOME A CLIENT</a>
+                </th:block>
             </div>
-        </nav>
+            <button type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button>
+            <th:block th:if="${@currentUser.id == null}">
+            <a th:href="@{users/login}" class="btn btn-primary py-2 px-4 ms-3">LOGIN</a>
+            </th:block>
 
-        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="w-100" src="img/wave.jpg" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">
-                                Your Trusted Partner for Financial Solutions</h5>
-                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">Welcome to Wave Financial</h1>
-                            <a th:href="@{/users/register}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Become a Client</a>
-                            <a href="contact.html" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact Us</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img class="w-100" src="img/Ideal-business-partners.jpg" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Your Trusted Partner for Financial Solutions</h5>
-                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">
-                                Welcome to Wave Financial
-                            </h1>
-                            <a th:href="@{/users/register}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Become a Client</a>
-                            <a href="contact.html" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact Us</a>
-                        </div>
+            <th:block th:if="${currentUser != null and currentUser.id != null}">
+            <a th:href="@{users/logout}" class="btn btn-primary py-2 px-4 ms-3">LOGOUT</a>
+            </th:block>
+            <th:block th:if="${currentUser != null and currentUser.id != null}">
+                <a
+                        th:href="@{/users/profile}" class="btn btn-primary py-2 px-4 ms-3">PROFILE</a>
+            </th:block>
+
+
+
+            <a href="" class="btn btn-primary py-2 px-4 ms-3">ADMIN</a>
+
+
+
+
+            <a href="" class="btn btn-primary py-2 px-4 ms-3">BG</a>
+        </div>
+    </nav>
+
+    <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="w-100" src="img/wave.jpg" alt="Image">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h5 class="text-white text-uppercase mb-3 animated slideInDown">Your Trusted Partner for Financial Solutions</h5>
+                        <h1 class="display-1 text-white mb-md-4 animated zoomIn">Welcome to Wave Financial</h1>
+                        <a th:href="@{/users/register}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Become a Client</a>
+                        <a th:href="@{/contact}" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact Us</a>
                     </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
-                    data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
-                    data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+            <div class="carousel-item">
+                <img class="w-100" src="img/Ideal-business-partners.jpg" alt="Image">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h5 class="text-white text-uppercase mb-3 animated slideInDown">Your Trusted Partner for Financial Solutions</h5>
+                        <h1 class="display-1 text-white mb-md-4 animated zoomIn">Welcome to Wave Financial</h1>
+                        <th:block th:if="${@currentUser.id == null}">
+                        <a th:href="@{/users/register}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Become a Client</a>
+                        </th:block>
+                        <a th:href="@{/contact}" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact Us</a>
+                    </div>
+                </div>
+            </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 </div>
 <!-- Navbar & Carousel End -->
-
 
 <!-- Full Screen Search Start -->
 <div class="modal fade" id="searchModal" tabindex="-1">
@@ -166,7 +177,6 @@
     </div>
 </div>
 <!-- Full Screen Search End -->
-
 
 <!-- Facts Start -->
 <div class="container-fluid facts py-5 pt-lg-0">
@@ -190,7 +200,6 @@
                     <div class="bg-primary d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
                         <i class="fa fa-dollar-sign text-white"></i>
                     </div>
-
                     <div class="ps-4">
                         <h5 class="text-primary mb-0">USD</h5>
                         <h1 class="mb-0" data-toggle="counter-up">1.79467</h1>
@@ -204,7 +213,6 @@
                     <div class="bg-white d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
                         <i class="fa fa-pound-sign text-primary"></i>
                     </div>
-
                     <div class="ps-4">
                         <h5 class="text-white mb-0">GBP</h5>
                         <h1 class="text-white mb-0" data-toggle="counter-up">2.29773</h1>
@@ -216,7 +224,7 @@
         </div>
     </div>
 </div>
-<!-- Facts Start -->
+<!-- Facts End -->
 
 <!-- Features Start -->
 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -270,7 +278,7 @@
         </div>
     </div>
 </div>
-<!-- Features Start -->
+<!-- Features End -->
 
 <!-- Footer Start -->
 <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -321,10 +329,12 @@
                         </div>
                         <div class="link-animated d-flex flex-column justify-content-start">
                             <a class="text-light mb-2" th:href="@{/}"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
-                            <a class="text-light mb-2" href="about.html"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
-                            <a class="text-light mb-2" href="service.html"><i class="bi bi-arrow-right text-primary me-2"></i>Products And Service</a>
-                            <a class="text-light mb-2" href="contact.html"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
+                            <a class="text-light mb-2" th:href="@{/about}"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
+                            <a class="text-light mb-2" th:href="@{/productAndService}"><i class="bi bi-arrow-right text-primary me-2"></i>Products And Service</a>
+                            <a class="text-light mb-2" th:href="@{/contact}"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
+                            <th:block th:if="${@currentUser.id == null}">
                             <a class="text-light" th:href="@{/users/register}"><i class="bi bi-arrow-right text-primary me-2"></i>Become a Client</a>
+                            </th:block>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
@@ -332,9 +342,9 @@
                             <h3 class="text-light mb-0">Careers</h3>
                         </div>
                         <div class="link-animated d-flex flex-column justify-content-start">
-                            <a class="text-light mb-2" href="openPositions.html"><i class="bi bi-arrow-right text-primary me-2"></i>Open Positions</a>
-                            <a class="text-light mb-2" href="application-process.html"><i class="bi bi-arrow-right text-primary me-2"></i>Application Process</a>
-                            <a class="text-light mb-2" href="benefits.html"><i class="bi bi-arrow-right text-primary me-2"></i>Our Benefits</a>
+                            <a class="text-light mb-2" th:href="@{/openPositions}"><i class="bi bi-arrow-right text-primary me-2"></i>Open Positions</a>
+                            <a class="text-light mb-2" th:href="@{/applicationProcess}"><i class="bi bi-arrow-right text-primary me-2"></i>Application Process</a>
+                            <a class="text-light mb-2" th:href="@{/benefits}"><i class="bi bi-arrow-right text-primary me-2"></i>Our Benefits</a>
                         </div>
                     </div>
                 </div>
@@ -347,15 +357,13 @@
         <div class="row justify-content-end">
             <div class="col-lg-8 col-md-6">
                 <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
-                    <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">2024 Wave Financial. All Rights Reserved.
-                    </p>
+                    <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">2024 Wave Financial. All Rights Reserved.</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Footer End -->
-
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
@@ -372,5 +380,4 @@
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
 </body>
-
 </html>

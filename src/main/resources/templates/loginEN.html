@@ -11,11 +11,11 @@
 </head>
 <body>
 
-    <a href="index.html" class="back-button">Back to Home Page</a>
+    <a th:href="@{/}" class="back-button">Back to Home Page</a>
 
     <div class="login-container">
         <div class="language-switch">
-            <a href="loginBG.html">БГ</a>
+            <a href="">BG</a>
         </div>
         <div class="login-header">
             <img src="/img/logo1.png" alt="Wave Financial" class="logo">
@@ -24,22 +24,52 @@
             <img src="/img/logo2.png" alt="Wave Financial" class="e-logo">
             <span class="tagline">Login to Wave Financial</span>
         </div>
-        <form class="login-form">
+        <form
+                th:action="@{/users/login}"
+                th:method="post"
+                th:object="${userLoginDTO}"
+
+                class="login-form">
+
+            <h3
+                    th:if="${!isFound}"
+                    class="mt-5 text-center">
+                <strong class="errorsforinputs">
+                    Wrong username and password combination.
+                </strong>
+            </h3>
+
             <i class="fa-solid fa-user"></i>
-            <input type="text" id="username" name="username" placeholder="Username" required="true"
+            <input
+                    th:field="*{username}"
+                    th:errorclass="bg-danger"
+
+                    type="text" id="username" name="username" placeholder="Username" required="true"
             maxlength="20" pattern="[a-zA-Z0-9]+" autocomplete="off" />
-            <p id="errorsforinputs">
+            <p class="errorsforinputs"
+               th:if="${#fields.hasErrors('username')}"
+               th:errors="*{username}"
+
+            >
                 Invalid username.
             </p>    
 
                 <!-- title="Only letters and numbers are allowed" -->
                 <i class="fa-solid fa-lock"></i>
-            <input type="password" id="password" name="password" placeholder="Password" required="true"
+            <input
+                    th:field="*{password}"
+                    th:errorclass="bg-danger"
+
+                    type="password" id="password" name="password" placeholder="Password" required="true"
             autocomplete="off" minlength="8" maxlength="20"
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"/>
 
                 <!-- title="Password must contain at least one digit, one lowercase and one uppercase letter, and be at least 8 characters long." -->
-                <p id="errorsforinputs">
+                <p class="errorsforinputs"
+                   th:if="${#fields.hasErrors('password')}"
+                   th:errors="*{password}"
+
+                >
                     Invalid password.
                 </p>    
 

@@ -11,11 +11,6 @@ public class SavingsAccount extends Account {
     @Column(nullable = false)
     private String safetyDepositKey;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-
     public SavingsAccount() {
     }
 
@@ -33,15 +28,5 @@ public class SavingsAccount extends Account {
 
     public void setSafetyDepositKey(String safetyDepositKey) {
         this.safetyDepositKey = safetyDepositKey;
-    }
-
-    @Override
-    public User getUser() {
-        return user;
-    }
-
-    @Override
-    public void setUser(User user) {
-        this.user = user;
     }
 }

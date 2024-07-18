@@ -33,6 +33,9 @@ public class User extends BaseEntity {
     private UserGenderEnum gender;
 
     @Column(nullable = false, unique = true)
+    private String phoneNumber;
+
+    @Column(nullable = false, unique = true)
     private String clientNumber;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -52,6 +55,9 @@ public class User extends BaseEntity {
     public User() {
         this.roles = new HashSet<>();
     }
+
+    // getters and setters
+
 
     public String getSsn() {
         return ssn;
@@ -107,6 +113,14 @@ public class User extends BaseEntity {
 
     public void setGender(UserGenderEnum gender) {
         this.gender = gender;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getClientNumber() {

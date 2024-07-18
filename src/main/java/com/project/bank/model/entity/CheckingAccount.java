@@ -11,11 +11,6 @@ public class CheckingAccount extends Account {
     @Column(nullable = false)
     private String debitCardPin;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-
     public CheckingAccount() {
     }
 
@@ -33,15 +28,5 @@ public class CheckingAccount extends Account {
 
     public void setDebitCardPin(String debitCardPin) {
         this.debitCardPin = debitCardPin;
-    }
-
-    @Override
-    public User getUser() {
-        return user;
-    }
-
-    @Override
-    public void setUser(User user) {
-        this.user = user;
     }
 }

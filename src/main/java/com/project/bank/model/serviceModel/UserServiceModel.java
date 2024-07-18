@@ -1,5 +1,6 @@
 package com.project.bank.model.serviceModel;
 
+import com.project.bank.model.enums.UserGenderEnum;
 import com.project.bank.model.enums.UserRoleEnum;
 import jakarta.persistence.Column;
 
@@ -18,6 +19,10 @@ public class UserServiceModel {
     private String password;
 
     private UserRoleEnum role;
+
+    private UserGenderEnum gender;
+
+    private String username;
 
     public UserServiceModel() {
     }
@@ -84,5 +89,21 @@ public class UserServiceModel {
 
     public void setRole(UserRoleEnum role) {
         this.role = role;
+    }
+
+    public UserGenderEnum getGender() {
+        return gender;
+    }
+
+    public void setGender(UserGenderEnum gender) {
+        this.gender = gender;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

@@ -5,47 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wave Financial</title>
     <link rel="stylesheet" href="/css/profile.css">
-    <!-- Добавено: Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23234659'><path d='M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z'/></svg>" type="image/svg+xml" />
 </head>
 <body>
-    <div class="container">
-        <div class="language-switch" id="language-switch">
-            <button onclick="window.location.href='#'">BG</button>
-        </div>
+<div class="container">
+    <div class="language-switch" id="language-switch">
+        <button onclick="window.location.href='#'">BG</button>
+    </div>
 
-        <img src="/img/logo1.png" alt="Лого" class="logo" id="logowf">
-        <nav class="nav">
-            <ul>
-                <li><a href="#">My Profile</a></li>
-                <li><a href="myAccountsEN.html">My Accounts</a></li>
-                <li><a href="lastTransactionsEN.html">Recent Transactions</a></li>
-                <li><a href="/newProductEN.html">Request New Product</a></li>
-                <li><a href="/addMoney.html">Add Money</a></li>
-                <li><a href="/withdraw.html">Withdraw</a></li>
-                <li><a href="/transferEN.html">Transfer</a></li>
-            </ul>
-        </nav>
-        <div class="profile-content">
-            <h2 id="title">My Profile</h2>
-            <div class="profile-pic">
-                <img src="/img/user.png" alt="Profile Picture">
-            </div>
-            <div class="profile-info">
-                <p><strong>First Name:</strong> Ivelina</p>
-                <p><strong>Last Name:</strong> Ivanova</p>
-                <p><strong>Client Number:</strong> 123456</p>
-                <p><strong>Email:</strong> iva@abv.bg</p>
-            </div>
+    <img src="/img/logo1.png" alt="Лого" class="logo" id="logowf">
+    <nav class="nav">
+        <ul>
+            <li><a th:href="@{/user/profile}">My Profile</a></li>
+            <li><a th:href="@{/user/accounts}">My Accounts</a></li>
+            <li><a th:href="@{/user/transactions}">Recent Transactions</a></li>
+            <li><a th:href="@{/user/product/add}">Request New Product</a></li>
+            <li><a th:href="@{/user/money/add}">Add Money</a></li>
+            <li><a th:href="@{/user/money/withdraw}">Withdraw</a></li>
+            <li><a th:href="@{/user/money/transfer}">Transfer</a></li>
+        </ul>
+    </nav>
+    <div class="profile-content">
+        <h2 id="title">My Profile</h2>
+        <div class="profile-pic">
+            <img src="/img/user.png" alt="Profile Picture">
         </div>
-        
-        
-
+        <div class="profile-info">
+            <p><strong>Full Name:</strong> <span th:text="${currentUser.fullName}"></span></p>
+            <p><strong>Client Number:</strong> <span th:text="${currentUser.clientNumber}"></span></p>
+            <p><strong>Email:</strong> <span th:text="${currentUser.email}"></span></p>
+        </div>
+    </div>
     <div class="footer">
         <img src="/img/logo2.png" alt="e-Wave Financial" class="logo">
     </div>
-    </div>
-    <a href="index.html" class="back-button">Back to Home Page</a>
+</div>
+<a th:href="@{/}" class="back-button">Back to Home Page</a>
 
 </body>
 </html>

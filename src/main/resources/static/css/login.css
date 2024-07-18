@@ -139,7 +139,7 @@ body {
     cursor: pointer;
 }
 
-#errorsforinputs {
+.errorsforinputs {
     background-color: rgb(231, 211, 188);
     color: rgb(97, 23, 23);
     font-weight: bold;

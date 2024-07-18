@@ -88,24 +88,24 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="index.html" class="nav-item nav-link">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About Us</a>
-                    <a href="service.html" class="nav-item nav-link">Products and Services</a>
+                    <a th:href="@{/}" class="nav-item nav-link">Home</a>
+                    <a th:href="@{/about}" class="nav-item nav-link">About Us</a>
+                    <a th:href="@{/productAndService}" class="nav-item nav-link">Products and Services</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Careers</a>
                         <div class="dropdown-menu m-0">
-                            <a href="openPositions.html" class="dropdown-item">Open Positions</a>
-                            <a href="application-process.html" class="dropdown-item">Application process</a>
-                            <a href="benefits.html" class="dropdown-item">Benefits</a>
+                            <a th:href="@{/openPositions}" class="dropdown-item">Open Positions</a>
+                            <a th:href="@{/applicationProcess}" class="dropdown-item">Application process</a>
+                            <a th:href="@{/benefits}" class="dropdown-item">Benefits</a>
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contacts</a>
-                    <a href="registerEN.html" class="nav-item nav-link">Become a Client</a>
+                    <a th:href="@{/contact}" class="nav-item nav-link">Contacts</a>
+                    <a th:href="@{/users/register}" class="nav-item nav-link">Become a Client</a>
                 </div>
                 <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
-                <a href="/loginEN.html" class="btn btn-primary py-2 px-4 ms-3">Login</a>
-                <a href="" class="btn btn-primary py-2 px-4 ms-3">Logout</a>
-                <a href="/benefitsBG.html" class="btn btn-primary py-2 px-4 ms-3">BG</a>
+                <a th:href="@{/users/login}" class="btn btn-primary py-2 px-4 ms-3">Login</a>
+                <a th:href="@{/users/logout}" class="btn btn-primary py-2 px-4 ms-3">Logout</a>
+                <a href="" class="btn btn-primary py-2 px-4 ms-3">BG</a>
             </div>
         </nav>
 
@@ -492,8 +492,8 @@
     <!-- Team End -->
 
 
-   
-    
+
+
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -504,15 +504,13 @@
                         <a href="index.html" class="navbar-brand">
                             <h1 class="m-0 text-white">
                                 <!-- Bank Icon SVG -->
-                                <svg xmlns="http://www.w3.org/2000/svg" height=30px" viewBox="0 -960 960 960" width="50px" fill="#ffffff">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="50px" fill="#ffffff">
                                     <path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/>
-                                </svg> 
+                                </svg>
                                 Wave Financial
-                             
                             </h1>
                         </a>
                         <p class="mt-3 mb-4">In the world of finance, innovation and trust go hand in hand. Wave Financial is your partner in achieving financial stability and growth.</p>
-                      
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-6">
@@ -523,8 +521,7 @@
                             </div>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-geo-alt text-primary me-2"></i>
-                                <p class="mb-0">Expo2000,Sofia, Bulgaria
-                                </p>
+                                <p class="mb-0">Expo2000,Sofia, Bulgaria</p>
                             </div>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-envelope-open text-primary me-2"></i>
@@ -546,12 +543,11 @@
                                 <h3 class="text-light mb-0">Quick Links</h3>
                             </div>
                             <div class="link-animated d-flex flex-column justify-content-start">
-                                <a class="text-light mb-2" href="index.html"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
-                                <a class="text-light mb-2" href="about.html"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
-                                <a class="text-light mb-2" href="service.html"><i class="bi bi-arrow-right text-primary me-2"></i>Products And Service</a>
-                                <a class="text-light mb-2" href="contact.html"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
-                             <!--   <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a> -->
-                                <a class="text-light" href="registerEN.html"><i class="bi bi-arrow-right text-primary me-2"></i>Become a Client</a>
+                                <a class="text-light mb-2" th:href="@{/}"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
+                                <a class="text-light mb-2" th:href="@{/about}"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
+                                <a class="text-light mb-2" th:href="@{/productAndService}"><i class="bi bi-arrow-right text-primary me-2"></i>Products And Service</a>
+                                <a class="text-light mb-2" th:href="@{/contact}"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
+                                <a class="text-light" th:href="@{/users/register}"><i class="bi bi-arrow-right text-primary me-2"></i>Become a Client</a>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
@@ -559,10 +555,9 @@
                                 <h3 class="text-light mb-0">Careers</h3>
                             </div>
                             <div class="link-animated d-flex flex-column justify-content-start">
-                                <a class="text-light mb-2" href="openPositions.html"><i class="bi bi-arrow-right text-primary me-2"></i>Open Positions</a>
-                                <a class="text-light mb-2" href="application-process.html"><i class="bi bi-arrow-right text-primary me-2"></i>Application Process</a>
-                                <a class="text-light mb-2" href="benefits.html"><i class="bi bi-arrow-right text-primary me-2"></i>Our Benefits</a>
-                        
+                                <a class="text-light mb-2" th:href="@{/openPositions}"><i class="bi bi-arrow-right text-primary me-2"></i>Open Positions</a>
+                                <a class="text-light mb-2" th:href="@{/applicationProcess}"><i class="bi bi-arrow-right text-primary me-2"></i>Application Process</a>
+                                <a class="text-light mb-2" th:href="@{/benefits}"><i class="bi bi-arrow-right text-primary me-2"></i>Our Benefits</a>
                             </div>
                         </div>
                     </div>
@@ -575,8 +570,7 @@
             <div class="row justify-content-end">
                 <div class="col-lg-8 col-md-6">
                     <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
-                        <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">2024 Wave Financial. All Rights Reserved. 
-                        </p>
+                        <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">2024 Wave Financial. All Rights Reserved.</p>
                     </div>
                 </div>
             </div>
