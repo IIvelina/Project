@@ -38,6 +38,11 @@ public class HomeController {
         return "forgotPassword";
     }
 
+    @GetMapping("security-tips")
+    public String securityTips(){
+        return "securityTips";
+    }
+
     @GetMapping("/productAndService")
     public String productAndService(){
         return "service";
