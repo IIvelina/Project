@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -103,19 +104,6 @@ public class TransactionController {
 //        return "lastTransactionsEN";
 //    }
 
-//    @GetMapping("/user/transactions")
-//    public String showRecentTransactions(Model model) {
-//        return "lastTransactionsEN";
-//    }
-
-//todo show last three transactions
-    @GetMapping("/user/transactions")
-    public String findRecentTransactions(Model model) {
-//        List<Transaction> transactions = transactionService.getLastThreeTransactionsByClientNumber(currentUser.getClientNumber());
-//        model.addAttribute("transactions", transactions);
-//        model.addAttribute("currentUserName", currentUser.getFullName());
-        return "lastTransactionsEN";
-    }
 
 
 
@@ -241,4 +229,25 @@ public class TransactionController {
 
         return "redirect:/user/accounts";
     }
+
+
+//    @GetMapping("/user/transactions")
+//    public String showRecentTransactions(Model model) {
+//        return "lastTransactionsEN";
+//    }
+
+    //todo show last three transactions
+    @GetMapping("/user/transactions")
+    public String findRecentTransactions(Model model) {
+        List<Transaction> transactions = transactionService.getLastThreeTransactionsByUserId(currentUser.getId());
+        transactions.sort(Comparator.comparing(Transaction::getTimestamp).reversed());
+        model.addAttribute("transactions", transactions);
+        model.addAttribute("currentUserName", currentUser.getFullName());
+        model.addAttribute("currentUserId", currentUser.getId());
+        return "lastTransactionsEN";
+    }
+
+
+
+
 }

@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -22,6 +23,16 @@ public class TransactionServiceImpl implements TransactionService {
     public void saveTransaction(Transaction transaction) {
         transactionRepository.save(transaction);
     }
+
+
+    @Override
+    public List<Transaction> getLastThreeTransactionsByUserId(Long userId) {
+        List<Transaction> transactions = transactionRepository.findTop3ByFromAccount_UserIdOrderByTimestampDesc(userId);
+        transactions.sort(Comparator.comparing(Transaction::getTimestamp));
+        return transactions;
+    }
+
+
 
 
 

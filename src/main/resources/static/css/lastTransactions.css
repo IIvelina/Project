@@ -116,13 +116,13 @@ body {
     width: 100%;
 }
 
-.transaction-amount.negative {
-    color: red;
-}
+/*.transaction-amount.negative {*/
+/*    color: red;*/
+/*}*/
 
-.transaction-amount.positive {
-    color: green;
-}
+/*.transaction-amount.positive {*/
+/*    color: green;*/
+/*}*/
 
 .transaction-date {
     color: #aaa;
@@ -145,4 +145,12 @@ body {
 
 .language-switch button:hover {
     text-decoration: underline;
+}
+
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red;
 }

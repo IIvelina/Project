@@ -10,4 +10,5 @@ public interface TransactionService {
     void saveTransaction(Transaction transaction);
 
 
+    List<Transaction> getLastThreeTransactionsByUserId(Long id);
 }

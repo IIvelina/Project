@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
+    List<Transaction> findTop3ByFromAccount_UserIdOrderByTimestampDesc(Long userId);
 
 //    @Query(value = "SELECT t.* FROM transactions t " +
 //            "JOIN accounts a ON t.from_account_id = a.id OR t.to_account_id = a.id " +
