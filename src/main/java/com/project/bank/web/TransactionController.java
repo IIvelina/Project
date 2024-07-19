@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Controller
@@ -116,11 +117,7 @@ public class TransactionController {
         return "lastTransactionsEN";
     }
 
-    //todo make transactions by client number
-    @GetMapping("/user/transfer")
-    public String transfer() {
-        return "transferEN";
-    }
+
 
 ////Теглене на пари от сметка
 
@@ -180,4 +177,68 @@ public class TransactionController {
         return "redirect:/user/accounts";
     }
 
+
+    //todo make transactions by client number
+//    @GetMapping("/user/transfer")
+//    public String transfer() {
+//        return "transferEN";
+//    }
+
+    @GetMapping("/user/transfer")
+    public String showTransferForm(Model model, RedirectAttributes redirectAttributes) {
+        List<Account> accounts = accountService.getAccountsByUserId(currentUser.getId());
+
+        if (accounts.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "You don't have any accounts. Please request a new product.");
+            return "redirect:/user/request-new-product";
+        }
+
+        model.addAttribute("accounts", accounts);
+        return "transferEN";
+    }
+
+    @PostMapping("/user/transfer")
+    public String transfer(@RequestParam("fromAccount") Long fromAccountId,
+                           @RequestParam("recipientPN") String recipientPhoneNumber,
+                           @RequestParam("transferAmount") BigDecimal transferAmount,
+                           Model model, RedirectAttributes redirectAttributes) {
+        Account fromAccount = accountService.getAccountById(fromAccountId);
+
+        if (fromAccount == null) {
+            model.addAttribute("error", "Invalid account selected.");
+            return showTransferForm(model, redirectAttributes);
+        }
+
+        if (fromAccount.getBalance().compareTo(transferAmount) < 0) {
+            model.addAttribute("error", "Insufficient balance.");
+            return showTransferForm(model, redirectAttributes);
+        }
+
+        User recipient = userService.getUserByPhoneNumber(recipientPhoneNumber);
+        if (recipient == null) {
+            model.addAttribute("error", "Recipient not found.");
+            return showTransferForm(model, redirectAttributes);
+        }
+
+        Account recipientAccount = accountService.getAccountByTypeAndUserId(AccountType.CHECKING, recipient.getId());
+        if (recipientAccount == null) {
+            model.addAttribute("error", "Recipient does not have a checking account.");
+            return showTransferForm(model, redirectAttributes);
+        }
+
+        Transaction transaction = new Transaction();
+        transaction.setAmount(transferAmount);
+        transaction.setFromAccount(fromAccount);
+        transaction.setToAccount(recipientAccount);
+        transaction.setTimestamp(LocalDateTime.now());
+        transactionService.saveTransaction(transaction);
+
+        fromAccount.setBalance(fromAccount.getBalance().subtract(transferAmount));
+        recipientAccount.setBalance(recipientAccount.getBalance().add(transferAmount));
+
+        accountService.saveAccount(fromAccount);
+        accountService.saveAccount(recipientAccount);
+
+        return "redirect:/user/accounts";
+    }
 }

@@ -27,4 +27,5 @@ public interface UserService {
     User save(User user);
 
 
+    User getUserByPhoneNumber(String recipientPhoneNumber);
 }

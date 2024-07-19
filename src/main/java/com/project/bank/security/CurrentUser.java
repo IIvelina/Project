@@ -16,6 +16,8 @@ public class CurrentUser {
     private String clientNumber;
     private String email;
 
+    private String phoneNumber;
+
 
     public CurrentUser() {
     }
@@ -60,5 +62,11 @@ public class CurrentUser {
         this.email = email;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 }

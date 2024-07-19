@@ -9,4 +9,7 @@ public interface AccountService {
     Account getAccountByTypeAndUserId(AccountType type, Long userId);
     void saveAccount(Account account);
 
+    List<Account> getAccountsByUserId(Long id);
+
+    Account getAccountById(Long fromAccountId);
 }

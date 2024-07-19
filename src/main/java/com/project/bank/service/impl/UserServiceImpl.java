@@ -129,5 +129,10 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    @Override
+    public User getUserByPhoneNumber(String phoneNumber) {
+        return userRepository.findByPhoneNumber(phoneNumber).orElse(null);
+    }
+
 
 }
