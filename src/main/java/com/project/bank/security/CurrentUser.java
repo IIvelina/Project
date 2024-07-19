@@ -9,7 +9,6 @@ import org.springframework.web.context.annotation.SessionScope;
 @Component
 @SessionScope
 public class CurrentUser {
-    private static final Logger logger = LoggerFactory.getLogger(CurrentUser.class);
 
     private Long id;
     private String username;

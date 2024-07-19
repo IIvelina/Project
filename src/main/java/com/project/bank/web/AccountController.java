@@ -135,15 +135,8 @@ public class AccountController {
 
 
 
-    @GetMapping("/user/withdraw")
-    public String withdraw() {
-        return "withdraw";
-    }
 
- @GetMapping("/user/transfer")
-        public String transfer() {
-            return "transferEN";
-        }
+
 
 //th:href="/account/saving"
 

@@ -8,6 +8,5 @@ import java.util.List;
 public interface AccountService {
     Account getAccountByTypeAndUserId(AccountType type, Long userId);
     void saveAccount(Account account);
-    boolean hasAccount(AccountType type, Long userId);
-    List<Account> getAccountsByUserId(Long userId);
+
 }

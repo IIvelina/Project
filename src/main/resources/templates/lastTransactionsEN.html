@@ -13,42 +13,60 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-<div class="container">
-    <div class="language-switch" id="language-switch">
-        <button onclick="window.location.href='#'">BG</button>
-    </div>
-    <img src="/img/logo1.png" alt="Лого" class="logo" id="logowf">
-    <nav class="nav">
-        <ul>
-            <li><a th:href="@{/users/profile}">My Profile</a></li>
-            <li><a th:href="@{/user/accounts}">My Accounts</a></li>
-            <li><a th:href="@{/user/transactions}">Recent Transactions</a></li>
-            <li><a th:href="@{/user/request-new-product}">Request New Product</a></li>
-            <li><a th:href="@{/user/show-add-money}">Add Money</a></li>
-            <li><a th:href="@{/user/withdraw}">Withdraw</a></li>
-            <li><a th:href="@{/user/transfer}">Transfer</a></li>
-        </ul>
-    </nav>
-    <div class="profile-content">
-        <h2 id="title">Recent Transactions</h2>
-        <div class="transactions">
-            <div th:each="transaction : ${transactions}" class="transaction">
-                <i class="material-icons">sync_alt</i>
-                <div class="transaction-info">
-                    <p th:text="${transaction.user.fullName}"></p>
-                    <p th:text="${transaction.type}"></p>
+    <div class="container">
+        <div class="language-switch" id="language-switch">
+            <button onclick="window.location.href='#'">BG</button>
+        </div>
+        <img src="/img/logo1.png" alt="Лого" class="logo" id="logowf">
+        <nav class="nav">
+            <ul>
+                <li><a th:href="@{/users/profile}">My Profile</a></li>
+                <li><a th:href="@{/user/accounts}">My Accounts</a></li>
+                <li><a th:href="@{/user/transactions}">Recent Transactions</a></li>
+                <li><a th:href="@{/user/request-new-product}">Request New Product</a></li>
+                <li><a th:href="@{/user/add-money}">Add Money</a></li>
+                <li><a th:href="@{/user/withdraw}">Withdraw</a></li>
+                <li><a th:href="@{/user/transfer}">Transfer</a></li>
+            </ul>
+        </nav>
+        <div class="profile-content">
+            <h2 id="title">Recent Transactions</h2>
+            <div class="transactions">
+                <div class="transaction">
+                    <i class="material-icons">sync_alt</i>
+                    <div class="transaction-info">
+                        <p>IVELINA IVANOVA IVANO...</p>
+                        <p>TRANSFER</p>
+                    </div>
+                    <div class="transaction-amount negative">-50.00 BGN</div>
+                    <div class="transaction-date">24/06</div>
                 </div>
-                <div class="transaction-amount" th:classappend="${transaction.amount < 0} ? 'negative' : 'positive'" th:text="${transaction.amount + ' BGN'}"></div>
-                <div class="transaction-date" th:text="${#dates.format(transaction.timestamp, 'dd/MM')}"></div>
+                <div class="transaction">
+                    <i class="material-icons">sync_alt</i>
+                    <div class="transaction-info">
+                        <p>IVELINA IVANOVA IVANO...</p>
+                        <p>TRANSFER</p>
+                    </div>
+                    <div class="transaction-amount negative">-50.00 BGN</div>
+                    <div class="transaction-date">14/06</div>
+                </div>
+                <div class="transaction">
+                    <i class="material-icons">sync_alt</i>
+                    <div class="transaction-info">
+                        <p>IVELINA IVANOVA IVANO</p>
+                        <p>TRANSFER</p>
+                    </div>
+                    <div class="transaction-amount positive">200.00 BGN</div>
+                    <div class="transaction-date">14/06</div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="footer">
-        <img src="/img/logo2.png" alt="e-Wave Financial" class="logo">
+        <div class="footer">
+            <img src="/img/logo2.png" alt="e-Wave Financial" class="logo">
+        </div>
     </div>
-</div>
-<a href="index.html" class="back-button">Back to Home Page</a>
+    <a href="index.html" class="back-button">Back to Home Page</a>
 
 </body>
 </html>

@@ -30,13 +30,7 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.save(account);
     }
 
-    @Override
-    public boolean hasAccount(AccountType type, Long userId) {
-        return accountRepository.findByTypeAndUserId(type, userId).isPresent();
-    }
 
-    @Override
-    public List<Account> getAccountsByUserId(Long userId) {
-        return accountRepository.findByUserId(userId);
-    }
+
+
 }
