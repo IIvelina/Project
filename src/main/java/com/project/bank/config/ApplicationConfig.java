@@ -11,7 +11,6 @@ public class ApplicationConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-      //  return Pbkdf2PasswordEncoder.defaultsForSpringSecurity_v5_8(); // използване на готов метод за настройка
        return new Pbkdf2PasswordEncoder();
     }
 

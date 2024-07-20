@@ -57,17 +57,14 @@ public class AccountController {
 
         SavingsAccount savingsAccount = new SavingsAccount();
         savingsAccount.setClientNumber(clientNumber);
-       // savingsAccount.setRate(rate);
         savingsAccount.setBalance(BigDecimal.ZERO);
         savingsAccount.setType(AccountType.SAVINGS);
         savingsAccount.setUser(user);
 
-        // Генериране на стойности за safetyDepositBox и safetyDepositKey в контролера
         savingsAccount.setSafetyDepositBoxAndKey();
 
         savingsAccountService.createSavingsAccount(savingsAccount);
 
-        // Актуализиране на потребителя с новата сметка
         user.setSavingsAccount(savingsAccount);
         userService.save(user);
 
@@ -92,12 +89,10 @@ public class AccountController {
         checkingAccount.setType(AccountType.CHECKING);
         checkingAccount.setUser(user);
 
-        // Генериране на стойности за debitCardNumber и debitCardPin в контролера
         checkingAccount.setDebitCardDetails();
 
         checkingAccountService.createCheckingAccount(checkingAccount);
 
-        // Актуализиране на потребителя с новата сметка
         user.setCheckingAccount(checkingAccount);
         userService.save(user);
 
@@ -141,23 +136,6 @@ public class AccountController {
     }
 
 
-
-
-
-
-//th:href="/account/saving"
-
-//    @GetMapping("/account/saving")
-//    public String savingInfo() {
-//        return "showSavingInfo";
-//    }
-
-//    @GetMapping("/account/checking")
-//    public String checkingInfo() {
-//        return "showCheckingInfo";
-//    }
-
-
     @GetMapping("/account/checking")
     public String getCheckingInfo(Model model) {
         String username = currentUser.getUsername();
@@ -198,43 +176,8 @@ public class AccountController {
 
 
 
-
-//
-////    @GetMapping("/user/accounts")
-////    public String userAccounts(){
-////        return "myAccountsEN";
-////    }
-//
-//    @GetMapping("/user/transactions")
-//    public String recentTransactions(){
-//        return "lastTransactionsEN";
-//    }
-//
-//    @GetMapping("/user/request-new-product")
-//    public String requestNewProduct(){
-//        return "newProductEN";
-//    }
-//
-//    @GetMapping("/user/add-money")
-//    public String addMoney(){
-//        return "addMoney";
-//    }
-//
-//    @GetMapping("/user/withdraw")
-//    public String withdraw(){
-//        return "withdraw";
-//    }
-//
-//    @GetMapping("/user/transfer")
-//    public String transfer(){
-//        return "transferEN";
-//    }
 //    //Отговаря за управлението на сметките.
-//    //
 //    //Създаване на нови сметки (спестовни или разплащателни)
-//    //Добавяне на пари в сметка
-//    //Теглене на пари от сметка
-//    //Прехвърляне на пари между сметки
-//    //Виждане на последните транзакции
+
 
 

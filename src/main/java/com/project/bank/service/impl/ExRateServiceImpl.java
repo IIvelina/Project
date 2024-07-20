@@ -21,7 +21,7 @@ import java.util.Optional;
 
 @Service
 public class ExRateServiceImpl implements ExRateService {
-    //за логване на съобщения
+
     private final Logger LOGGER = LoggerFactory.getLogger(ExRateServiceImpl.class);
     private final ExRateRepository exRateRepository;
     private final ForexApiConfig forexApiConfig;

@@ -1,8 +1,5 @@
 package com.project.bank.security;
 
-import com.project.bank.model.entity.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 

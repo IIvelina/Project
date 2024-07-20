@@ -7,7 +7,6 @@ import java.util.List;
 public interface CheckingAccountService {
     CheckingAccount createCheckingAccount(CheckingAccount checkingAccount);
     List<CheckingAccount> findAllByUsername(String username);
-    CheckingAccount findByClientNumber(String clientNumber);
     CheckingAccount findByUsername(String username);
     CheckingAccount findById(Long id);
 }

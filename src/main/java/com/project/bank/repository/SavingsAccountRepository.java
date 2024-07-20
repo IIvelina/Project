@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Repository
 public interface SavingsAccountRepository extends JpaRepository<SavingsAccount, Long> {
-    List<SavingsAccount> findAllByUserUsername(String username);
 
     List<SavingsAccount> findAllByUser_Username(String username);
 

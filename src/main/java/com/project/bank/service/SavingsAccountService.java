@@ -9,5 +9,4 @@ public interface SavingsAccountService {
     List<SavingsAccount> findAllByUsername(String username);
     SavingsAccount findByClientNumber(String clientNumber);
     SavingsAccount findByUsername(String username);
-    SavingsAccount findById(Long id);
 }

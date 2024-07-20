@@ -2,7 +2,6 @@ package com.project.bank.model.serviceModel;
 
 import com.project.bank.model.enums.UserGenderEnum;
 import com.project.bank.model.enums.UserRoleEnum;
-import jakarta.persistence.Column;
 
 public class UserServiceModel {
     private Long id;

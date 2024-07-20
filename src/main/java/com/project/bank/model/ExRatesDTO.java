@@ -6,7 +6,6 @@ import java.util.Map;
 public record ExRatesDTO(String base, Map<String, BigDecimal> rates){
 
     /*
-
     {
   "disclaimer": "Usage subject to terms: https://openexchangerates.org/terms",
   "license": "https://openexchangerates.org/license",

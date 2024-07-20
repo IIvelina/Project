@@ -39,8 +39,5 @@ public class SavingsAccountServiceImpl implements SavingsAccountService {
         return savingsAccountRepository.findByUsername(username).orElse(null);
     }
 
-    @Override
-    public SavingsAccount findById(Long id) {
-        return savingsAccountRepository.findById(id).orElse(null);
-    }
+
 }

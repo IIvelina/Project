@@ -28,11 +28,7 @@ public class CheckingAccountServiceImpl implements CheckingAccountService {
         return checkingAccountRepository.findAllByUser_Username(username);
     }
 
-    @Override
-    public CheckingAccount findByClientNumber(String clientNumber) {
-        return checkingAccountRepository.findByClientNumber(clientNumber);
 
-    }
 
     @Override
     public CheckingAccount findByUsername(String username) {

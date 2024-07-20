@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SecurityConfiguration {
 
+    //todo
+
 //    @Bean
 //    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 //        return httpSecurity

@@ -28,7 +28,7 @@ public class DatabaseInit implements CommandLineRunner {
     public void run(String... args) throws Exception {
         roleService.initRoles();
 
-        // Изпълнете SQL скрипта след инициализацията на ролите
+        // Run the SQL script after the roles are initialized
         ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator(false, false, "UTF-8", new ClassPathResource("data.sql"));
         DatabasePopulatorUtils.execute(resourceDatabasePopulator, dataSource);
     }

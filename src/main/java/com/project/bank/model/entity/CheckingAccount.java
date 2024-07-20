@@ -36,7 +36,6 @@ public class CheckingAccount extends Account {
         this.debitCardPin = debitCardPin;
     }
 
-    // Добавете този метод, за да генерирате стойности
     public void setDebitCardDetails() {
         this.debitCardNumber = generateRandomNumber(12);
         this.debitCardPin = generateRandomNumber(4);
@@ -46,7 +45,7 @@ public class CheckingAccount extends Account {
         Random random = new Random();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < digits; i++) {
-            sb.append(random.nextInt(10)); // Генерира случайно число между 0 и 9
+            sb.append(random.nextInt(10));
         }
         return sb.toString();
     }

@@ -36,7 +36,7 @@ public class SavingsAccount extends Account {
         this.safetyDepositKey = safetyDepositKey;
     }
 
-    // Добавете този метод, за да генерирате стойности
+
     public void setSafetyDepositBoxAndKey() {
         this.safetyDepositBox = generateRandomNumber(3);
         this.safetyDepositKey = generateRandomNumber(4);
@@ -46,7 +46,7 @@ public class SavingsAccount extends Account {
         Random random = new Random();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < digits; i++) {
-            sb.append(random.nextInt(10)); // Generates a random digit between 0 and 9
+            sb.append(random.nextInt(10));
         }
         return sb.toString();
     }

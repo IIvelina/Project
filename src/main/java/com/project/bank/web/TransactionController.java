@@ -26,15 +26,12 @@ import java.util.List;
 @Controller
 public class TransactionController {
     //Отговаря за управлението на транзакциите.
-    //
     //Създаване на нова транзакция
-    //Виждане на детайли за транзакция
-
-    //todo
     //Добавяне на пари в сметка
-//    //Теглене на пари от сметка
-//    //Прехвърляне на пари между сметки
-//    //Виждане на последните транзакции
+    //Теглене на пари от сметка
+    //Прехвърляне на пари между сметки
+    //Виждане на последните транзакции
+    //Виждане на детайли за транзакция
 
 
     private final TransactionService transactionService;
@@ -96,23 +93,7 @@ public class TransactionController {
         return "redirect:/user/accounts";
     }
 
-//    @GetMapping("/user/transactions")
-//    public String showRecentTransactions(Model model) {
-//        List<Transaction> transactions = transactionService.getRecentTransactions(currentUser.getId(), 3);
-//        model.addAttribute("transactions", transactions);
-//        model.addAttribute("currentUserName", currentUser.getFullName());
-//        return "lastTransactionsEN";
-//    }
 
-
-
-
-////Теглене на пари от сметка
-
-//    @GetMapping("/user/withdraw")
-//    public String withdraw() {
-//        return "withdraw";
-//    }
 
 
     @GetMapping("/user/withdraw")
@@ -166,11 +147,6 @@ public class TransactionController {
     }
 
 
-    //todo make transactions by client number
-//    @GetMapping("/user/transfer")
-//    public String transfer() {
-//        return "transferEN";
-//    }
 
     @GetMapping("/user/transfer")
     public String showTransferForm(Model model, RedirectAttributes redirectAttributes) {
@@ -231,12 +207,6 @@ public class TransactionController {
     }
 
 
-//    @GetMapping("/user/transactions")
-//    public String showRecentTransactions(Model model) {
-//        return "lastTransactionsEN";
-//    }
-
-    //todo show last three transactions - add money do not show info
     @GetMapping("/user/transactions")
     public String findRecentTransactions(Model model) {
         List<Transaction> transactions = transactionService.getLastThreeTransactionsByUserId(currentUser.getId());
@@ -248,6 +218,18 @@ public class TransactionController {
     }
 
 
-
-
+//    @ModelAttribute
+//    public AddMoneyDTO addMoneyDTO(){
+//        return new AddMoneyDTO();
+//    }
+//
+//    @ModelAttribute
+//    public TransferMoneyDTO transferMoneyDTO(){
+//        return new TransferMoneyDTO();
+//    }
+//
+//    @ModelAttribute
+//    public WithdrawDTO withdrawDTO(){
+//        return new WithdrawDTO();
+//    }
 }

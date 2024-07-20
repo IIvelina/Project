@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Repository
 public interface CheckingAccountRepository extends JpaRepository<CheckingAccount, Long> {
-    List<CheckingAccount> findAllByUserUsername(String username);
 
     List<CheckingAccount> findAllByUser_Username(String username);
 

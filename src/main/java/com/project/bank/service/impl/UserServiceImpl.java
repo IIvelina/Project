@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
         User user = modelMapper.map(userServiceModel, User.class);
         user.setPassword(passwordEncoder.encode(userServiceModel.getPassword()));
 
-        // Генериране и задаване на уникален клиентски номер
+        //Generating and assigning a unique customer number
         String clientNumber = generateUniqueClientNumber();
         user.setClientNumber(clientNumber);
 
@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
         Random random = new Random();
         StringBuilder sb = new StringBuilder(length);
         for (int i = 0; i < length; i++) {
-            sb.append(random.nextInt(10)); // Генерира случайно число между 0 и 9
+            sb.append(random.nextInt(10));
         }
         return sb.toString();
     }

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class RoleController {
     //Отговаря за управлението на ролите.
-    //
     //Добавяне на нови роли
     //Присвояване на роли на потребители
     //Премахване на роли от потребители
