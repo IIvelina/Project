@@ -8,6 +8,7 @@ import com.project.bank.model.view.CheckingAccountViewModel;
 import com.project.bank.model.view.SavingsAccountViewModel;
 import com.project.bank.security.CurrentUser;
 import com.project.bank.service.CheckingAccountService;
+import com.project.bank.service.ExRateService;
 import com.project.bank.service.SavingsAccountService;
 import com.project.bank.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +29,18 @@ public class AccountController {
     private final UserService userService;
     private final CurrentUser currentUser;
 
+    private final ExRateService exRateService;
+
     @Autowired
     public AccountController(SavingsAccountService savingsAccountService,
                              CheckingAccountService checkingAccountService,
                              UserService userService,
-                             CurrentUser currentUser) {
+                             CurrentUser currentUser, ExRateService exRateService) {
         this.savingsAccountService = savingsAccountService;
         this.checkingAccountService = checkingAccountService;
         this.userService = userService;
         this.currentUser = currentUser;
+        this.exRateService = exRateService;
     }
 
     @PostMapping("/user/create-savings-account")
@@ -107,9 +111,12 @@ public class AccountController {
 
         List<CheckingAccount> checkingAccounts = checkingAccountService.findAllByUsername(username);
         List<SavingsAccount> savingsAccounts = savingsAccountService.findAllByUsername(username);
+        List<String> allCurrencies = exRateService.allSupportedCurrencies();
+
 
         model.addAttribute("checkingAccounts", checkingAccounts);
         model.addAttribute("savingsAccounts", savingsAccounts);
+        model.addAttribute("allCurrency", allCurrencies);
 
         return "myAccountsEN";
     }

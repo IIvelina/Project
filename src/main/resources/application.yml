@@ -34,3 +34,9 @@ spring:
   #api-key:
   #api-secret:
   #cloud-name:
+
+forex:
+  api:
+    key: ${FOREX_API_KEY:}
+    url: "https://openexchangerates.org/api/latest.json?app_id={app_id}"
+    base: "USD"

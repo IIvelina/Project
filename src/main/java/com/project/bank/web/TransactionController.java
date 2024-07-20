@@ -236,7 +236,7 @@ public class TransactionController {
 //        return "lastTransactionsEN";
 //    }
 
-    //todo show last three transactions
+    //todo show last three transactions - add money do not show info
     @GetMapping("/user/transactions")
     public String findRecentTransactions(Model model) {
         List<Transaction> transactions = transactionService.getLastThreeTransactionsByUserId(currentUser.getId());

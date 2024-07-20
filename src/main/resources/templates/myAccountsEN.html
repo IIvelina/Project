@@ -30,16 +30,37 @@
         <h2 id="title">My Accounts</h2>
 
         <div class="product-options">
-            <div th:each="checkingAccount : ${checkingAccounts}" class="product-option">
+            <div th:each="checkingAccount, iterStat : ${checkingAccounts}" class="product-option">
                 <i class="fas fa-id-card fa-2x" style="color: #0f3f52;"></i>
                 <p th:text="${checkingAccount.clientNumber} + ' - CHECKING'"></p>
-                <p th:text="${checkingAccount.balance} + ' BGN'"></p>
+                <p id="balanceChecking-[[${iterStat.index}]]" th:text="${checkingAccount.balance} + ' BGN'"></p>
+
+                <p class="currency">Currency:
+                    <select id="currencyChecking-[[${iterStat.index}]]" onchange="currencyChangeChecking(this, '[[${iterStat.index}]]')">
+                        <option
+                                th:each="currencyChecking : ${allCurrency}"
+                                th:value="${currencyChecking}" th:text="${currencyChecking}"
+                                th:selected="${currencyChecking} == 'BGN'"></option>
+                    </select>
+                </p>
+
+                <input type="hidden" class="priceInBGN" id="priceCheckingInBGN-[[${iterStat.index}]]" th:value="${checkingAccount.balance}">
+
                 <a th:href="@{/account/checking}" class="info-button">Show info</a>
             </div>
-            <div th:each="savingsAccount : ${savingsAccounts}" class="product-option">
+            <div th:each="savingsAccount, iterStat : ${savingsAccounts}" class="product-option">
                 <i class="fas fa-piggy-bank fa-2x" style="color: #0f3f52;"></i>
                 <p th:text="${savingsAccount.clientNumber} + ' - SAVINGS'"></p>
-                <p th:text="${savingsAccount.balance} + ' BGN'"></p>
+                <p id="balanceSavings-[[${iterStat.index}]]" th:text="${savingsAccount.balance} + ' BGN'"></p>
+
+                <p class="currency">Currency:
+                    <select id="currencySaving-[[${iterStat.index}]]" onchange="currencyChangeSaving(this, '[[${iterStat.index}]]')">
+                        <option th:each="currencySaving : ${allCurrency}" th:value="${currencySaving}" th:text="${currencySaving}" th:selected="${currencySaving} == 'BGN'"></option>
+                    </select>
+                </p>
+
+                <input type="hidden" class="priceInBGN" id="priceSavingsInBGN-[[${iterStat.index}]]" th:value="${savingsAccount.balance}">
+
                 <a th:href="@{/account/saving}" class="info-button">Show info</a>
             </div>
         </div>
@@ -50,5 +71,8 @@
     </div>
 </div>
 <a href="/" class="back-button">Back to Home Page</a>
+
+<script th:src="@{/js/currencyChecking.js}"></script>
+<script th:src="@{/js/currencySaving.js}"></script>
 </body>
 </html>
