@@ -32,21 +32,14 @@ public class HomeController {
         return "terms";
     }
 
-    //forgot-password
-    @GetMapping("forgot-password")
-    public String forgotPassword(){
-        return "forgotPassword";
-    }
+
 
     @GetMapping("security-tips")
     public String securityTips(){
         return "securityTips";
     }
 
-    @GetMapping("/productAndService")
-    public String productAndService(){
-        return "service";
-    }
+
     @GetMapping("/applicationProcess")
     public String applicationProcess(){
         return "application-process";
@@ -62,9 +55,34 @@ public class HomeController {
         return "openPositions";
     }
 
+
     @GetMapping("/contact")
     public String contact(){
         return "contact";
+    }
+
+    @GetMapping("/productAndService")
+    public String productAndService(){
+        return "service";
+    }
+    @GetMapping("/cards")
+    public String cards(){
+        return "cards";
+    }
+
+    @GetMapping("/loans")
+    public String loans(){
+        return "loans";
+    }
+
+    @GetMapping("/savings")
+    public String savings(){
+        return "savings";
+    }
+
+    @GetMapping("/user/forgot-password")
+    public String forgotPassword(){
+        return "forgotPassword";
     }
 
     @ModelAttribute
