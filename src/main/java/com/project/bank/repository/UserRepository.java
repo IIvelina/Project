@@ -1,6 +1,7 @@
 package com.project.bank.repository;
 
 import com.project.bank.model.entity.User;
+import com.project.bank.model.enums.UserRoleEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
@@ -19,4 +20,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     boolean existsByPhoneNumber(String phoneNumber);
 
     Optional<User> findByPhoneNumber(String phoneNumber);
+
+    User findByRolesRole(UserRoleEnum userRoleEnum);
 }

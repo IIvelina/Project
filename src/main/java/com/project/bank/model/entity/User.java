@@ -51,6 +51,9 @@ public class User extends BaseEntity {
 
     @OneToOne
     private SavingsAccount savingsAccount;
+    @OneToOne
+    private Employee employee;
+
 
     public User() {
         this.roles = new HashSet<>();
@@ -153,5 +156,13 @@ public class User extends BaseEntity {
 
     public void setSavingsAccount(SavingsAccount savingsAccount) {
         this.savingsAccount = savingsAccount;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

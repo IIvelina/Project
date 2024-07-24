@@ -1,7 +1,13 @@
 package com.project.bank.security;
 
+import com.project.bank.model.entity.Role;
+import com.project.bank.model.enums.UserRoleEnum;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
+
+import javax.management.relation.Relation;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 @SessionScope
@@ -17,6 +23,7 @@ public class CurrentUser {
 
 
     public CurrentUser() {
+
     }
 
     public Long getId() {
@@ -66,4 +73,7 @@ public class CurrentUser {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+
+
 }

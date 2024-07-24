@@ -31,4 +31,6 @@ public class RoleController {
     public String loginAsAdmin(){
         return "loginAsAdmin";
     }
+
+
 }

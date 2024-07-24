@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -30,6 +29,8 @@ public class UserServiceImpl implements UserService {
 
     private final CurrentUser currentUser;
 
+
+
     @Autowired
     public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, RoleService roleService, CurrentUser currentUser) {
         this.userRepository = userRepository;
@@ -37,6 +38,7 @@ public class UserServiceImpl implements UserService {
         this.passwordEncoder = passwordEncoder;
         this.roleService = roleService;
         this.currentUser = currentUser;
+
     }
 
     @Override
@@ -133,6 +135,8 @@ public class UserServiceImpl implements UserService {
     public User getUserByPhoneNumber(String phoneNumber) {
         return userRepository.findByPhoneNumber(phoneNumber).orElse(null);
     }
+
+
 
 
 }
