@@ -92,6 +92,8 @@
                 </div>
             </div>
             <a th:href="@{/contact}" class="nav-item nav-link">CONTACTS</a>
+
+
             <th:block th:if="${@currentUser.id == null}">
                 <a th:href="@{/users/register}" class="nav-item nav-link">BECOME A CLIENT</a>
             </th:block>
