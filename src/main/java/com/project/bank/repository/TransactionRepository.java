@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
-    List<Transaction> findTop3ByFromAccount_UserIdOrderByTimestampDesc(Long userId);
+   // List<Transaction> findTop3ByFromAccount_UserIdOrderByTimestampDesc(Long userId);
 
-
+    List<Transaction> findTop3ByToAccount_UserIdOrFromAccount_UserIdOrderByTimestampDesc(Long userId1, Long userId2);
 }

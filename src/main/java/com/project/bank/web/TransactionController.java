@@ -64,6 +64,35 @@ public class TransactionController {
         return "addMoney";
     }
 
+//    @PostMapping("/user/add-money")
+//    public String addMoney(@RequestParam("amount") BigDecimal amount, @RequestParam("accountType") String accountTypeStr, RedirectAttributes redirectAttributes) {
+//        AccountType accountType;
+//        try {
+//            accountType = AccountType.valueOf(accountTypeStr.toUpperCase());
+//        } catch (IllegalArgumentException e) {
+//            redirectAttributes.addFlashAttribute("error", "Invalid account type selected.");
+//            return "redirect:/user/add-money";
+//        }
+//
+//        Account account = accountService.getAccountByTypeAndUserId(accountType, currentUser.getId());
+//
+//        if (account == null) {
+//            redirectAttributes.addFlashAttribute("error", "Invalid account type selected.");
+//            return "redirect:/user/request-new-product";
+//        }
+//
+//        Transaction transaction = new Transaction();
+//        transaction.setAmount(amount);
+//        transaction.setToAccount(account);
+//        transaction.setTimestamp(LocalDateTime.now());
+//        transactionService.saveTransaction(transaction);
+//
+//        account.setBalance(account.getBalance().add(amount));
+//        accountService.saveAccount(account);
+//
+//        return "redirect:/user/accounts";
+//    }
+
     @PostMapping("/user/add-money")
     public String addMoney(@RequestParam("amount") BigDecimal amount, @RequestParam("accountType") String accountTypeStr, RedirectAttributes redirectAttributes) {
         AccountType accountType;
@@ -92,7 +121,6 @@ public class TransactionController {
 
         return "redirect:/user/accounts";
     }
-
 
 
 
@@ -205,6 +233,17 @@ public class TransactionController {
 
         return "redirect:/user/accounts";
     }
+
+
+//    @GetMapping("/user/transactions")
+//    public String findRecentTransactions(Model model) {
+//        List<Transaction> transactions = transactionService.getLastThreeTransactionsByUserId(currentUser.getId());
+//        transactions.sort(Comparator.comparing(Transaction::getTimestamp).reversed());
+//        model.addAttribute("transactions", transactions);
+//        model.addAttribute("currentUserName", currentUser.getFullName());
+//        model.addAttribute("currentUserId", currentUser.getId());
+//        return "lastTransactionsEN";
+//    }
 
 
     @GetMapping("/user/transactions")
