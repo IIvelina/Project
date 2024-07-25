@@ -79,4 +79,6 @@ public class CurrentUser {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+
 }

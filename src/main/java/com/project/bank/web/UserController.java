@@ -2,9 +2,12 @@ package com.project.bank.web;
 
 import com.project.bank.model.dto.UserLoginDTO;
 import com.project.bank.model.dto.UserRegisterDTO;
+import com.project.bank.model.entity.Employee;
 import com.project.bank.model.entity.User;
 import com.project.bank.model.serviceModel.UserServiceModel;
 import com.project.bank.security.CurrentUser;
+import com.project.bank.service.EmployeeService;
+import com.project.bank.service.RoleService;
 import com.project.bank.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -18,6 +21,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/users")
 public class UserController {
@@ -28,17 +33,22 @@ public class UserController {
     //Виждане на потребителски профил (USER)
     //Управление на потребителите (ADMIN)
 
-    public UserController(ModelMapper modelMapper, UserService userService) {
+    public UserController(ModelMapper modelMapper, UserService userService, EmployeeService employeeService, CurrentUser currentUser, RoleService roleService) {
         this.modelMapper = modelMapper;
         this.userService = userService;
+        this.employeeService = employeeService;
 
+        this.currentUser = currentUser;
+        this.roleService = roleService;
     }
 
     private final ModelMapper modelMapper;
     private final UserService userService;
+    private final EmployeeService employeeService;
+private final CurrentUser currentUser;
 
 
-
+private final RoleService roleService;
     @GetMapping("/register")
     public String register(){
         return "registerEN";
@@ -169,7 +179,7 @@ public class UserController {
 //
 //    }
 
-
+//work :
     @PostMapping("/login")
     public String loginConfirm(@Valid UserLoginDTO userLoginDTO,
                                BindingResult bindingResult,
@@ -199,12 +209,32 @@ public class UserController {
 
         userService.loginUser(userServiceModel.getId(), userLoginDTO.getUsername());
 
-        // Запазване на текущия потребител в сесията
+
+
+// Запазване на текущия потребител в сесията
         User currentUser = userService.findById(userServiceModel.getId());
         session.setAttribute("currentUser", currentUser);
 
+        String currentUserUsername = currentUser.getUsername();
+        String businessEmail = currentUserUsername + "_wave@financial.com";
+        Optional<Employee> employee = employeeService.findByBusinessEmail(businessEmail);
+
+        //АКО ТОЗИ ПОТРЕБИТЕЛ ИМА БИЗНЕС ИМЕЛ ТОЙ ТРЯБВА ДА ВИЖДА БУТОНА ADMIN
+
+        /*
+        if (employee.isPresent()) {
+            session.setAttribute("isAdmin", true);
+        } else {
+            session.setAttribute("isAdmin", false);
+        }
+        */
+
+        session.setAttribute("isAdmin", employee.isPresent());
+
         return "redirect:/";
     }
+
+
 
     @ModelAttribute
     public UserLoginDTO userLoginDTO(){

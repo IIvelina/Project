@@ -2,8 +2,10 @@ package com.project.bank.service;
 
 import com.project.bank.model.entity.Role;
 import com.project.bank.model.entity.User;
+import com.project.bank.model.enums.UserRoleEnum;
 import com.project.bank.model.serviceModel.UserServiceModel;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
@@ -39,4 +41,8 @@ public interface UserService {
     Optional<User> findUserByPhoneNumber(String phone);
 
     void addRoleToUser(User user, Role adminRole);
+
+    boolean hasRole(Long id, UserRoleEnum userRoleEnum);
+
+
 }

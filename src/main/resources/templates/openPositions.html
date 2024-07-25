@@ -162,7 +162,7 @@
                                     </h4>
                                     <p>Are you a skilled Application Administrator looking for an exciting opportunity? Wave Financial is seeking talented professionals to manage and optimize our application systems. Join our team and contribute to the seamless operation of innovative financial solutions. We offer a collaborative environment for success and growth.</p>
 
-                                    <th:block th:if="${currentUser != null and currentUser.id != null}">
+                                    <th:block th:if="${currentUser != null and currentUser.id != null and currentUser.username != 'ivan' and !session['isAdmin']}">
                                         <a class="text-uppercase" th:href="@{/job/apply}">Apply Now <i class="bi bi-arrow-right"></i></a>
                                     </th:block>
                                     <th:block th:if="${@currentUser.id == null}">
@@ -171,7 +171,19 @@
                                         <a class="text-uppercase" href="/users/login">LOGIN<i class="bi bi-arrow-right"></i></a>
                                     </th:block>
 
-                                    <a href="" class="btn btn-primary py-2 px-4 ms-3">Delete</a>
+
+                                    <th:block th:if="${session['isAdmin'] != null}">
+                                        <th:block th:if="${session['isAdmin']}">
+                                            <th:block th:if="${currentUser != null}">
+                                                <th:block th:if="${currentUser.id != null}">
+                                                    <th:block th:if="${currentUser.username != 'ivan'}">
+                                                        <a href="" class="btn btn-primary py-2 px-4 ms-3">Delete</a>
+                                                    </th:block>
+                                                </th:block>
+                                            </th:block>
+                                        </th:block>
+                                    </th:block>
+
 
                                 </div>
                             </div>

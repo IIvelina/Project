@@ -5,6 +5,8 @@ import com.project.bank.repository.EmployeeRepository;
 import com.project.bank.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -22,5 +24,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public boolean existsByBusinessEmail(String businessEmail) {
         return employeeRepository.existsByBusinessEmail(businessEmail);
+    }
+
+    @Override
+    public Optional<Employee> findByBusinessEmail(String businessEmail) {
+        return employeeRepository.findByBusinessEmail(businessEmail);
     }
 }

@@ -4,6 +4,7 @@ import com.project.bank.model.entity.Role;
 import com.project.bank.model.entity.User;
 import com.project.bank.model.enums.UserRoleEnum;
 import com.project.bank.model.serviceModel.UserServiceModel;
+import com.project.bank.repository.RoleRepository;
 import com.project.bank.repository.UserRepository;
 import com.project.bank.security.CurrentUser;
 import com.project.bank.service.RoleService;
@@ -13,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -30,16 +28,19 @@ public class UserServiceImpl implements UserService {
 
     private final CurrentUser currentUser;
 
+    private final RoleRepository roleRepository;
+
 
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, RoleService roleService, CurrentUser currentUser) {
+    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, RoleService roleService, CurrentUser currentUser, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
         this.roleService = roleService;
         this.currentUser = currentUser;
 
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -152,6 +153,14 @@ public class UserServiceImpl implements UserService {
         user.getRoles().add(role);
         userRepository.save(user);
     }
+
+    @Override
+    public boolean hasRole(Long userId, UserRoleEnum role) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        return user.getRoles().stream().anyMatch(r -> r.getRole().equals(role));
+    }
+
+
 
 
 }
