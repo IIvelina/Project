@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Добавено: Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23234659'><path d='M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z'/></svg>" type="image/svg+xml" />
+
 </head>
 <body>
 
-<a href="/" class="back-button">Back to Home Page</a>
+<a href="index.html" class="back-button">Back to Home Page</a>
 
 <div class="login-container">
     <div class="header login-header">
@@ -19,14 +20,24 @@
     </div>
 
     <h2>Login as an Admin User</h2>
-    <form action="login_endpoint" class="login-form">
+    <form
+            th:action="@{/user/admin/login}"
+            th:method="post"
+            th:object="${employeeLoginDTO}"
+            class="login-form">
         <div class="input-container">
             <i class="fa-solid fa-user"></i>
-            <input type="text" id="adminname" name="adminname" required placeholder="Admin name">
+            <input
+                    th:field="*{businessEmail}"
+                    th:errorclass="bg-danger"
+                    class="fields" type="text" id="adminname" name="businessEmail" required placeholder="Adminname">
         </div>
         <div class="input-container">
             <i class="fa-solid fa-lock"></i>
-            <input id="adminpassinput" type="password" name="password" required placeholder="Password">
+            <input
+                    th:field="*{password}"
+                    th:errorclass="bg-danger"
+                    class="fields" type="password" id="password" name="password" required placeholder="Password">
         </div>
         <div id="rememberbox" class="remember-me-container">
             <input type="checkbox" id="remember" name="remember">
@@ -34,6 +45,7 @@
         </div>
         <button type="submit" class="login-button">Sign In</button>
     </form>
+
 
     <div class="footer login-footer">
         <img src="/img/logo2.png" alt="e-Wave Financial" class="logo-img e-logo">

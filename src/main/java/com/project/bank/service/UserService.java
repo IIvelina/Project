@@ -45,4 +45,9 @@ public interface UserService {
     boolean hasRole(Long id, UserRoleEnum userRoleEnum);
 
 
+    List<User> getClients();
+
+    void delete(User user);
+
+    Optional<User> findByUserById(Long id);
 }

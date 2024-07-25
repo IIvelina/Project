@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -160,7 +161,23 @@ public class UserServiceImpl implements UserService {
         return user.getRoles().stream().anyMatch(r -> r.getRole().equals(role));
     }
 
+    @Override
+    public List<User> getClients() {
+        return userRepository.findAll().stream()
+                .filter(user -> user.getRoles().stream()
+                        .anyMatch(role -> role.getRole() == UserRoleEnum.CLIENT))
+                .collect(Collectors.toList());
+    }
 
+    @Override
+    public void delete(User user) {
+        userRepository.delete(user);
+    }
+
+    @Override
+    public Optional<User> findByUserById(Long id) {
+        return userRepository.findById(id);
+    }
 
 
 }

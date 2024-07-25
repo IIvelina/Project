@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: url('/img/wave.jpg') no-repeat center center fixed;
+    background-size: cover;
+    padding: 20px;
+}
+
+.dashboard-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0f3f52;
+}
+
+.clients-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.clients-table th, .clients-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.clients-table th {
+    background-color: #0f3f52;
+    color: white;
+}
+
+.clients-table td {
+    background-color: white;
+}
+
+.clients-table .action-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.clients-table button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.clients-table button:hover {
+    opacity: 0.8;
+}
+
+.clients-table button.delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #0f3f52;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background-color: #0c2d3a;
+}
