@@ -50,8 +50,7 @@ public class User extends BaseEntity {
 
     @OneToOne
     private SavingsAccount savingsAccount;
-    @OneToOne
-    private Employee employee;
+
 
 
     public User() {
@@ -157,11 +156,5 @@ public class User extends BaseEntity {
         this.savingsAccount = savingsAccount;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
 }

@@ -1,7 +1,10 @@
 package com.project.bank.security;
 
+import com.project.bank.model.entity.Role;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
+
+import java.util.Set;
 
 @Component
 @SessionScope
@@ -15,6 +18,7 @@ public class CurrentUser {
 
     private String phoneNumber;
 
+    private Set<Role> roles;
 
     public CurrentUser() {
 
@@ -68,6 +72,11 @@ public class CurrentUser {
         this.phoneNumber = phoneNumber;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
 
-
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 }

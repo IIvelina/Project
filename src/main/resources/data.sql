@@ -74,7 +74,3 @@ INSERT INTO employees (business_email, password, user_id, role)
 SELECT 'ivan_wave@financial.com', 'topsicret', (SELECT id FROM users WHERE username = 'ivan'), 'DIRECTOR'
 WHERE NOT EXISTS (SELECT 1 FROM employees WHERE business_email = 'ivan_wave@financial.com');
 
--- Актуализиране на полето employee_id в таблицата users
-UPDATE users
-SET employee_id = (SELECT id FROM employees WHERE business_email = 'ivan_wave@financial.com')
-WHERE username = 'ivan';

@@ -232,4 +232,6 @@ public class UserController {
 
     //forgot-password
 
+
+    ///провери дали потребителя има роля на админ ако има трябва да вижда админ?
 }

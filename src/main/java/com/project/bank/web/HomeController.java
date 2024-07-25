@@ -89,6 +89,11 @@ public class HomeController {
     public void addAttributes(Model model) {
         model.addAttribute("currentUser", currentUser);
     }
+//
+//    @GetMapping("/user/admin")
+//    public String loginAsAdmin(){
+//        return "loginAsAdmin";
+//    }
 }
 
 

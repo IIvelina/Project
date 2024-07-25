@@ -241,7 +241,7 @@ public class JobApplicationController {
             employeeService.saveEmployee(employee);
 
             // Обновяване на потребителя с employee_id
-            user.setEmployee(employee);
+          //  user.setEmployee(employee);
             userService.saveUser(user);
 
             // Промяна на статуса на кандидатурата
