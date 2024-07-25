@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -46,7 +47,7 @@ public class UserServiceImpl implements UserService {
         User user = modelMapper.map(userServiceModel, User.class);
         user.setPassword(passwordEncoder.encode(userServiceModel.getPassword()));
 
-        //Generating and assigning a unique customer number
+
         String clientNumber = generateUniqueClientNumber();
         user.setClientNumber(clientNumber);
 
@@ -136,7 +137,21 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByPhoneNumber(phoneNumber).orElse(null);
     }
 
+    @Override
+    public void saveUser(User user) {
 
+    }
+
+    @Override
+    public Optional<User> findUserByPhoneNumber(String phoneNumber) {
+        return userRepository.findByPhoneNumber(phoneNumber);
+    }
+
+    @Override
+    public void addRoleToUser(User user, Role role) {
+        user.getRoles().add(role);
+        userRepository.save(user);
+    }
 
 
 }

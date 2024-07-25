@@ -14,7 +14,7 @@ public interface AccountService {
 
     Account getAccountById(Long fromAccountId);
 
-    MyAccountDetailsDTO toAccountDetails(Account account);
+
 
 
 }

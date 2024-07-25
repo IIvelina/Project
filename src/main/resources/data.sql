@@ -64,7 +64,17 @@ WHERE NOT EXISTS (
     WHERE id = (SELECT id FROM accounts WHERE client_number = 'CN987654321' AND type = 'SAVINGS')
 );
 
+-- Актуализиране на полето savings_account_id в таблицата users
+UPDATE users
+SET savings_account_id = (SELECT id FROM accounts WHERE client_number = 'CN987654321' AND type = 'SAVINGS')
+WHERE username = 'ivan';
+
 -- Вмъкване на нов служител за потребителя Ivan Ivanov с роля DIRECTOR
 INSERT INTO employees (business_email, password, user_id, role)
 SELECT 'ivan_wave@financial.com', 'topsicret', (SELECT id FROM users WHERE username = 'ivan'), 'DIRECTOR'
 WHERE NOT EXISTS (SELECT 1 FROM employees WHERE business_email = 'ivan_wave@financial.com');
+
+-- Актуализиране на полето employee_id в таблицата users
+UPDATE users
+SET employee_id = (SELECT id FROM employees WHERE business_email = 'ivan_wave@financial.com')
+WHERE username = 'ivan';

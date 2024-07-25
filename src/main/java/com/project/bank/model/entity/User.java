@@ -1,7 +1,6 @@
 package com.project.bank.model.entity;
 
 import com.project.bank.model.enums.UserGenderEnum;
-import com.project.bank.model.enums.UserRoleEnum;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -59,7 +58,7 @@ public class User extends BaseEntity {
         this.roles = new HashSet<>();
     }
 
-    // getters and setters
+
 
 
     public String getSsn() {

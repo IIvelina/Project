@@ -8,5 +8,5 @@ public interface CheckingAccountService {
     CheckingAccount createCheckingAccount(CheckingAccount checkingAccount);
     List<CheckingAccount> findAllByUsername(String username);
     CheckingAccount findByUsername(String username);
-    CheckingAccount findById(Long id);
+
 }

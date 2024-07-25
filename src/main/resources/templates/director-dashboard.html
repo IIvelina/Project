@@ -5,52 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Director Dashboard</title>
     <link rel="stylesheet" href="/css/director-dashboard.css">
- 
-    <!-- Добавено: Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23234659'><path d='M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z'/></svg>" type="image/svg+xml" />
 </head>
 <body>
+<a href="/" class="back-button">Sign out of Director's Dashboard</a>
 
-    <a href="/" class="back-button">Sign out of Director's Dashboard</a>
+<div class="dashboard-container">
+    <h1>Director Dashboard</h1>
+    <table class="applications-table">
+        <thead>
+        <tr>
+            <th>Applicant Name</th>
+            <th>Position</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="jobApplication : ${applications}">
+            <td th:text="${jobApplication.firstName} + ' ' + ${jobApplication.lastName}"></td>
+            <td th:text="${jobApplication.applyingPosition}"></td>
+            <td th:text="${jobApplication.email}"></td>
+            <td th:text="${jobApplication.status}" class="status"></td>
+            <td class="action-buttons">
+                <form th:action="@{'/job/approve/' + ${jobApplication.id}}" method="post" th:onsubmit="return approveApplication(this)">
+                    <button type="submit" class="approve" th:disabled="${jobApplication.status} == 'APPROVED'">APPROVE</button>
+                </form>
+                <form th:action="@{'/job/delete/' + ${jobApplication.id}}" method="post">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <button type="submit" class="reject" th:disabled="${jobApplication.status} == 'APPROVED'">REJECT</button>
+                </form>
+                <button class="pending" disabled th:disabled="${jobApplication.status} != 'PENDING'">PENDING</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
-    <div class="dashboard-container">
-        <h1>Director Dashboard</h1>
-        <table class="applications-table">
-            <thead>
-                <tr>
-                    <th>Applicant Name</th>
-                    <th>Position</th>
-                    <th>Email</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>John Doe</td>
-                    <td>QA Automation Engineer</td>
-                    <td>john.doe@example.com</td>
-                    <td id="app1-status">PENDING</td>
-                    <td class="action-buttons">
-                        <button class="approve">APPROVE</button>
-                        <button class="reject">REJECT</button>
-                        <button class="pending">PENDING</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Jane Smith</td>
-                    <td>System Administrator</td>
-                    <td>jane.smith@example.com</td>
-                    <td id="app2-status">PENDING</td>
-                    <td class="action-buttons">
-                        <button class="approve">APPROVE</button>
-                        <button class="reject">REJECT</button>
-                        <button class="pending">PENDING</button>
-                    </td>
-                </tr>
-                <!-- Можете да добавите още кандидатури тук -->
-            </tbody>
-        </table>
-    </div>
+<script>
+    function approveApplication(form) {
+        const row = form.closest('tr');
+        const statusCell = row.querySelector('.status');
+        statusCell.textContent = 'APPROVED';
+
+        const approveButton = row.querySelector('.approve');
+        const rejectButton = row.querySelector('.reject');
+
+        approveButton.disabled = true;
+        rejectButton.disabled = true;
+
+        // Disable all approve and reject buttons
+        const allApproveButtons = document.querySelectorAll('.approve');
+        const allRejectButtons = document.querySelectorAll('.reject');
+        allApproveButtons.forEach(button => button.disabled = true);
+        allRejectButtons.forEach(button => button.disabled = true);
+
+        // Allow form submission to proceed
+        return true;
+    }
+</script>
 </body>
 </html>

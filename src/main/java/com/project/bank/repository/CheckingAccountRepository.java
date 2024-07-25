@@ -14,7 +14,6 @@ public interface CheckingAccountRepository extends JpaRepository<CheckingAccount
 
     List<CheckingAccount> findAllByUser_Username(String username);
 
-    CheckingAccount findByClientNumber(String clientNumber);
 
     @Query("SELECT ca FROM CheckingAccount ca WHERE ca.user.username = :username")
     Optional<CheckingAccount> findByUsername(@Param("username") String username);

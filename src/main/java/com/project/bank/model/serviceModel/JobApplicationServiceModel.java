@@ -1,37 +1,35 @@
-package com.project.bank.model.entity;
+package com.project.bank.model.serviceModel;
 
+import com.project.bank.model.entity.User;
 import com.project.bank.model.enums.ApplicationStatus;
 import com.project.bank.model.enums.UserGenderEnum;
-import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "job_applications")
-public class ApplyForJob extends BaseEntity {
+public class JobApplicationServiceModel {
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
-
-    @Enumerated(EnumType.STRING)
     private UserGenderEnum gender;
-
+    private String phone;
     private String applyingPosition;
     private LocalDate startDate;
     private String address;
+    private String address2;
     private String coverLetter;
     private String resumePath;
-
-    @ManyToOne
-    @JoinColumn(name = "director_id")
-    private User director;
-
-    @Enumerated(EnumType.STRING)
     private ApplicationStatus status;
+    private User user;
+    public JobApplicationServiceModel() {
+    }
 
+    public Long getId() {
+        return id;
+    }
 
-
-    public ApplyForJob() {
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -66,6 +64,14 @@ public class ApplyForJob extends BaseEntity {
         this.gender = gender;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getApplyingPosition() {
         return applyingPosition;
     }
@@ -90,6 +96,14 @@ public class ApplyForJob extends BaseEntity {
         this.address = address;
     }
 
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
     public String getCoverLetter() {
         return coverLetter;
     }
@@ -106,19 +120,19 @@ public class ApplyForJob extends BaseEntity {
         this.resumePath = resumePath;
     }
 
-    public User getDirector() {
-        return director;
-    }
-
-    public void setDirector(User director) {
-        this.director = director;
-    }
-
     public ApplicationStatus getStatus() {
         return status;
     }
 
     public void setStatus(ApplicationStatus status) {
         this.status = status;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

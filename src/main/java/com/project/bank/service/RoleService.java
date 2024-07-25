@@ -8,4 +8,5 @@ public interface RoleService {
 
     Role findRoleByRoleName(UserRoleEnum roleName);
 
+    Role findRoleByName(UserRoleEnum userRoleEnum);
 }
