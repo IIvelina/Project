@@ -5,11 +5,11 @@ import com.project.bank.model.entity.User;
 import com.project.bank.model.enums.ApplicationStatus;
 import com.project.bank.model.serviceModel.JobApplicationServiceModel;
 import com.project.bank.repository.JobApplicationRepository;
-import com.project.bank.repository.RoleRepository;
-import com.project.bank.security.CurrentUser;
 import com.project.bank.service.JobApplicationService;
 import com.project.bank.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,33 +20,34 @@ public class JobApplicationServiceImpl implements JobApplicationService {
 
     private final ModelMapper modelMapper;
     private final JobApplicationRepository jobApplicationRepository;
-
     private final UserService userService;
-    private final CurrentUser currentUser;
 
-
-    public JobApplicationServiceImpl(ModelMapper modelMapper, JobApplicationRepository jobApplicationRepository, UserService userService, CurrentUser currentUser) {
+    public JobApplicationServiceImpl(ModelMapper modelMapper, JobApplicationRepository jobApplicationRepository, UserService userService) {
         this.modelMapper = modelMapper;
         this.jobApplicationRepository = jobApplicationRepository;
         this.userService = userService;
-        this.currentUser = currentUser;
-
     }
 
     @Override
     public void addApplication(JobApplicationServiceModel jobApplicationServiceModel) {
         JobApplication jobApplication = modelMapper.map(jobApplicationServiceModel, JobApplication.class);
 
-        // Задаване на директора, който е първият потребител с ID=1
+        // Setting the director as the first user with ID=1
         User director = userService.findById(1L);
         jobApplication.setDirector(director);
 
-        // Задаване на статуса на PENDING
+        // Setting the status to PENDING
         jobApplication.setStatus(ApplicationStatus.PENDING);
 
-        jobApplication.setUser(userService.findById(currentUser.getId()));
+        // Fetching the current authenticated user
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User currentUser = userService.findByUsername(username);
 
-        // Запазване на кандидатурата в базата данни
+        // Setting the user who applied
+        jobApplication.setUser(currentUser);
+
+        // Saving the job application in the database
         jobApplicationRepository.save(jobApplication);
     }
 
@@ -77,5 +78,4 @@ public class JobApplicationServiceImpl implements JobApplicationService {
         jobApplication.setStatus(jobApplicationServiceModel.getStatus());
         jobApplicationRepository.save(jobApplication);
     }
-
 }

@@ -18,18 +18,17 @@ public class DatabaseInit implements CommandLineRunner {
     private final RoleService roleService;
     private final DataSource dataSource;
 
-
     @Autowired
     public DatabaseInit(RoleService roleService, DataSource dataSource) {
         this.roleService = roleService;
         this.dataSource = dataSource;
-
     }
 
     @Override
     public void run(String... args) throws Exception {
         roleService.initRoles();
 
+        // Изпълнете SQL скрипта след инициализацията на ролите
         ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator(false, false, "UTF-8", new ClassPathResource("data.sql"));
         DatabasePopulatorUtils.execute(resourceDatabasePopulator, dataSource);
     }
@@ -37,10 +36,26 @@ public class DatabaseInit implements CommandLineRunner {
 
 
 
-
-
-
-
-
-
-
+//package com.project.bank.config;
+//
+//import com.project.bank.service.RoleService;
+//import org.springframework.boot.CommandLineRunner;
+//import org.springframework.context.annotation.DependsOn;
+//import org.springframework.stereotype.Component;
+//
+//@Component
+//@DependsOn("entityManagerFactory")
+//public class DatabaseInit implements CommandLineRunner {
+//    private final RoleService roleService;
+//
+//    public DatabaseInit(RoleService roleService) {
+//        this.roleService = roleService;
+//    }
+//
+//    @Override
+//    public void run(String... args) throws Exception {
+//        roleService.initRoles();
+//    }
+//}
+//
+//

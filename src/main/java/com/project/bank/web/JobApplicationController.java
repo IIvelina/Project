@@ -1,7 +1,6 @@
 package com.project.bank.web;
 
 import com.project.bank.model.dto.EmployeeLoginDTO;
-
 import com.project.bank.model.dto.JobApplicationDTO;
 import com.project.bank.model.entity.Employee;
 import com.project.bank.model.entity.Role;
@@ -16,7 +15,6 @@ import com.project.bank.service.UserService;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +25,7 @@ import java.util.Optional;
 @Controller
 public class JobApplicationController {
     //Отговаря за управлението на кандидатурите за работа.
+    //
     //Подаване на нова кандидатура
     //Одобрение или отхвърляне на кандидатури (DIRECTOR)
     //Проверка дали кандидатът е вече регистриран потребител
@@ -36,16 +35,14 @@ public class JobApplicationController {
 
     private final UserService userService;
 
-    private final RoleService roleService;
-
     private final EmployeeService employeeService;
-
-    public JobApplicationController(JobApplicationService jobApplicationService, ModelMapper modelMapper, UserService userService, RoleService roleService, EmployeeService employeeService) {
+    private final RoleService roleService;
+    public JobApplicationController(JobApplicationService jobApplicationService, ModelMapper modelMapper, UserService userService, EmployeeService employeeService, RoleService roleService) {
         this.jobApplicationService = jobApplicationService;
         this.modelMapper = modelMapper;
         this.userService = userService;
-        this.roleService = roleService;
         this.employeeService = employeeService;
+        this.roleService = roleService;
     }
 
     @GetMapping("/director/dashboard")
@@ -53,8 +50,6 @@ public class JobApplicationController {
         model.addAttribute("applications", jobApplicationService.findAllApplications());
         return "director-dashboard";
     }
-
-
 
     @GetMapping("/job/apply")
     public String applyForJob() {
@@ -91,125 +86,6 @@ public class JobApplicationController {
         return "redirect:/director/dashboard";
     }
 
-//    @PostMapping("/job/approve/{id}")
-//    public String approveJobApplication(@PathVariable Long id, RedirectAttributes redirectAttributes) {
-//        JobApplicationServiceModel jobApplication = jobApplicationService.findApplicationById(id);
-//        Optional<User> optionalUser = userService.findUserByPhoneNumber(jobApplication.getPhone());
-//
-//        if (optionalUser.isPresent()) {
-//            User user = optionalUser.get();
-//            Role adminRole = roleService.findRoleByName(UserRoleEnum.ADMIN);
-//            user.getRoles().add(adminRole);
-//            userService.saveUser(user);
-//
-//            String businessEmail = user.getUsername() + "_wave@financial.com";
-//
-//            if (employeeService.existsByBusinessEmail(businessEmail)) {
-//                redirectAttributes.addFlashAttribute("error", "Duplicate email: " + businessEmail);
-//                return "redirect:/director/dashboard";
-//            }
-//
-//            Employee employee = new Employee();
-//            employee.setBusinessEmail(businessEmail);
-//            employee.setPassword("topsicret");
-//            employee.setRole(UserRoleEnum.ADMIN);
-//            employee.setUser(user);
-//
-//            employeeService.saveEmployee(employee);
-//
-//            // Промяна на статуса на кандидатурата
-//            jobApplication.setStatus(ApplicationStatus.APPROVED);
-//            jobApplicationService.updateApplicationStatus(jobApplication);
-//        } else {
-//            redirectAttributes.addFlashAttribute("error", "User not found for phone number: " + jobApplication.getPhone());
-//        }
-//
-//        return "redirect:/director/dashboard";
-//    }
-
-
-//    @PostMapping("/job/approve/{id}")
-//    public String approveJobApplication(@PathVariable Long id, RedirectAttributes redirectAttributes) {
-//        JobApplicationServiceModel jobApplication = jobApplicationService.findApplicationById(id);
-//        Optional<User> optionalUser = userService.findUserByPhoneNumber(jobApplication.getPhone());
-//
-//        if (optionalUser.isPresent()) {
-//            User user = optionalUser.get();
-//            Role adminRole = roleService.findRoleByName(UserRoleEnum.ADMIN);
-//
-//            // Проверка дали потребителят вече има ролята ADMIN
-//            if (!user.getRoles().contains(adminRole)) {
-//                userService.addRoleToUser(user, adminRole);
-//            }
-//
-//            String businessEmail = user.getUsername() + "_wave@financial.com";
-//
-//            if (employeeService.existsByBusinessEmail(businessEmail)) {
-//                redirectAttributes.addFlashAttribute("error", "Duplicate email: " + businessEmail);
-//                return "redirect:/director/dashboard";
-//            }
-//
-//            Employee employee = new Employee();
-//            employee.setBusinessEmail(businessEmail);
-//            employee.setPassword("topsicret");
-//            employee.setRole(UserRoleEnum.ADMIN);
-//            employee.setUser(user);
-//
-//            employeeService.saveEmployee(employee);
-//
-//            // Промяна на статуса на кандидатурата
-//            jobApplication.setStatus(ApplicationStatus.APPROVED);
-//            jobApplicationService.updateApplicationStatus(jobApplication);
-//        } else {
-//            redirectAttributes.addFlashAttribute("error", "User not found for phone number: " + jobApplication.getPhone());
-//        }
-//
-//        return "redirect:/director/dashboard";
-//    }
-
-//    @PostMapping("/job/approve/{id}")
-//    public String approveJobApplication(@PathVariable Long id, RedirectAttributes redirectAttributes) {
-//        JobApplicationServiceModel jobApplication = jobApplicationService.findApplicationById(id);
-//        Optional<User> optionalUser = userService.findUserByPhoneNumber(jobApplication.getPhone());
-//
-//        if (optionalUser.isPresent()) {
-//            User user = optionalUser.get();
-//            Role adminRole = roleService.findRoleByName(UserRoleEnum.ADMIN);
-//
-//            // Проверка дали потребителят вече има ролята ADMIN
-//            if (!user.getRoles().contains(adminRole)) {
-//                userService.addRoleToUser(user, adminRole);
-//            }
-//
-//            String businessEmail = user.getUsername() + "_wave@financial.com";
-//
-//            if (employeeService.existsByBusinessEmail(businessEmail)) {
-//                redirectAttributes.addFlashAttribute("error", "Duplicate email: " + businessEmail);
-//                return "redirect:/director/dashboard";
-//            }
-//
-//            Employee employee = new Employee();
-//            employee.setBusinessEmail(businessEmail);
-//            employee.setPassword("topsicret");
-//            employee.setRole(UserRoleEnum.ADMIN);
-//
-//            // Запазване на новия служител
-//            employeeService.saveEmployee(employee);
-//
-//            // Обновяване на потребителя с employee_id
-//            user.setEmployee(employee);
-//            userService.saveUser(user);
-//
-//            // Промяна на статуса на кандидатурата
-//            jobApplication.setStatus(ApplicationStatus.APPROVED);
-//            jobApplicationService.updateApplicationStatus(jobApplication);
-//        } else {
-//            redirectAttributes.addFlashAttribute("error", "User not found for phone number: " + jobApplication.getPhone());
-//        }
-//
-//        return "redirect:/director/dashboard";
-//    }
-
     @PostMapping("/job/approve/{id}")
     public String approveJobApplication(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         JobApplicationServiceModel jobApplication = jobApplicationService.findApplicationById(id);
@@ -241,7 +117,7 @@ public class JobApplicationController {
             employeeService.saveEmployee(employee);
 
             // Обновяване на потребителя с employee_id
-          //  user.setEmployee(employee);
+            //  user.setEmployee(employee);
             userService.saveUser(user);
 
             // Промяна на статуса на кандидатурата
@@ -253,7 +129,4 @@ public class JobApplicationController {
 
         return "redirect:/director/dashboard";
     }
-
-
-
 }

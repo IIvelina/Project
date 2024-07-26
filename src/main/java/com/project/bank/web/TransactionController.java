@@ -4,12 +4,12 @@ import com.project.bank.model.entity.Account;
 import com.project.bank.model.entity.Transaction;
 import com.project.bank.model.entity.User;
 import com.project.bank.model.enums.AccountType;
-import com.project.bank.security.CurrentUser;
 import com.project.bank.service.AccountService;
 import com.project.bank.service.TransactionService;
-
 import com.project.bank.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,34 +22,28 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 
-
 @Controller
 public class TransactionController {
-    //Отговаря за управлението на транзакциите.
-    //Създаване на нова транзакция
-    //Добавяне на пари в сметка
-    //Теглене на пари от сметка
-    //Прехвърляне на пари между сметки
-    //Виждане на последните транзакции
-    //Виждане на детайли за транзакция
-
 
     private final TransactionService transactionService;
     private final AccountService accountService;
-    private final CurrentUser currentUser;
-
     private final UserService userService;
 
     @Autowired
-    public TransactionController(TransactionService transactionService, AccountService accountService, CurrentUser currentUser, UserService userService) {
+    public TransactionController(TransactionService transactionService, AccountService accountService, UserService userService) {
         this.transactionService = transactionService;
         this.accountService = accountService;
-        this.currentUser = currentUser;
         this.userService = userService;
+    }
+
+    private User getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return userService.getUserByUsername(authentication.getName());
     }
 
     @GetMapping("/user/add-money")
     public String showAddMoneyForm(Model model, RedirectAttributes redirectAttributes) {
+        User currentUser = getCurrentUser();
         boolean hasCheckingAccount = accountService.getAccountByTypeAndUserId(AccountType.CHECKING, currentUser.getId()) != null;
         boolean hasSavingsAccount = accountService.getAccountByTypeAndUserId(AccountType.SAVINGS, currentUser.getId()) != null;
 
@@ -64,37 +58,9 @@ public class TransactionController {
         return "addMoney";
     }
 
-//    @PostMapping("/user/add-money")
-//    public String addMoney(@RequestParam("amount") BigDecimal amount, @RequestParam("accountType") String accountTypeStr, RedirectAttributes redirectAttributes) {
-//        AccountType accountType;
-//        try {
-//            accountType = AccountType.valueOf(accountTypeStr.toUpperCase());
-//        } catch (IllegalArgumentException e) {
-//            redirectAttributes.addFlashAttribute("error", "Invalid account type selected.");
-//            return "redirect:/user/add-money";
-//        }
-//
-//        Account account = accountService.getAccountByTypeAndUserId(accountType, currentUser.getId());
-//
-//        if (account == null) {
-//            redirectAttributes.addFlashAttribute("error", "Invalid account type selected.");
-//            return "redirect:/user/request-new-product";
-//        }
-//
-//        Transaction transaction = new Transaction();
-//        transaction.setAmount(amount);
-//        transaction.setToAccount(account);
-//        transaction.setTimestamp(LocalDateTime.now());
-//        transactionService.saveTransaction(transaction);
-//
-//        account.setBalance(account.getBalance().add(amount));
-//        accountService.saveAccount(account);
-//
-//        return "redirect:/user/accounts";
-//    }
-
     @PostMapping("/user/add-money")
     public String addMoney(@RequestParam("amount") BigDecimal amount, @RequestParam("accountType") String accountTypeStr, RedirectAttributes redirectAttributes) {
+        User currentUser = getCurrentUser();
         AccountType accountType;
         try {
             accountType = AccountType.valueOf(accountTypeStr.toUpperCase());
@@ -122,10 +88,9 @@ public class TransactionController {
         return "redirect:/user/accounts";
     }
 
-
-
     @GetMapping("/user/withdraw")
     public String showWithdrawForm(Model model, RedirectAttributes redirectAttributes) {
+        User currentUser = getCurrentUser();
         boolean hasCheckingAccount = accountService.getAccountByTypeAndUserId(AccountType.CHECKING, currentUser.getId()) != null;
         boolean hasSavingsAccount = accountService.getAccountByTypeAndUserId(AccountType.SAVINGS, currentUser.getId()) != null;
 
@@ -142,6 +107,7 @@ public class TransactionController {
 
     @PostMapping("/user/withdraw")
     public String withdraw(@RequestParam("amount") BigDecimal amount, @RequestParam("accountType") String accountTypeStr, Model model, RedirectAttributes redirectAttributes) {
+        User currentUser = getCurrentUser();
         AccountType accountType;
         try {
             accountType = AccountType.valueOf(accountTypeStr.toUpperCase());
@@ -163,7 +129,7 @@ public class TransactionController {
         }
 
         Transaction transaction = new Transaction();
-        transaction.setAmount(amount.negate()); // Negate the amount for withdrawal
+        transaction.setAmount(amount.negate());
         transaction.setFromAccount(account);
         transaction.setTimestamp(LocalDateTime.now());
         transactionService.saveTransaction(transaction);
@@ -174,10 +140,9 @@ public class TransactionController {
         return "redirect:/user/accounts";
     }
 
-
-
     @GetMapping("/user/transfer")
     public String showTransferForm(Model model, RedirectAttributes redirectAttributes) {
+        User currentUser = getCurrentUser();
         List<Account> accounts = accountService.getAccountsByUserId(currentUser.getId());
 
         if (accounts.isEmpty()) {
@@ -194,9 +159,10 @@ public class TransactionController {
                            @RequestParam("recipientPN") String recipientPhoneNumber,
                            @RequestParam("transferAmount") BigDecimal transferAmount,
                            Model model, RedirectAttributes redirectAttributes) {
+        User currentUser = getCurrentUser();
         Account fromAccount = accountService.getAccountById(fromAccountId);
 
-        if (fromAccount == null) {
+        if (fromAccount == null || !fromAccount.getUser().getId().equals(currentUser.getId())) {
             model.addAttribute("error", "Invalid account selected.");
             return showTransferForm(model, redirectAttributes);
         }
@@ -234,20 +200,9 @@ public class TransactionController {
         return "redirect:/user/accounts";
     }
 
-
-//    @GetMapping("/user/transactions")
-//    public String findRecentTransactions(Model model) {
-//        List<Transaction> transactions = transactionService.getLastThreeTransactionsByUserId(currentUser.getId());
-//        transactions.sort(Comparator.comparing(Transaction::getTimestamp).reversed());
-//        model.addAttribute("transactions", transactions);
-//        model.addAttribute("currentUserName", currentUser.getFullName());
-//        model.addAttribute("currentUserId", currentUser.getId());
-//        return "lastTransactionsEN";
-//    }
-
-
     @GetMapping("/user/transactions")
     public String findRecentTransactions(Model model) {
+        User currentUser = getCurrentUser();
         List<Transaction> transactions = transactionService.getLastThreeTransactionsByUserId(currentUser.getId());
         transactions.sort(Comparator.comparing(Transaction::getTimestamp).reversed());
         model.addAttribute("transactions", transactions);
@@ -255,20 +210,4 @@ public class TransactionController {
         model.addAttribute("currentUserId", currentUser.getId());
         return "lastTransactionsEN";
     }
-
-
-//    @ModelAttribute
-//    public AddMoneyDTO addMoneyDTO(){
-//        return new AddMoneyDTO();
-//    }
-//
-//    @ModelAttribute
-//    public TransferMoneyDTO transferMoneyDTO(){
-//        return new TransferMoneyDTO();
-//    }
-//
-//    @ModelAttribute
-//    public WithdrawDTO withdrawDTO(){
-//        return new WithdrawDTO();
-//    }
 }

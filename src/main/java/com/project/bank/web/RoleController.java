@@ -22,6 +22,7 @@ import java.util.Optional;
 @RequestMapping("/user")
 public class RoleController {
     //Отговаря за управлението на ролите.
+    //
     //Добавяне на нови роли
     //Присвояване на роли на потребители
     //Премахване на роли от потребители
@@ -32,75 +33,22 @@ public class RoleController {
 //        return "profileEN";
 //    }
 
+    //href="/user/director"
+
     private final EmployeeService employeeService;
+    private final UserService userService;
 
     public RoleController(EmployeeService employeeService, UserService userService) {
         this.employeeService = employeeService;
         this.userService = userService;
     }
 
-//    //href="/user/director"
-//    @GetMapping("director")
-//    public String loginAsDirector(){
-//        return "loginAsDirector";
-//    }
-//
-//    @GetMapping("admin")
-//    public String loginAsAdmin(){
-//        return "loginAsAdmin";
-//    }
-//
-//
-//    @PostMapping("admin/login")
-//    public String loginConfirm(@Valid @ModelAttribute("employeeLoginDTO") EmployeeLoginDTO employeeLoginDTO,
-//                               BindingResult bindingResult,
-//                               HttpSession session,
-//                               RedirectAttributes redirectAttributes,
-//                               Model model) {
-//        if (bindingResult.hasErrors()) {
-//            redirectAttributes.addFlashAttribute("employeeLoginDTO", employeeLoginDTO);
-//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.employeeLoginDTO", bindingResult);
-//            return "redirect:/user/admin";
-//        }
-//
-//        Employee employee = employeeService.authenticate(employeeLoginDTO.getBusinessEmail(), employeeLoginDTO.getPassword());
-//
-//        if (employee != null && employee.getRole().equals(UserRoleEnum.ADMIN)) {
-//            session.setAttribute("loggedInUser", employee);
-//            return "redirect:/user/admin/dashboard";
-//        } else {
-//            model.addAttribute("loginError", "Invalid email or password");
-//            return "loginAsAdmin";
-//        }
-//    }
-//
-//
-//
-//
-//    @ModelAttribute
-//    public EmployeeLoginDTO employeeLoginDTO(){
-//        return new EmployeeLoginDTO();
-//    }
-//
-//    @GetMapping("admin/dashboard")
-//    public String adminDashboard(){
-//        return "admin-dashboard";
-//    }
-
-    private final UserService userService;
-
-
-    @GetMapping("director")
-    public String loginAsDirector(){
-        return "loginAsDirector";
-    }
-
-    @GetMapping("admin")
+    @GetMapping("/admin/login")
     public String loginAsAdmin(){
         return "loginAsAdmin";
     }
 
-    @PostMapping("admin/login")
+    @PostMapping("/admin/login")
     public String loginConfirm(@Valid @ModelAttribute("employeeLoginDTO") EmployeeLoginDTO employeeLoginDTO,
                                BindingResult bindingResult,
                                HttpSession session,
@@ -128,10 +76,6 @@ public class RoleController {
         return new EmployeeLoginDTO();
     }
 
-//    @GetMapping("admin/dashboard")
-//    public String adminDashboard(){
-//        return "admin-dashboard";
-//    }
 
 
     @GetMapping("/admin/dashboard")
@@ -140,6 +84,8 @@ public class RoleController {
         model.addAttribute("clients", clients);
         return "admin-dashboard";
     }
+
+
 
 
     @DeleteMapping("/admin/delete/{id}")
@@ -161,4 +107,6 @@ public class RoleController {
         }
         return "redirect:/user/admin/dashboard";
     }
+
+
 }

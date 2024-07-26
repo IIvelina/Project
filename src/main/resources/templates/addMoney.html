@@ -26,7 +26,7 @@
     </nav>
     <div class="profile-content">
         <h2 id="title">Add Money</h2>
-        <form id="addMoneyForm" method="post" action="/user/add-money">
+        <form id="addMoneyForm" method="post" th:action="@{/user/add-money}">
             <div class="form-group">
                 <label for="amount">Amount:</label>
                 <input type="number" id="amount" name="amount" placeholder="Amount BGN" required>
@@ -50,6 +50,6 @@
         <img src="/img/logo2.png" alt="e-Wave Financial" class="logo">
     </div>
 </div>
-<a href="index.html" class="back-button">Back to Home Page</a>
+<a th:href="@{/}" class="back-button">Back to Home Page</a>
 </body>
 </html>

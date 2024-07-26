@@ -28,7 +28,10 @@ public class SavingsAccountServiceImpl implements SavingsAccountService {
         return savingsAccountRepository.findAllByUser_Username(username);
     }
 
-
+    @Override
+    public SavingsAccount findByClientNumber(String clientNumber) {
+        return savingsAccountRepository.findByClientNumber(clientNumber);
+    }
 
 
     @Override
@@ -36,5 +39,8 @@ public class SavingsAccountServiceImpl implements SavingsAccountService {
         return savingsAccountRepository.findByUsername(username).orElse(null);
     }
 
-
+    @Override
+    public SavingsAccount findById(Long id) {
+        return savingsAccountRepository.findById(id).orElse(null);
+    }
 }

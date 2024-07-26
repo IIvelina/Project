@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'
 >
 <head th:fragment="head">
     <meta charset="utf-8">
@@ -93,52 +94,33 @@
             </div>
             <a th:href="@{/contact}" class="nav-item nav-link">CONTACTS</a>
 
-
-            <th:block th:if="${@currentUser.id == null}">
+            <th:block sec:authorize="!isAuthenticated()">
                 <a th:href="@{/users/register}" class="nav-item nav-link">BECOME A CLIENT</a>
             </th:block>
         </div>
         <button type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button>
-        <th:block th:if="${@currentUser.id == null}">
-            <a th:href="@{users/login}" class="btn btn-primary py-2 px-4 ms-3">LOGIN</a>
+
+        <th:block sec:authorize="!isAuthenticated()">
+            <a th:href="@{/users/login}" class="btn btn-primary py-2 px-4 ms-3">LOGIN</a>
         </th:block>
 
-        <th:block th:if="${currentUser != null and currentUser.id != null}">
-            <a th:href="@{users/logout}" class="btn btn-primary py-2 px-4 ms-3">LOGOUT</a>
-        </th:block>
-        <th:block th:if="${currentUser != null and currentUser.id != null}">
-            <a
-                    th:href="@{/users/profile}" class="btn btn-primary py-2 px-4 ms-3">PROFILE</a>
+        <th:block sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-primary py-2 px-4 ms-3">LOGOUT</button>
+            </form>
         </th:block>
 
-<!--
-
-        <th:block th:if="${currentUser != null and currentUser.id != null and currentUser.username != 'ivan'}">
-            <a th:href="@{/user/admin}" class="btn btn-primary py-2 px-4 ms-3">ADMIN</a>
-        </th:block>
--->
-
-        <th:block th:if="${session['isAdmin'] != null}">
-            <th:block th:if="${session['isAdmin']}">
-                <th:block th:if="${currentUser != null}">
-                    <th:block th:if="${currentUser.id != null}">
-                        <th:block th:if="${currentUser.username != 'ivan'}">
-                            <a th:href="@{/user/admin}" class="btn btn-primary py-2 px-4 ms-3">ADMIN</a>
-                        </th:block>
-                    </th:block>
-                </th:block>
-            </th:block>
+        <th:block sec:authorize="isAuthenticated()">
+            <a th:href="@{/users/profile}" class="btn btn-primary py-2 px-4 ms-3">PROFILE</a>
         </th:block>
 
-
-
-
-        <th:block th:if="${currentUser != null and currentUser.id != null and currentUser.username == 'ivan'}">
+        <th:block sec:authorize="isAuthenticated() and hasRole('DIRECTOR')">
             <a th:href="@{/director/dashboard}" class="btn btn-primary py-2 px-4 ms-3">DIRECTOR</a>
         </th:block>
 
-
-
+        <th:block sec:authorize="isAuthenticated() and hasRole('ADMIN')">
+            <a th:href="@{/user/admin/login}" class="btn btn-primary py-2 px-4 ms-3">ADMIN</a>
+        </th:block>
 
         <a href="" class="btn btn-primary py-2 px-4 ms-3">BG</a>
     </div>
@@ -198,7 +180,7 @@
                                 <a class="text-light mb-2" th:href="@{/about}"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
                                 <a class="text-light mb-2" th:href="@{/productAndService}"><i class="bi bi-arrow-right text-primary me-2"></i>Products And Service</a>
                                 <a class="text-light mb-2" th:href="@{/contact}"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
-                                <th:block th:if="${@currentUser.id == null}">
+                                <th:block sec:authorize="!isAuthenticated()">
                                     <a class="text-light" th:href="@{/users/register}"><i class="bi bi-arrow-right text-primary me-2"></i>Become a Client</a>
                                 </th:block>
                             </div>

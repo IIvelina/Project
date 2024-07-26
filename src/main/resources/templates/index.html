@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'
+>
 
 <head th:replace="fragments/commons::head">
 </head>
@@ -27,7 +29,17 @@
                     <div class="p-3" style="max-width: 900px;">
                         <h5 class="text-white text-uppercase mb-3 animated slideInDown">Your Trusted Partner for Financial Solutions</h5>
                         <h1 class="display-1 text-white mb-md-4 animated zoomIn">Welcome to Wave Financial</h1>
+
+
+
+
+                        <th:block sec:authorize="!isAuthenticated()">
                         <a th:href="@{/users/register}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Become a Client</a>
+                        </th:block>
+                        <th:block sec:authorize="isAuthenticated()">
+                            <a th:href="@{/users/profile}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">PROFILE</a>
+                        </th:block>
+
                         <a th:href="@{/contact}" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact Us</a>
                     </div>
                 </div>
@@ -38,8 +50,11 @@
                     <div class="p-3" style="max-width: 900px;">
                         <h5 class="text-white text-uppercase mb-3 animated slideInDown">Your Trusted Partner for Financial Solutions</h5>
                         <h1 class="display-1 text-white mb-md-4 animated zoomIn">Welcome to Wave Financial</h1>
-                        <th:block th:if="${@currentUser.id == null}">
-                        <a th:href="@{/users/register}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Become a Client</a>
+                        <th:block sec:authorize="!isAuthenticated()">
+                            <a th:href="@{/users/register}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Become a Client</a>
+                        </th:block>
+                        <th:block sec:authorize="isAuthenticated()">
+                            <a th:href="@{/users/profile}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">PROFILE</a>
                         </th:block>
                         <a th:href="@{/contact}" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Contact Us</a>
                     </div>

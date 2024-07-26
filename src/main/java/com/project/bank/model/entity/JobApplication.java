@@ -15,7 +15,7 @@ public class JobApplication extends BaseEntity {
     private String lastName;
     @Column(nullable = false, unique = true)
     private String email;
-
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UserGenderEnum gender;
     @Column(nullable = false, unique = true)

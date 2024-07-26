@@ -2,25 +2,31 @@ package com.project.bank.model.dto;
 
 import com.project.bank.model.entity.User;
 import com.project.bank.model.enums.UserGenderEnum;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
 public class JobApplicationDTO {
-
+    @NotNull
     private String firstName;
+    @NotNull
     private String lastName;
-
+    @Email
+    @NotNull
     private String email;
-
+    @NotNull
     private UserGenderEnum gender;
+    @NotNull
     private String phone;
-
+    @NotNull
     private String applyingPosition;
-
+    @NotNull
     private LocalDate startDate;
-
+    @NotNull
     private String address;
     private String address2;
-
+    @NotNull
     private String coverLetter;
     private String resumePath;
     private User user;

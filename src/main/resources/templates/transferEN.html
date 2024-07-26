@@ -26,12 +26,12 @@
     </nav>
     <div class="profile-content">
         <h2 id="title">Make a Transfer</h2>
-        <form id="transferForm" action="/user/transfer" method="post">
+        <form id="transferForm" th:action="@{/user/transfer}" method="post">
             <div class="form-group">
                 <label for="fromAccount">From Account:</label>
                 <select id="fromAccount" name="fromAccount" required>
                     <option value="" disabled selected>Select Account</option>
-                    <option th:each="account : ${accounts}" th:value="${account.id}" th:text="${account.type} + ' - ' + ${account.balance} + ' BGN'"></option>
+                    <option th:each="account : ${accounts}" th:value="${account.id}" th:text="${account.type + ' - ' + account.balance + ' BGN'}"></option>
                 </select>
             </div>
             <div class="form-group">
@@ -52,6 +52,6 @@
         <img src="/img/logo2.png" alt="e-Wave Financial" class="logo">
     </div>
 </div>
-<a href="/" class="back-button">Back to Home Page</a>
+<a th:href="@{/}" class="back-button">Back to Home Page</a>
 </body>
 </html>

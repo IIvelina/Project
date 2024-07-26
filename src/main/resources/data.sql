@@ -1,7 +1,7 @@
 -- Вмъкване на нов потребител с роля на директор --pass Ivan741@
 INSERT INTO users (ssn, full_name, id_card_number, email, username, password, gender, phone_number, client_number)
 SELECT '9876543210', 'Ivan Ivanov', 'CD9876543', 'ivan.ivanov@example.com', 'ivan',
-       'a9bd92ae5617c8c79012e6d957bf7155e9ca1fd89c79c747f393eee8255d44bd68a30fe5a7d9852e',
+       'e51daae315c9e141f654be26af17094b8d5e3ac920c20041592c893544b4c156406a7f7e120414f5d04cbee278a9099a',
        'MALE', '0887755226', 'CN987654321'
 WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'ivan');
 

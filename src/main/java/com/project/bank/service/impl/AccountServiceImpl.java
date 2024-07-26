@@ -45,5 +45,14 @@ public class AccountServiceImpl implements AccountService {
         return accountOpt.orElse(null);
     }
 
-
+    @Override
+    public MyAccountDetailsDTO toAccountDetails(Account account) {
+        return new MyAccountDetailsDTO(
+                account.getId(),
+                account.getType(),
+                account.getBalance(),
+                account.getClientNumber(),
+                exRateService.allSupportedCurrencies()
+        );
+    }
 }
