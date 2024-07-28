@@ -55,12 +55,6 @@
         approveButton.disabled = true;
         rejectButton.disabled = true;
 
-        // Disable all approve and reject buttons
-        const allApproveButtons = document.querySelectorAll('.approve');
-        const allRejectButtons = document.querySelectorAll('.reject');
-        allApproveButtons.forEach(button => button.disabled = true);
-        allRejectButtons.forEach(button => button.disabled = true);
-
         // Allow form submission to proceed
         return true;
     }

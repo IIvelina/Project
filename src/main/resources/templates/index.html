@@ -50,9 +50,13 @@
                 <img class="w-100" src="img/Ideal-business-partners.jpg" alt="Image">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3" style="max-width: 900px;">
+
+
                         <h5 class="text-white text-uppercase mb-3 animated slideInDown">Your Trusted Partner for Financial Solutions</h5>
                         <h1 class="display-1 text-white mb-md-4 animated zoomIn">
-                            Welcome to Wave Financial, <span th:text="${welcomeMessage}"></span>!
+
+                                Welcome to Wave Financial, <span th:text="${welcomeMessage}"></span>!
+
                         </h1>
                         <th:block sec:authorize="!isAuthenticated()">
                             <a th:href="@{/users/register}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Become a Client</a>

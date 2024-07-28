@@ -9,6 +9,7 @@ public class Employee extends BaseEntity{
 
     @Column(name = "business_email", nullable = false, unique = true)
     private String businessEmail;
+
     @Column(nullable = false)
     private String password;
 
@@ -16,7 +17,7 @@ public class Employee extends BaseEntity{
     private User user;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false) // Removed unique constraint
     private UserRoleEnum role;
 
     public Employee() {

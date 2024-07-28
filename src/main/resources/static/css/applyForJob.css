@@ -171,3 +171,10 @@ select.formbold-form-input,
     ;
     cursor: pointer;
 }
+
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 0.2em;
+}

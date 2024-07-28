@@ -15,10 +15,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
@@ -92,6 +89,7 @@ public class UserController {
         return new UserRegisterDTO();
     }
 
+
     @GetMapping("/login")
     public String login(Model model, HttpServletRequest request) {
         if (!model.containsAttribute("isFound")) {
@@ -107,18 +105,15 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String loginConfirm(@Valid UserLoginDTO userLoginDTO,
+    public String loginConfirm(@Valid @ModelAttribute("userLoginDTO") UserLoginDTO userLoginDTO,
                                BindingResult bindingResult,
                                RedirectAttributes redirectAttributes,
                                HttpSession session) {
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("userLoginDTO",
-                    userLoginDTO);
-
+            redirectAttributes.addFlashAttribute("userLoginDTO", userLoginDTO);
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.userLoginDTO",
                     bindingResult);
-
             return "redirect:login";
         }
 
@@ -126,23 +121,23 @@ public class UserController {
                 .findByUsernameAndPassword(userLoginDTO.getUsername(), userLoginDTO.getPassword());
 
         if (userServiceModel == null) {
-            redirectAttributes.addFlashAttribute("userLoginDTO",
-                    userLoginDTO);
-            redirectAttributes.addFlashAttribute("isFound", false);
-
-            return "redirect:login";
+            if (!userService.existsByUsername(userLoginDTO.getUsername())) {
+                redirectAttributes.addFlashAttribute("userLoginDTO", userLoginDTO);
+                redirectAttributes.addFlashAttribute("isFound", false);
+                redirectAttributes.addFlashAttribute("usernameNotFound", true);
+                return "redirect:login";
+            } else {
+                redirectAttributes.addFlashAttribute("userLoginDTO", userLoginDTO);
+                redirectAttributes.addFlashAttribute("isFound", false);
+                return "redirect:login";
+            }
         }
 
-
-        //???????????
-      //  userService.loginUser(userServiceModel.getId(), userLoginDTO.getUsername());
-
-        // Запазване на текущия потребител в сесията
+        // Save current user in session
         User currentUserById = userService.findById(userServiceModel.getId());
         session.setAttribute("currentUser", currentUserById);
 
-        //АКО ТОЗИ ПОТРЕБИТЕЛ ИМА БИЗНЕС ИМЕЛ ТОЙ ТРЯБВА ДА ВИЖДА БУТОНА ADMIN
-
+        // Check if the user has a business email and should see the admin button
         User currentUserByUsername = userService.getUserByUsername(userServiceModel.getUsername());
         String currentUserUsername = currentUserByUsername.getUsername();
         String businessEmail = currentUserUsername + "_wave@financial.com";
@@ -152,11 +147,110 @@ public class UserController {
         return "redirect:/";
     }
 
-
     @ModelAttribute
     public UserLoginDTO userLoginDTO(){
         return new UserLoginDTO();
     }
+
+    @GetMapping("/login-error")
+    public String loginError(Model model) {
+        model.addAttribute("isFound", false);
+        return "loginEN";
+    }
+
+//    @GetMapping("/login")
+//    public String login(Model model, HttpServletRequest request) {
+//        if (!model.containsAttribute("isFound")) {
+//            model.addAttribute("isFound", true);
+//        }
+//
+//        HttpSession session = request.getSession(false);
+//        if (session != null) {
+//            model.addAttribute("session", session);
+//        }
+//
+//        return "loginEN";
+//    }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+////
+////
+////
+//    @PostMapping("/login")
+//    public String loginConfirm(@Valid UserLoginDTO userLoginDTO,
+//                               BindingResult bindingResult,
+//                               RedirectAttributes redirectAttributes,
+//                               HttpSession session) {
+//        if (bindingResult.hasErrors()) {
+//            redirectAttributes.addFlashAttribute("userLoginDTO",
+//                    userLoginDTO);
+//
+//            redirectAttributes.addFlashAttribute(
+//                    "org.springframework.validation.BindingResult.userLoginDTO",
+//                    bindingResult);
+//
+//
+//
+//            return "redirect:login";
+//        }
+//
+//        UserServiceModel userServiceModel = userService
+//                .findByUsernameAndPassword(userLoginDTO.getUsername(), userLoginDTO.getPassword());
+//
+//        if (userServiceModel == null) {
+//            redirectAttributes.addFlashAttribute("userLoginDTO",
+//                    userLoginDTO);
+//            redirectAttributes.addFlashAttribute("isFound", false);
+//
+//            return "redirect:login";
+//        }
+//
+//
+//        //???????????
+//      //  userService.loginUser(userServiceModel.getId(), userLoginDTO.getUsername());
+//
+//        // Запазване на текущия потребител в сесията
+//        User currentUserById = userService.findById(userServiceModel.getId());
+//        session.setAttribute("currentUser", currentUserById);
+//
+//        //АКО ТОЗИ ПОТРЕБИТЕЛ ИМА БИЗНЕС ИМЕЛ ТОЙ ТРЯБВА ДА ВИЖДА БУТОНА ADMIN
+//
+//        User currentUserByUsername = userService.getUserByUsername(userServiceModel.getUsername());
+//        String currentUserUsername = currentUserByUsername.getUsername();
+//        String businessEmail = currentUserUsername + "_wave@financial.com";
+//        Optional<Employee> employee = employeeService.findByBusinessEmail(businessEmail);
+//
+//        session.setAttribute("isAdmin", employee.isPresent());
+//        return "redirect:/";
+//    }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//    @ModelAttribute
+//    public UserLoginDTO userLoginDTO(){
+//        return new UserLoginDTO();
+//    }
+//
+//    @GetMapping("/login-error")
+//    public String loginError(Model model) {
+//        model.addAttribute("isFound", false);
+//        return "loginEN";
+//    }
+
 
     @GetMapping("/logout")
     public String logout() {

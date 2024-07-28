@@ -1,6 +1,6 @@
 package com.project.bank.service;
 
-import com.project.bank.model.ExRatesDTO;
+import com.project.bank.model.dto.ExRatesDTO;
 
 import java.math.BigDecimal;
 import java.util.List;

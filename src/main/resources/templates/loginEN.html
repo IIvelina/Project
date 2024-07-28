@@ -22,16 +22,14 @@
     </div>
     <form th:action="@{/users/login}" th:method="post" th:object="${userLoginDTO}" class="login-form">
         <h3 th:if="${!isFound}" class="mt-5 text-center">
-            <strong class="errorsforinputs">
-                Wrong username and password combination.
-            </strong>
+            <strong class="errorsforinputs" th:text="${usernameNotFound} ? 'User with username ' + ${userLoginDTO.username} + ' not found.' : 'Wrong username and password combination.'"></strong>
         </h3>
 
         <i class="fa-solid fa-user"></i>
         <input th:field="*{username}" th:errorclass="bg-danger"
                type="text" id="username" name="username" placeholder="Username" required="true"
                maxlength="20" pattern="[a-zA-Z0-9]+" autocomplete="off"
-               th:value="${session.username}" />
+               th:value="${userLoginDTO.username}" />
         <p class="errorsforinputs" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
             Invalid username.
         </p>

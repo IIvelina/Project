@@ -48,4 +48,9 @@ public interface UserService {
     void addRoleToUser(User user, Role adminRole);
 
     void saveUser(User user);
+
+    boolean userExists(String username);
+
+
+    //   boolean resetPassword(String email);
 }

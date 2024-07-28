@@ -8,6 +8,7 @@ import com.project.bank.repository.UserRepository;
 
 import com.project.bank.service.RoleService;
 import com.project.bank.service.UserService;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -28,12 +29,15 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final RoleService roleService;
 
+
+
     @Autowired
     public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, RoleService roleService) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
         this.roleService = roleService;
+
     }
 
     @Override
@@ -114,6 +118,13 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("User not found"));
     }
 
+//    @Override
+//    public User findByUsername(String username) {
+//        return userRepository.findByUsername(username)
+//                .orElseThrow(() -> new ObjectNotFoundException("User with username " + username + " was not found"));
+//    }
+
+
     @Override
     public User save(User user) {
         return userRepository.save(user);
@@ -161,7 +172,55 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(User user) {
 
+
     }
+
+    @Override
+    public boolean userExists(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
+    //reset pass
+//    @Override
+//    public boolean resetPassword(String email) {
+//        Optional<User> userOptional = userRepository.findByEmail(email);
+//        if (userOptional.isPresent()) {
+//            User user = userOptional.get();
+//            String newPassword = generateRandomPassword();
+//            user.setPassword(passwordEncoder.encode(newPassword));
+//            userRepository.save(user);
+//            sendEmail(email, newPassword);
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//    private String generateRandomPassword() {
+//        int length = 10;
+//        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+//        Random random = new Random();
+//        StringBuilder password = new StringBuilder(length);
+//        for (int i = 0; i < length; i++) {
+//            password.append(characters.charAt(random.nextInt(characters.length())));
+//        }
+//        return password.toString();
+//    }
+//
+//    private void sendEmail(String email, String newPassword) {
+//        try {
+//            MimeMessage mimeMessage = mailSender.createMimeMessage();
+//            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
+//            helper.setTo(email);
+//            helper.setSubject("Your New Password");
+//            helper.setText("Your new password is: " + newPassword, true);
+//            mailSender.send(mimeMessage);
+//        } catch (MessagingException e) {
+//            e.printStackTrace();
+//            // Handle exception
+//        }
+//    }
+
+
 
 
     // Премахваме този метод, тъй като вече няма да използваме CurrentUser

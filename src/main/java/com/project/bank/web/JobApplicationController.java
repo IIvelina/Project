@@ -14,6 +14,7 @@ import com.project.bank.service.RoleService;
 import com.project.bank.service.UserService;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -70,6 +71,9 @@ public class JobApplicationController {
         return "redirect:/openPositions";
     }
 
+
+
+
     @ModelAttribute
     public JobApplicationDTO jobApplicationDTO(){
         return new JobApplicationDTO();
@@ -85,6 +89,50 @@ public class JobApplicationController {
         jobApplicationService.deleteApplication(id);
         return "redirect:/director/dashboard";
     }
+
+//    @PostMapping("/job/approve/{id}")
+//    public String approveJobApplication(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+//        JobApplicationServiceModel jobApplication = jobApplicationService.findApplicationById(id);
+//        Optional<User> optionalUser = userService.findUserByPhoneNumber(jobApplication.getPhone());
+//
+//        if (optionalUser.isPresent()) {
+//            User user = optionalUser.get();
+//            Role adminRole = roleService.findRoleByName(UserRoleEnum.ADMIN);
+//
+//            // Проверка дали потребителят вече има ролята ADMIN
+//            if (!user.getRoles().contains(adminRole)) {
+//                userService.addRoleToUser(user, adminRole);
+//            }
+//
+//            String businessEmail = user.getUsername() + "_wave@financial.com";
+//
+//            if (employeeService.existsByBusinessEmail(businessEmail)) {
+//                redirectAttributes.addFlashAttribute("error", "Duplicate email: " + businessEmail);
+//                return "redirect:/director/dashboard";
+//            }
+//
+//            Employee employee = new Employee();
+//            employee.setBusinessEmail(businessEmail);
+//            employee.setPassword("topsicret");
+//            employee.setRole(UserRoleEnum.ADMIN);
+//            employee.setUser(user);
+//
+//            // Запазване на новия служител
+//            employeeService.saveEmployee(employee);
+//
+//            // Обновяване на потребителя с employee_id
+//            //  user.setEmployee(employee);
+//            userService.saveUser(user);
+//
+//            // Промяна на статуса на кандидатурата
+//            jobApplication.setStatus(ApplicationStatus.APPROVED);
+//            jobApplicationService.updateApplicationStatus(jobApplication);
+//        } else {
+//            redirectAttributes.addFlashAttribute("error", "User not found for phone number: " + jobApplication.getPhone());
+//        }
+//
+//        return "redirect:/director/dashboard";
+//    }
 
     @PostMapping("/job/approve/{id}")
     public String approveJobApplication(@PathVariable Long id, RedirectAttributes redirectAttributes) {
@@ -110,14 +158,18 @@ public class JobApplicationController {
             Employee employee = new Employee();
             employee.setBusinessEmail(businessEmail);
             employee.setPassword("topsicret");
-            employee.setRole(UserRoleEnum.ADMIN);
+            employee.setRole(UserRoleEnum.ADMIN); // This field should not be unique now
             employee.setUser(user);
 
             // Запазване на новия служител
-            employeeService.saveEmployee(employee);
+            try {
+                employeeService.saveEmployee(employee);
+            } catch (DataIntegrityViolationException e) {
+                redirectAttributes.addFlashAttribute("error", "Failed to save employee: " + e.getMessage());
+                return "redirect:/director/dashboard";
+            }
 
             // Обновяване на потребителя с employee_id
-            //  user.setEmployee(employee);
             userService.saveUser(user);
 
             // Промяна на статуса на кандидатурата
@@ -129,4 +181,6 @@ public class JobApplicationController {
 
         return "redirect:/director/dashboard";
     }
+
+
 }

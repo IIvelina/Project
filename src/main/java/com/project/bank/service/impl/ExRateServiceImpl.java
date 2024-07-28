@@ -1,12 +1,12 @@
 package com.project.bank.service.impl;
 
 import com.project.bank.config.ForexApiConfig;
-import com.project.bank.model.ExRatesDTO;
+import com.project.bank.model.dto.ExRatesDTO;
 
 import com.project.bank.model.entity.ExRateEntity;
 import com.project.bank.repository.ExRateRepository;
 import com.project.bank.service.ExRateService;
-import com.project.bank.service.ObjectNotFoundException;
+import com.project.bank.exception.ObjectNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
