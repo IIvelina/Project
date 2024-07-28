@@ -39,7 +39,7 @@ public interface UserService {
 
     Optional<User> findByUserById(Long id);
 
-    void delete(User user);
+    
 
 
 
@@ -50,6 +50,8 @@ public interface UserService {
     void saveUser(User user);
 
     boolean userExists(String username);
+
+    void delete(User user);
 
 
     //   boolean resetPassword(String email);

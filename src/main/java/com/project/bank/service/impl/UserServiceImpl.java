@@ -153,10 +153,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id);
     }
 
-    @Override
-    public void delete(User user) {
 
-    }
 
     @Override
     public Optional<User> findUserByPhoneNumber(String phone) {
@@ -169,6 +166,7 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    //towa chupi neshtata!!!!!!!
     @Override
     public void saveUser(User user) {
 
@@ -178,6 +176,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean userExists(String username) {
         return userRepository.existsByUsername(username);
+    }
+
+    @Override
+    public void delete(User user) {
+        userRepository.delete(user);
     }
 
     //reset pass

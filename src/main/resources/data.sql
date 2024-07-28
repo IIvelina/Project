@@ -144,28 +144,42 @@ WHERE u.username = 'pesho'
       AND applying_position = 'Application Admin'
 );
 
--- Insert job application for Dragan
-INSERT INTO job_applications (first_name, last_name, email, gender, phone, applying_position, start_date, address, address2, cover_letter, resume_path, user_id, director_id, status)
+
+-- нов потребител Georgi
+-- Вмъкване на нов потребител с роля на клиент --pass Ivan741@
+INSERT INTO users (ssn, full_name, id_card_number, email, username, password, gender, phone_number, client_number)
+SELECT '5432109876', 'Georgi Georgiev', 'CD5432109', 'georgi.georgiev@example.com', 'georgi',
+       'e51daae315c9e141f654be26af17094b8d5e3ac920c20041592c893544b4c156406a7f7e120414f5d04cbee278a9099a',
+       'MALE', '0887799666', 'CN543210987'
+WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'georgi');
+
+-- Свързване на потребителя Georgi Georgiev с ролята CLIENT
+INSERT INTO users_roles (user_id, role_id)
 SELECT
-    'Dragan',
-    'Draganov',
-    'dragan.draganov@example.com',
-    'MALE',
-    '0887777444',
-    'Application Admin',
-    CURRENT_DATE,
-    '456 Elm St',
-    'Suite 12',
-    'I am applying for the Application Admin position. My background in application management and my dedication to excellence make me a strong candidate.',
-    NULL,
-    u.id,
-    NULL,
-    'PENDING'
-FROM users u
-WHERE u.username = 'dragan'
-  AND NOT EXISTS (
-    SELECT 1
-    FROM job_applications
-    WHERE email = 'dragan.draganov@example.com'
-      AND applying_position = 'Application Admin'
+    (SELECT id FROM users WHERE username = 'georgi'),
+    (SELECT id FROM roles WHERE role = 'CLIENT')
+WHERE NOT EXISTS (
+    SELECT 1 FROM users_roles
+    WHERE user_id = (SELECT id FROM users WHERE username = 'georgi')
+      AND role_id = (SELECT id FROM roles WHERE role = 'CLIENT')
 );
+
+-- нов потребител Hristo
+-- Вмъкване на нов потребител с роля на клиент --pass Ivan741@
+INSERT INTO users (ssn, full_name, id_card_number, email, username, password, gender, phone_number, client_number)
+SELECT '4321098765', 'Hristo Hristov', 'CD4321098', 'hristo.hristov@example.com', 'hristo',
+       'e51daae315c9e141f654be26af17094b8d5e3ac920c20041592c893544b4c156406a7f7e120414f5d04cbee278a9099a',
+       'MALE', '0887700111', 'CN432109876'
+WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'hristo');
+
+-- Свързване на потребителя Hristo Hristov с ролята CLIENT
+INSERT INTO users_roles (user_id, role_id)
+SELECT
+    (SELECT id FROM users WHERE username = 'hristo'),
+    (SELECT id FROM roles WHERE role = 'CLIENT')
+WHERE NOT EXISTS (
+    SELECT 1 FROM users_roles
+    WHERE user_id = (SELECT id FROM users WHERE username = 'hristo')
+      AND role_id = (SELECT id FROM roles WHERE role = 'CLIENT')
+);
+
