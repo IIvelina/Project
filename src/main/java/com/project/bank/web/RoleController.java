@@ -90,6 +90,7 @@ public class RoleController {
 
     @DeleteMapping("/admin/delete/{id}")
     public String deleteClient(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+        //TODO IF HAS APPLICATION IN D, IF HAS TRANSACTION, IF HAS ACCOUNTS
         Optional<User> userOptional = userService.findByUserById(id);
         if (userOptional.isPresent()) {
             User user = userOptional.get();

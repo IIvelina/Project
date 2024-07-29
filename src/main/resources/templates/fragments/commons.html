@@ -81,32 +81,33 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto py-0">
-            <a th:href="@{/}" class="nav-item nav-link active">HOME</a>
-            <a th:href="@{/about}" class="nav-item nav-link">ABOUT US</a>
-            <a th:href="@{/productAndService}" class="nav-item nav-link">PRODUCTS AND SERVICES</a>
+            <a th:href="@{/}" class="nav-item nav-link active" th:text="#{nav_bar_home}">HOME</a>
+            <a th:href="@{/about}" class="nav-item nav-link" th:text="#{nav_bar_about}">ABOUT US</a>
+            <a th:href="@{/productAndService}" class="nav-item nav-link" th:text="#{nav_bar_service}">PRODUCTS AND SERVICES</a>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">CAREERS</a>
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" th:text="#{nav_bar_careers}">CAREERS</a>
                 <div class="dropdown-menu m-0">
                     <a th:href="@{/openPositions}" class="dropdown-item">Open Positions</a>
                     <a th:href="@{/applicationProcess}" class="dropdown-item">Application process</a>
                     <a th:href="@{/benefits}" class="dropdown-item">Our Benefits</a>
                 </div>
             </div>
-            <a th:href="@{/contact}" class="nav-item nav-link">CONTACTS</a>
+            <a th:href="@{/contact}" class="nav-item nav-link" th:text="#{nav_bar_contact}">CONTACTS</a>
 
             <th:block sec:authorize="!isAuthenticated()">
-                <a th:href="@{/users/register}" class="nav-item nav-link">BECOME A CLIENT</a>
+                <a th:href="@{/users/register}" class="nav-item nav-link" th:text="#{nav_bar_become}">BECOME A CLIENT</a>
             </th:block>
         </div>
         <button type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button>
 
         <th:block sec:authorize="!isAuthenticated()">
-            <a th:href="@{/users/login}" class="btn btn-primary py-2 px-4 ms-3">LOGIN</a>
+            <a th:href="@{/users/login}" class="btn btn-primary py-2 px-4 ms-3" th:text="#{nav_bar_login}">LOGIN</a>
         </th:block>
 
         <th:block sec:authorize="isAuthenticated()">
             <form th:action="@{/logout}" method="post" style="display:inline;">
-                <button type="submit" class="btn btn-primary py-2 px-4 ms-3">LOGOUT</button>
+                <button type="submit" class="btn btn-primary py-2 px-4 ms-3"
+                th:text="#{nav_bar_login}">LOGOUT</button>
             </form>
         </th:block>
 
@@ -122,7 +123,23 @@
             <a th:href="@{/user/admin/login}" class="btn btn-primary py-2 px-4 ms-3">ADMIN</a>
         </th:block>
 
-        <a href="" class="btn btn-primary py-2 px-4 ms-3">BG</a>
+      <!--  <a href="" class="btn btn-primary py-2 px-4 ms-3">BG</a> -->
+
+
+
+            <form th:method="get">
+                <label class="text-white" for="lang" th:text="#{nav_bar_language}">Language</label>
+                <select
+                        id="lang"
+                        name="lang"
+                        onchange="this.form.submit()">
+                    <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                    <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                </select>
+            </form>
+
+
+
     </div>
 </nav>
 <!--Only nav End-->

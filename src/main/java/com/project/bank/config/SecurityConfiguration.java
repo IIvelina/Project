@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
+
 @Configuration
 public class SecurityConfiguration {
 
@@ -27,7 +28,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/profile", "/user/withdraw", "/user/transfer",
                                 "/account/saving", "/account/checking", "/user/request-new-product",
                                 "/user/accounts", "/user/transactions", "/user/add-money",
-                                "/user/add-money", "/logout", "/job/apply").hasRole("CLIENT")
+                                "/logout", "/job/apply").hasRole("CLIENT")
                         .requestMatchers("/director/dashboard").hasRole("DIRECTOR")
                         .requestMatchers("/user/admin/login", "/user/admin/dashboard").hasRole("ADMIN")
                         .anyRequest().authenticated()
@@ -37,7 +38,7 @@ public class SecurityConfiguration {
                         .usernameParameter("username")
                         .passwordParameter("password")
                         .defaultSuccessUrl("/", true)
-                        .failureForwardUrl("/users/login-error")
+                        .failureUrl("/users/login?error=true") // URL за грешки при вход
                 )
                 .rememberMe(rememberMe -> rememberMe
                         .rememberMeParameter("remember-me")
@@ -74,6 +75,8 @@ public class SecurityConfiguration {
         return new HttpSessionEventPublisher();
     }
 }
+
+
 
 
 
