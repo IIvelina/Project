@@ -23,12 +23,6 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
 
-//    @Override
-//    public List<Transaction> getLastThreeTransactionsByUserId(Long userId) {
-//        List<Transaction> transactions = transactionRepository.findTop3ByFromAccount_UserIdOrderByTimestampDesc(userId);
-//        transactions.sort(Comparator.comparing(Transaction::getTimestamp));
-//        return transactions;
-//    }
 
 
     @Override
