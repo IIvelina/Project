@@ -12,8 +12,6 @@ public interface UserService {
 
     UserServiceModel findByUsernameAndPassword(String username, String password);
 
-    //void loginUser(Long id, String username);
-
     User findById(Long id);
 
     boolean existsBySSN(String ssn);
@@ -30,7 +28,6 @@ public interface UserService {
 
     User save(User user);
 
-
     User getUserByPhoneNumber(String recipientPhoneNumber);
 
     User getUserByUsername(String name);
@@ -39,20 +36,13 @@ public interface UserService {
 
     Optional<User> findByUserById(Long id);
 
-    
-
-
-
     Optional<User> findUserByPhoneNumber(String phone);
 
     void addRoleToUser(User user, Role adminRole);
 
     void saveUser(User user);
 
-    boolean userExists(String username);
-
     void delete(User user);
 
 
-    //   boolean resetPassword(String email);
 }

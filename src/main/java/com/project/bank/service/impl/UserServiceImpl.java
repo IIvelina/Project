@@ -169,14 +169,8 @@ public class UserServiceImpl implements UserService {
     //towa chupi neshtata!!!!!!!
     @Override
     public void saveUser(User user) {
-
-
     }
 
-    @Override
-    public boolean userExists(String username) {
-        return userRepository.existsByUsername(username);
-    }
 
     @Override
     public void delete(User user) {

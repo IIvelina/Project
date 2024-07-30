@@ -11,7 +11,9 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Добавено: Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23234659'><path d='M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z'/></svg>" type="image/svg+xml" />
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23234659'><path d='M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z'/></svg>"
+          type="image/svg+xml"/>
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -19,7 +21,8 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -38,7 +41,8 @@
 <body>
 
 <!-- Spinner Start -->
-<div th:fragment="spinner" id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+<div th:fragment="spinner" id="spinner"
+     class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
     <div class="spinner"></div>
 </div>
 <!-- Spinner End -->
@@ -59,11 +63,16 @@
         </div>
         <div class="col-lg-4 text-center text-lg-end">
             <div class="d-inline-flex align-items-center" style="height: 45px;">
-                <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-twitter fw-normal"></i></a>
-                <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-facebook-f fw-normal"></i></a>
-                <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-linkedin-in fw-normal"></i></a>
-                <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-instagram fw-normal"></i></a>
-                <a class="btn btn-sm btn-outline-light btn-sm-square" href=""><i class="fab fa-youtube fw-normal"></i></a>
+                <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i
+                        class="fab fa-twitter fw-normal"></i></a>
+                <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i
+                        class="fab fa-facebook-f fw-normal"></i></a>
+                <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i
+                        class="fab fa-linkedin-in fw-normal"></i></a>
+                <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i
+                        class="fab fa-instagram fw-normal"></i></a>
+                <a class="btn btn-sm btn-outline-light btn-sm-square" href=""><i
+                        class="fab fa-youtube fw-normal"></i></a>
             </div>
         </div>
     </div>
@@ -87,22 +96,27 @@
         <div class="navbar-nav ms-auto py-0">
             <a th:href="@{/}" class="nav-item nav-link active" th:text="#{nav_bar_home}">HOME</a>
             <a th:href="@{/about}" class="nav-item nav-link" th:text="#{nav_bar_about}">ABOUT US</a>
-            <a th:href="@{/productAndService}" class="nav-item nav-link" th:text="#{nav_bar_service}">PRODUCTS AND SERVICES</a>
+            <a th:href="@{/productAndService}" class="nav-item nav-link" th:text="#{nav_bar_service}">PRODUCTS AND
+                SERVICES</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" th:text="#{nav_bar_careers}">CAREERS</a>
                 <div class="dropdown-menu m-0">
-                    <a th:href="@{/openPositions}" class="dropdown-item" th:text="#{nav_bar_position}">Open Positions</a>
-                    <a th:href="@{/applicationProcess}" class="dropdown-item" th:text="#{nav_bar_process}">Application process</a>
+                    <a th:href="@{/openPositions}" class="dropdown-item" th:text="#{nav_bar_position}">Open
+                        Positions</a>
+                    <a th:href="@{/applicationProcess}" class="dropdown-item" th:text="#{nav_bar_process}">Application
+                        process</a>
                     <a th:href="@{/benefits}" class="dropdown-item" th:text="#{nav_bar_benefits}">Our Benefits</a>
                 </div>
             </div>
             <a th:href="@{/contact}" class="nav-item nav-link" th:text="#{nav_bar_contact}">CONTACTS</a>
 
             <th:block sec:authorize="!isAuthenticated()">
-                <a th:href="@{/users/register}" class="nav-item nav-link" th:text="#{nav_bar_become}">BECOME A CLIENT</a>
+                <a th:href="@{/users/register}" class="nav-item nav-link" th:text="#{nav_bar_become}">BECOME A
+                    CLIENT</a>
             </th:block>
         </div>
-        <button type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button>
+        <button type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i
+                class="fa fa-search"></i></button>
 
         <th:block sec:authorize="!isAuthenticated()">
             <a th:href="@{/users/login}" class="btn btn-primary py-2 px-4 ms-3" th:text="#{nav_bar_login}">LOGIN</a>
@@ -111,12 +125,14 @@
         <th:block sec:authorize="isAuthenticated()">
             <form th:action="@{/logout}" method="post" style="display:inline;">
                 <button type="submit" class="btn btn-primary py-2 px-4 ms-3"
-                th:text="#{nav_bar_login}">LOGOUT</button>
+                        th:text="#{nav_bar_logout}">LOGOUT
+                </button>
             </form>
         </th:block>
 
         <th:block sec:authorize="isAuthenticated()">
-            <a th:href="@{/users/profile}" class="btn btn-primary py-2 px-4 ms-3" th:text="#{nav_bar_profile}">PROFILE</a>
+            <a th:href="@{/users/profile}" class="btn btn-primary py-2 px-4 ms-3"
+               th:text="#{nav_bar_profile}">PROFILE</a>
         </th:block>
 
         <th:block sec:authorize="isAuthenticated() and hasRole('DIRECTOR')">
@@ -124,24 +140,23 @@
         </th:block>
 
         <th:block sec:authorize="isAuthenticated() and hasRole('ADMIN')">
-            <a th:href="@{/user/admin/login}" class="btn btn-primary py-2 px-4 ms-3" th:text="#{nav_bar_admin}">ADMIN</a>
+            <a th:href="@{/user/admin/login}" class="btn btn-primary py-2 px-4 ms-3"
+               th:text="#{nav_bar_admin}">ADMIN</a>
         </th:block>
 
-      <!--  <a href="" class="btn btn-primary py-2 px-4 ms-3">BG</a> -->
+        <!--  <a href="" class="btn btn-primary py-2 px-4 ms-3">BG</a> -->
 
 
-
-            <form th:method="get">
-                <label class="text-white" for="lang" th:text="#{nav_bar_language}">Language</label>
-                <select
-                        id="lang"
-                        name="lang"
-                        onchange="this.form.submit()">
-                    <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
-                    <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
-                </select>
-            </form>
-
+        <form th:method="get">
+            <label class="text-white" for="lang" th:text="#{nav_bar_language}">Language</label>
+            <select
+                    id="lang"
+                    name="lang"
+                    onchange="this.form.submit()">
+                <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+            </select>
+        </form>
 
 
     </div>
@@ -158,13 +173,15 @@
                         <a href="index.html" class="navbar-brand">
                             <h1 class="m-0 text-white">
                                 <!-- Bank Icon SVG -->
-                                <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="50px" fill="#ffffff">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
+                                     width="50px" fill="#ffffff">
                                     <path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/>
                                 </svg>
                                 Wave Financial
                             </h1>
                         </a>
-                        <p class="mt-3 mb-4" th:text="#{footer_p}">In the world of finance, innovation and trust go hand in hand. Wave Financial is your partner in achieving financial stability and growth.</p>
+                        <p class="mt-3 mb-4" th:text="#{footer_p}">In the world of finance, innovation and trust go hand
+                            in hand. Wave Financial is your partner in achieving financial stability and growth.</p>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-6">
@@ -186,10 +203,14 @@
                                 <p class="mb-0">+359 87 123 4567</p>
                             </div>
                             <div class="d-flex mt-4">
-                                <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-twitter fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                                <a class="btn btn-primary btn-square" href="#"><i class="fab fa-instagram fw-normal"></i></a>
+                                <a class="btn btn-primary btn-square me-2" href="#"><i
+                                        class="fab fa-twitter fw-normal"></i></a>
+                                <a class="btn btn-primary btn-square me-2" href="#"><i
+                                        class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-primary btn-square me-2" href="#"><i
+                                        class="fab fa-linkedin-in fw-normal"></i></a>
+                                <a class="btn btn-primary btn-square" href="#"><i
+                                        class="fab fa-instagram fw-normal"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
@@ -197,10 +218,26 @@
                                 <h3 class="text-light mb-0" th:text="#{footer_quick_links}">Quick Links</h3>
                             </div>
                             <div class="link-animated d-flex flex-column justify-content-start">
-                                <a class="text-light mb-2" th:href="@{/}"><i class="bi bi-arrow-right text-primary me-2" th:text="#{footer_home}"></i></a>
-                                <a class="text-light mb-2" th:href="@{/about}"><i class="bi bi-arrow-right text-primary me-2" th:text="#{footer_about}"></i></a>
-                                <a class="text-light mb-2" th:href="@{/productAndService}"><i class="bi bi-arrow-right text-primary me-2" th:text="#{footer_service}"></i></a>
-                                <a class="text-light mb-2" th:href="@{/contact}"><i class="bi bi-arrow-right text-primary me-2" th:text="#{footer_contact}"></i></a>
+                                <a class="text-light mb-2" th:href="@{/}" th:text="#{footer_home}">
+                                    <i class="bi bi-arrow-right text-primary me-2">
+                                        Home
+                                    </i>
+                                </a>
+                                <a class="text-light mb-2" th:href="@{/about}" th:text="#{footer_about}">
+                                    <i class="bi bi-arrow-right text-primary me-2">
+                                        About Us
+                                    </i>
+                                </a>
+                                <a class="text-light mb-2" th:href="@{/productAndService}" th:text="#{footer_service}">
+                                    <i class="bi bi-arrow-right text-primary me-2">
+                                        Product And Service
+                                    </i>
+                                </a>
+                                <a class="text-light mb-2" th:href="@{/contact}" th:text="#{footer_contact}">
+                                    <i class="bi bi-arrow-right text-primary me-2">
+                                        Contact Us
+                                    </i>
+                                </a>
                                 <th:block sec:authorize="!isAuthenticated()">
                                     <a class="text-light" th:href="@{/users/register}">
                                         <i class="bi bi-arrow-right text-primary me-2" th:text="#{footer_client}">
@@ -216,9 +253,21 @@
                                 <h3 class="text-light mb-0" th:text="#{footer_careers}">Careers</h3>
                             </div>
                             <div class="link-animated d-flex flex-column justify-content-start">
-                                <a class="text-light mb-2" th:href="@{/openPositions}"><i class="bi bi-arrow-right text-primary me-2" th:text="#{footer_positions}"></i></a>
-                                <a class="text-light mb-2" th:href="@{/applicationProcess}"><i class="bi bi-arrow-right text-primary me-2" th:text="#{footer_process}"></i></a>
-                                <a class="text-light mb-2" th:href="@{/benefits}"><i class="bi bi-arrow-right text-primary me-2" th:text="#{footer_benefits}"></i></a>
+                                <a class="text-light mb-2" th:href="@{/openPositions}" th:text="#{footer_positions}">
+                                    <i class="bi bi-arrow-right text-primary me-2">
+                                        Open Positions
+                                    </i>
+                                </a>
+                                <a class="text-light mb-2" th:href="@{/applicationProcess}" th:text="#{footer_process}">
+                                    <i class="bi bi-arrow-right text-primary me-2">
+                                        Application Process
+                                    </i>
+                                </a>
+                                <a class="text-light mb-2" th:href="@{/benefits}" th:text="#{footer_benefits}">
+                                    <i class="bi bi-arrow-right text-primary me-2">
+                                        Benefits
+                                    </i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -231,7 +280,8 @@
             <div class="row justify-content-end">
                 <div class="col-lg-8 col-md-6">
                     <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
-                        <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">2024 Wave Financial. All Rights Reserved.</p>
+                        <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">2024 Wave Financial. All
+                            Rights Reserved.</p>
                     </div>
                 </div>
             </div>
