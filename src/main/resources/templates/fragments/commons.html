@@ -48,7 +48,11 @@
     <div class="row gx-0">
         <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
             <div class="d-inline-flex align-items-center" style="height: 45px;">
-                <small class="me-3 text-light"><i class="fa fa-map-marker-alt me-2"></i>Expo2000,Sofia, Bulgaria</small>
+                <small class="me-3 text-light" th:text="#{header_address}">
+                    <i class="fa fa-map-marker-alt me-2">
+
+                    </i>Expo2000,Sofia, Bulgaria
+                </small>
                 <small class="me-3 text-light"><i class="fa fa-phone-alt me-2"></i>+359 87 123 4567</small>
                 <small class="text-light"><i class="fa fa-envelope-open me-2"></i>wave@financial.com</small>
             </div>
@@ -87,9 +91,9 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" th:text="#{nav_bar_careers}">CAREERS</a>
                 <div class="dropdown-menu m-0">
-                    <a th:href="@{/openPositions}" class="dropdown-item">Open Positions</a>
-                    <a th:href="@{/applicationProcess}" class="dropdown-item">Application process</a>
-                    <a th:href="@{/benefits}" class="dropdown-item">Our Benefits</a>
+                    <a th:href="@{/openPositions}" class="dropdown-item" th:text="#{nav_bar_position}">Open Positions</a>
+                    <a th:href="@{/applicationProcess}" class="dropdown-item" th:text="#{nav_bar_process}">Application process</a>
+                    <a th:href="@{/benefits}" class="dropdown-item" th:text="#{nav_bar_benefits}">Our Benefits</a>
                 </div>
             </div>
             <a th:href="@{/contact}" class="nav-item nav-link" th:text="#{nav_bar_contact}">CONTACTS</a>
@@ -112,15 +116,15 @@
         </th:block>
 
         <th:block sec:authorize="isAuthenticated()">
-            <a th:href="@{/users/profile}" class="btn btn-primary py-2 px-4 ms-3">PROFILE</a>
+            <a th:href="@{/users/profile}" class="btn btn-primary py-2 px-4 ms-3" th:text="#{nav_bar_profile}">PROFILE</a>
         </th:block>
 
         <th:block sec:authorize="isAuthenticated() and hasRole('DIRECTOR')">
-            <a th:href="@{/director/dashboard}" class="btn btn-primary py-2 px-4 ms-3">DIRECTOR</a>
+            <a th:href="@{/director/dashboard}" class="btn btn-primary py-2 px-4 ms-3" th:text="#{nav_bar_director}">DIRECTOR</a>
         </th:block>
 
         <th:block sec:authorize="isAuthenticated() and hasRole('ADMIN')">
-            <a th:href="@{/user/admin/login}" class="btn btn-primary py-2 px-4 ms-3">ADMIN</a>
+            <a th:href="@{/user/admin/login}" class="btn btn-primary py-2 px-4 ms-3" th:text="#{nav_bar_admin}">ADMIN</a>
         </th:block>
 
       <!--  <a href="" class="btn btn-primary py-2 px-4 ms-3">BG</a> -->
@@ -160,18 +164,18 @@
                                 Wave Financial
                             </h1>
                         </a>
-                        <p class="mt-3 mb-4">In the world of finance, innovation and trust go hand in hand. Wave Financial is your partner in achieving financial stability and growth.</p>
+                        <p class="mt-3 mb-4" th:text="#{footer_p}">In the world of finance, innovation and trust go hand in hand. Wave Financial is your partner in achieving financial stability and growth.</p>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-6">
                     <div class="row gx-5">
                         <div class="col-lg-4 col-md-12 pt-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                                <h3 class="text-light mb-0">Get In Touch</h3>
+                                <h3 class="text-light mb-0" th:text="#{footer_get_in_touch}">Get In Touch</h3>
                             </div>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-geo-alt text-primary me-2"></i>
-                                <p class="mb-0">Expo2000,Sofia, Bulgaria</p>
+                                <p class="mb-0" th:text="#{footer_address}">Expo2000,Sofia, Bulgaria</p>
                             </div>
                             <div class="d-flex mb-2">
                                 <i class="bi bi-envelope-open text-primary me-2"></i>
@@ -190,26 +194,31 @@
                         </div>
                         <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                                <h3 class="text-light mb-0">Quick Links</h3>
+                                <h3 class="text-light mb-0" th:text="#{footer_quick_links}">Quick Links</h3>
                             </div>
                             <div class="link-animated d-flex flex-column justify-content-start">
-                                <a class="text-light mb-2" th:href="@{/}"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
-                                <a class="text-light mb-2" th:href="@{/about}"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
-                                <a class="text-light mb-2" th:href="@{/productAndService}"><i class="bi bi-arrow-right text-primary me-2"></i>Products And Service</a>
-                                <a class="text-light mb-2" th:href="@{/contact}"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
+                                <a class="text-light mb-2" th:href="@{/}"><i class="bi bi-arrow-right text-primary me-2" th:text="#{footer_home}"></i></a>
+                                <a class="text-light mb-2" th:href="@{/about}"><i class="bi bi-arrow-right text-primary me-2" th:text="#{footer_about}"></i></a>
+                                <a class="text-light mb-2" th:href="@{/productAndService}"><i class="bi bi-arrow-right text-primary me-2" th:text="#{footer_service}"></i></a>
+                                <a class="text-light mb-2" th:href="@{/contact}"><i class="bi bi-arrow-right text-primary me-2" th:text="#{footer_contact}"></i></a>
                                 <th:block sec:authorize="!isAuthenticated()">
-                                    <a class="text-light" th:href="@{/users/register}"><i class="bi bi-arrow-right text-primary me-2"></i>Become a Client</a>
+                                    <a class="text-light" th:href="@{/users/register}">
+                                        <i class="bi bi-arrow-right text-primary me-2" th:text="#{footer_client}">
+
+                                        </i>
+
+                                    </a>
                                 </th:block>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                                <h3 class="text-light mb-0">Careers</h3>
+                                <h3 class="text-light mb-0" th:text="#{footer_careers}">Careers</h3>
                             </div>
                             <div class="link-animated d-flex flex-column justify-content-start">
-                                <a class="text-light mb-2" th:href="@{/openPositions}"><i class="bi bi-arrow-right text-primary me-2"></i>Open Positions</a>
-                                <a class="text-light mb-2" th:href="@{/applicationProcess}"><i class="bi bi-arrow-right text-primary me-2"></i>Application Process</a>
-                                <a class="text-light mb-2" th:href="@{/benefits}"><i class="bi bi-arrow-right text-primary me-2"></i>Our Benefits</a>
+                                <a class="text-light mb-2" th:href="@{/openPositions}"><i class="bi bi-arrow-right text-primary me-2" th:text="#{footer_positions}"></i></a>
+                                <a class="text-light mb-2" th:href="@{/applicationProcess}"><i class="bi bi-arrow-right text-primary me-2" th:text="#{footer_process}"></i></a>
+                                <a class="text-light mb-2" th:href="@{/benefits}"><i class="bi bi-arrow-right text-primary me-2" th:text="#{footer_benefits}"></i></a>
                             </div>
                         </div>
                     </div>
