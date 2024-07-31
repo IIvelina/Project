@@ -20,7 +20,7 @@
 <!-- Navbar Start -->
 <div class="container-fluid position-relative p-0">
     <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
-        <a href="index.html" class="navbar-brand p-0">
+        <a th:href="@{/}" class="navbar-brand p-0">
             <h1 class="m-0">
                 <!-- Bank Icon SVG -->
                 <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#ffffff">
@@ -105,10 +105,10 @@
     <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
         <div class="row py-5">
             <div class="col-12 pt-lg-5 mt-lg-5 text-center">
-                <h1 class="display-4 text-white animated zoomIn">About Us</h1>
-                <a href="" class="h5 text-white">Home</a>
+                <h1 class="display-4 text-white animated zoomIn" th:text="#{about_about_us_h1}">About Us</h1>
+                <a th:href="@{/}" class="h5 text-white" th:text="#{about_about_us_home}">Home</a>
                 <i class="far fa-circle text-white px-2"></i>
-                <a href="" class="h5 text-white">About</a>
+                <a href="" class="h5 text-white" th:text="#{about_about_us_about}">About</a>
             </div>
         </div>
     </div>
@@ -141,18 +141,18 @@
         <div class="row g-5">
             <div class="col-lg-7">
                 <div class="section-title position-relative pb-3 mb-5">
-                    <h5 class="fw-bold text-primary text-uppercase">About Us</h5>
-                    <h1 class="mb-0">We Are Here to Provide Reliable and Efficient Financial Solutions.</h1>
+                    <h5 class="fw-bold text-primary text-uppercase" th:text="#{about_about_us_h5}">About Us</h5>
+                    <h1 class="mb-0" th:text="#{about_us_body_h1}">We Are Here to Provide Reliable and Efficient Financial Solutions.</h1>
                 </div>
-                <p class="mb-4">At Wave Financial, our mission is to empower our clients with innovative financial solutions that drive growth and ensure stability. Our team of dedicated professionals is committed to delivering personalized services that meet your unique financial needs.</p>
+                <p class="mb-4" th:text="#{about_us_body_p}">At Wave Financial, our mission is to empower our clients with innovative financial solutions that drive growth and ensure stability. Our team of dedicated professionals is committed to delivering personalized services that meet your unique financial needs.</p>
                 <div class="row g-0 mb-3">
                     <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-                        <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Secure Online Banking</h5>
-                        <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Professional Staff</h5>
+                        <h5 class="mb-3" th:text="#{about_us_secure}"><i class="fa fa-check text-primary me-3"></i>Secure Online Banking</h5>
+                        <h5 class="mb-3" th:text="#{about_us_staff}"><i class="fa fa-check text-primary me-3"></i>Professional Staff</h5>
                     </div>
                     <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
-                        <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>24/7 Support</h5>
-                        <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Best In Industry</h5>
+                        <h5 class="mb-3" th:text="#{about_us_support}"><i class="fa fa-check text-primary me-3"></i>24/7 Support</h5>
+                        <h5 class="mb-3" th:text="#{about_us_industry}"><i class="fa fa-check text-primary me-3"></i>Best In Industry</h5>
                     </div>
                 </div>
                 <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
@@ -160,7 +160,7 @@
                         <i class="fa fa-phone-alt text-white"></i>
                     </div>
                     <div class="ps-4">
-                        <h5 class="mb-2">Call to ask any question</h5>
+                        <h5 class="mb-2" th:text="#{about_us_call}">Call to ask any question</h5>
                         <h4 class="text-primary mb-0">+359 87 123 4567</h4>
                     </div>
                 </div>
@@ -180,8 +180,8 @@
 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container py-5">
         <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-            <h5 class="fw-bold text-primary text-uppercase">Team Members</h5>
-            <h1 class="mb-0">Professional Team Ready to Support Your Financial Needs</h1>
+            <h5 class="fw-bold text-primary text-uppercase" th:text="#{about_us_team_h5}">Team Members</h5>
+            <h1 class="mb-0" th:text="#{about_us_team_h1}">Professional Team Ready to Support Your Financial Needs</h1>
         </div>
         <div class="row g-5">
             <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
@@ -196,8 +196,8 @@
                         </div>
                     </div>
                     <div class="text-center py-4">
-                        <h4 class="text-primary">Ivelina Ivanova</h4>
-                        <p class="text-uppercase m-0">Financial Director</p>
+                        <h4 class="text-primary" th:text="#{about_us_director_name}">Ivelina Ivanova</h4>
+                        <p class="text-uppercase m-0" th:text="#{about_us_director_position}">Financial Director</p>
                     </div>
                 </div>
             </div>
@@ -213,8 +213,8 @@
                         </div>
                     </div>
                     <div class="text-center py-4">
-                        <h4 class="text-primary">Simona Panayotova</h4>
-                        <p class="text-uppercase m-0">Financial Advisor</p>
+                        <h4 class="text-primary" th:text="#{about_us_advisor_name}">Simona Panayotova</h4>
+                        <p class="text-uppercase m-0" th:text="#{about_us_advisor_position}">Financial Advisor</p>
                     </div>
                 </div>
             </div>
@@ -230,8 +230,8 @@
                         </div>
                     </div>
                     <div class="text-center py-4">
-                        <h4 class="text-primary">Monika Ivanova</h4>
-                        <p class="text-uppercase m-0">Customer Support Expert</p>
+                        <h4 class="text-primary" th:text="#{about_us_support_name}">Monika Ivanova</h4>
+                        <p class="text-uppercase m-0" th:text="#{about_us_support_position}">Customer Support Expert</p>
                     </div>
                 </div>
             </div>

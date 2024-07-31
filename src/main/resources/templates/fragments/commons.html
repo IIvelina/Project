@@ -37,6 +37,10 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
 </head>
 <body>
 
@@ -239,9 +243,9 @@
                                     </i>
                                 </a>
                                 <th:block sec:authorize="!isAuthenticated()">
-                                    <a class="text-light" th:href="@{/users/register}">
-                                        <i class="bi bi-arrow-right text-primary me-2" th:text="#{footer_client}">
-
+                                    <a class="text-light" th:href="@{/users/register}" th:text="#{footer_client}">
+                                        <i class="bi bi-arrow-right text-primary me-2">
+                                            Become a Client
                                         </i>
 
                                     </a>
