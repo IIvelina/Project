@@ -1,7 +1,6 @@
 package com.project.bank.model.entity;
 
 import jakarta.persistence.*;
-
 import java.util.Random;
 
 @Entity

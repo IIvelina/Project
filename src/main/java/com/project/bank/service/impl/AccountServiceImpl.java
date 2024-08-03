@@ -1,6 +1,4 @@
 package com.project.bank.service.impl;
-
-import com.project.bank.model.dto.MyAccountDetailsDTO;
 import com.project.bank.model.entity.Account;
 import com.project.bank.model.enums.AccountType;
 import com.project.bank.repository.AccountRepository;
@@ -15,12 +13,11 @@ import java.util.Optional;
 @Service
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
-    private final ExRateService exRateService;
 
     @Autowired
-    public AccountServiceImpl(AccountRepository accountRepository, ExRateService exRateService) {
+    public AccountServiceImpl(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
-        this.exRateService = exRateService;
+
     }
 
     @Override
@@ -45,14 +42,5 @@ public class AccountServiceImpl implements AccountService {
         return accountOpt.orElse(null);
     }
 
-    @Override
-    public MyAccountDetailsDTO toAccountDetails(Account account) {
-        return new MyAccountDetailsDTO(
-                account.getId(),
-                account.getType(),
-                account.getBalance(),
-                account.getClientNumber(),
-                exRateService.allSupportedCurrencies()
-        );
-    }
+
 }

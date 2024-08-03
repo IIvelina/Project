@@ -2,7 +2,6 @@ package com.project.bank.model.entity;
 
 import com.project.bank.model.enums.UserRoleEnum;
 import jakarta.persistence.*;
-
 import java.util.HashSet;
 import java.util.Set;
 

@@ -1,7 +1,6 @@
 package com.project.bank.config;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.validation.constraints.NotEmpty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,11 +13,6 @@ public class ForexApiConfig {
     private String url;
 
     private String base;
-    //forex:
-    //  api:
-    //    key: ${FOREX_API_KEY:}
-    //    url: "https://openexchangerates.org/api/latest.json?app_id={app_id}"
-    //    base: "USD"
 
 
     public String getKey() {

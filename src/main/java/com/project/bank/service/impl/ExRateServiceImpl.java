@@ -2,7 +2,6 @@ package com.project.bank.service.impl;
 
 import com.project.bank.config.ForexApiConfig;
 import com.project.bank.model.dto.ExRatesDTO;
-
 import com.project.bank.model.entity.ExRateEntity;
 import com.project.bank.repository.ExRateRepository;
 import com.project.bank.service.ExRateService;
@@ -21,7 +20,6 @@ import java.util.Optional;
 
 @Service
 public class ExRateServiceImpl implements ExRateService {
-    //за логване на съобщения
     private final Logger LOGGER = LoggerFactory.getLogger(ExRateServiceImpl.class);
     private final ExRateRepository exRateRepository;
     private final ForexApiConfig forexApiConfig;

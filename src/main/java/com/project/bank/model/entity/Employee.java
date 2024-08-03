@@ -17,7 +17,7 @@ public class Employee extends BaseEntity{
     private User user;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false) // Removed unique constraint
+    @Column(nullable = false)
     private UserRoleEnum role;
 
     public Employee() {

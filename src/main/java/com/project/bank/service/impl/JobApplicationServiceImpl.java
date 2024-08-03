@@ -11,7 +11,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,22 +31,17 @@ public class JobApplicationServiceImpl implements JobApplicationService {
     public void addApplication(JobApplicationServiceModel jobApplicationServiceModel) {
         JobApplication jobApplication = modelMapper.map(jobApplicationServiceModel, JobApplication.class);
 
-        // Setting the director as the first user with ID=1
         User director = userService.findById(1L);
         jobApplication.setDirector(director);
 
-        // Setting the status to PENDING
         jobApplication.setStatus(ApplicationStatus.PENDING);
 
-        // Fetching the current authenticated user
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         User currentUser = userService.findByUsername(username);
 
-        // Setting the user who applied
         jobApplication.setUser(currentUser);
 
-        // Saving the job application in the database
         jobApplicationRepository.save(jobApplication);
     }
 

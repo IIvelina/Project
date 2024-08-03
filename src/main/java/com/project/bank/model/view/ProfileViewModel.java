@@ -50,7 +50,6 @@ public class ProfileViewModel {
         return parts[0];
     }
 
-    // Метод за получаване на последното име
     public String getLastName() {
         if (fullName == null || fullName.isEmpty()) {
             return null;

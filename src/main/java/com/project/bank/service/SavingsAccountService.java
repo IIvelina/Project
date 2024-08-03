@@ -1,7 +1,6 @@
 package com.project.bank.service;
 
 import com.project.bank.model.entity.SavingsAccount;
-
 import java.util.List;
 
 public interface SavingsAccountService {

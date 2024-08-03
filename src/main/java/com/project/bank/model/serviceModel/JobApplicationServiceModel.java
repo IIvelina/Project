@@ -3,7 +3,6 @@ package com.project.bank.model.serviceModel;
 import com.project.bank.model.entity.User;
 import com.project.bank.model.enums.ApplicationStatus;
 import com.project.bank.model.enums.UserGenderEnum;
-
 import java.time.LocalDate;
 
 public class JobApplicationServiceModel {

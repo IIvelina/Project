@@ -3,7 +3,6 @@ package com.project.bank.service;
 import com.project.bank.model.entity.Role;
 import com.project.bank.model.entity.User;
 import com.project.bank.model.serviceModel.UserServiceModel;
-
 import java.util.List;
 import java.util.Optional;
 

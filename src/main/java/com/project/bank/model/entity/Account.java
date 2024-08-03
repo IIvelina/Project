@@ -2,7 +2,6 @@ package com.project.bank.model.entity;
 
 import com.project.bank.model.enums.AccountType;
 import jakarta.persistence.*;
-
 import java.math.BigDecimal;
 
 @Entity

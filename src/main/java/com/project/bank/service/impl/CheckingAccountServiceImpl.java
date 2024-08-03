@@ -5,7 +5,6 @@ import com.project.bank.repository.CheckingAccountRepository;
 import com.project.bank.service.CheckingAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

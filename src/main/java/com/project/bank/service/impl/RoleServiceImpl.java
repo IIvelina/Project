@@ -5,7 +5,6 @@ import com.project.bank.model.enums.UserRoleEnum;
 import com.project.bank.repository.RoleRepository;
 import com.project.bank.service.RoleService;
 import org.springframework.stereotype.Service;
-
 import java.util.Arrays;
 
 @Service

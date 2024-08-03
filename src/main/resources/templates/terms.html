@@ -1,59 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'
+>
 
-<head>
-    <meta charset="utf-8">
-    <title>Terms for use and confidentiality</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
-     
-     
-     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23234659'><path d='M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z'/></svg>" type="image/svg+xml" />
-   
-    <link href="img/favicon.ico" rel="icon">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="css/style.css" rel="stylesheet">
+<head th:replace="fragments/commons::head">
 </head>
 
 <body>
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner"></div>
-    </div>
+<!-- Spinner Start -->
+<div th:replace="fragments/commons::spinner"></div>
+<!-- Spinner End -->
 
-  <!-- Topbar Start -->
-  <div class="container-fluid bg-dark px-5 d-none d-lg-block">
-    <div class="row gx-0">
-        <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
-            <div class="d-inline-flex align-items-center" style="height: 45px;">
-                <small class="me-3 text-light"><i class="fa fa-map-marker-alt me-2"></i>Expo2000,Sofia, Bulgaria</small>
-                <small class="me-3 text-light"><i class="fa fa-phone-alt me-2"></i>+359 87 123 4567</small>
-                <small class="text-light"><i class="fa fa-envelope-open me-2"></i>wave@financial.com</small>
-            </div>
-        </div>
-        <div class="col-lg-4 text-center text-lg-end">
-            <div class="d-inline-flex align-items-center" style="height: 45px;">
-                <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-twitter fw-normal"></i></a>
-                <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-facebook-f fw-normal"></i></a>
-                <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-linkedin-in fw-normal"></i></a>
-                <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-instagram fw-normal"></i></a>
-                <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href=""><i class="fab fa-youtube fw-normal"></i></a>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Topbar Start -->
+<div th:replace="fragments/commons::topbar"></div>
 <!-- Topbar End -->
 
 
@@ -65,7 +25,7 @@
                 <!-- Bank Icon SVG -->
                 <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#ffffff">
                     <path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/>
-                </svg> 
+                </svg>
                 Wave Financial
             </h1>
         </a>
@@ -74,34 +34,81 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
-                <a th:href="@{/}" class="nav-item nav-link">Home</a>
-                <a th:href="@{/about}" class="nav-item nav-link">About Us</a>
-                <a th:href="@{/productAndService}" class="nav-item nav-link">Products and Services</a>
+                <a th:href="@{/}" class="nav-item nav-link" th:text="#{nav_bar_home}">HOME</a>
+                <a th:href="@{/about}" class="nav-item nav-link" th:text="#{nav_bar_about}">ABOUT US</a>
+                <a th:href="@{/productAndService}" class="nav-item nav-link" th:text="#{nav_bar_service}">PRODUCTS AND
+                    SERVICES</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Careers</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" th:text="#{nav_bar_careers}">CAREERS</a>
                     <div class="dropdown-menu m-0">
-                        <a th:href="@{/openPositions}" class="dropdown-item">Open Positions</a>
-                        <a th:href="@{/applicationProcess}" class="dropdown-item">Application process</a>
-                        <a th:href="@{/benefits}" class="dropdown-item">Benefits</a>
+                        <a th:href="@{/openPositions}" class="dropdown-item" th:text="#{nav_bar_position}">Open
+                            Positions</a>
+                        <a th:href="@{/applicationProcess}" class="dropdown-item" th:text="#{nav_bar_process}">Application
+                            process</a>
+                        <a th:href="@{/benefits}" class="dropdown-item" th:text="#{nav_bar_benefits}">Our Benefits</a>
                     </div>
                 </div>
-                <a th:href="@{/contact}" class="nav-item nav-link">Contacts</a>
-                <a th:href="@{/users/register}" class="nav-item nav-link">Become a Client</a>
+                <a th:href="@{/contact}" class="nav-item nav-link" th:text="#{nav_bar_contact}">CONTACTS</a>
+
+                <th:block sec:authorize="!isAuthenticated()">
+                    <a th:href="@{/users/register}" class="nav-item nav-link" th:text="#{nav_bar_become}">BECOME A
+                        CLIENT</a>
+                </th:block>
             </div>
-            <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
-            <a th:href="@{users/login}" class="btn btn-primary py-2 px-4 ms-3">Login</a>
-            <a th:href="@{users/logout}" class="btn btn-primary py-2 px-4 ms-3">Logout</a>
-            <a href="" class="btn btn-primary py-2 px-4 ms-3">BG</a>
+            <button type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i
+                    class="fa fa-search"></i></button>
+
+            <th:block sec:authorize="!isAuthenticated()">
+                <a th:href="@{/users/login}" class="btn btn-primary py-2 px-4 ms-3" th:text="#{nav_bar_login}">LOGIN</a>
+            </th:block>
+
+            <th:block sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-primary py-2 px-4 ms-3"
+                            th:text="#{nav_bar_logout}">LOGOUT
+                    </button>
+                </form>
+            </th:block>
+
+            <th:block sec:authorize="isAuthenticated()">
+                <a th:href="@{/users/profile}" class="btn btn-primary py-2 px-4 ms-3"
+                   th:text="#{nav_bar_profile}">PROFILE</a>
+            </th:block>
+
+            <th:block sec:authorize="isAuthenticated() and hasRole('DIRECTOR')">
+                <a th:href="@{/director/dashboard}" class="btn btn-primary py-2 px-4 ms-3" th:text="#{nav_bar_director}">DIRECTOR</a>
+            </th:block>
+
+            <th:block sec:authorize="isAuthenticated() and hasRole('ADMIN')">
+                <a th:href="@{/user/admin/login}" class="btn btn-primary py-2 px-4 ms-3"
+                   th:text="#{nav_bar_admin}">ADMIN</a>
+            </th:block>
+
+            <!--  <a href="" class="btn btn-primary py-2 px-4 ms-3">BG</a> -->
+
+            <form th:method="get">
+                <label class="text-white" for="lang" th:text="#{nav_bar_language}">Language</label>
+                <select
+                        id="lang"
+                        name="lang"
+                        onchange="this.form.submit()">
+                    <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                    <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                </select>
+            </form>
         </div>
     </nav>
+
+
+
 
     <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
         <div class="row py-5">
             <div class="col-12 pt-lg-5 mt-lg-5 text-center">
-                <h1 class="display-4 text-white animated zoomIn">Terms for use and confidentiality</h1>
-                <a href="/users/login" class="h5 text-white">Login</a>
+                <h1 class="display-4 text-white animated zoomIn" th:text="#{terms.title}">Terms for use and confidentiality</h1>
+                <a th:href="@{/user/admin/login}" class="h5 text-white" th:text="#{security_login}">Login</a>
                 <i class="far fa-circle text-white px-2"></i>
-                <a href="" class="h5 text-white">Terms for use and confidentiality</a>
+                <a href="" class="h5 text-white"  th:text="#{terms.title}">Terms for use and confidentiality</a>
             </div>
         </div>
     </div>
@@ -136,126 +143,126 @@
                     <!-- Blog Detail Start -->
                     <div class="mb-5">
                         <img class="img-fluid w-100 rounded mb-5" src="img/confidentiality-agreement-terms.jpg" alt="">
-                        <h1 class="mb-4">TERMS FOR USE AND CONFIDENTIALITY</h1>
-                        <h3 class="mb-4">1. General provisions</h3>
-                        <p>By accessing the Website and the information contained therein (the "Website") you declare that you have read, understood and agreed to these Terms (the "Terms"). The website is administered by Wave Financial and is created for information purposes. The information posted on the website shall not be considered under any circumstances as a direct offer or a consultation for usage of the bank’s products and services. Wave Financial reserves the right to change the contents of the website and the present terms without preliminary notice.</p>
-                            <h3 class="mb-4">2. Types of data collected</h3>
-                        <p>Wave Financial collects information during your visits to the website, through widely used tools for data collection – ‘cookies’. In accordance with the applicable law, the Bank respects the confidentiality of your data and ensures its lawful processing and protection. These Terms are intended to give you a clear explanation of how cookies are used on the website.</p>
-                            <h3 class="mb-4">3. What is a cookie?</h3>
-                        <p>Cookies are small files with information that the internet website sends to the visitor’s browser. The browser stores this information in a file on the end user device – that means your computer, mobile phone, tablet or other smart device. Cookies allow visitors to navigate the website and, when applicable, enable the Bank to personalise the website and its content to the needs of the visitor as well as to improve the results of their actions.
+                        <h1 class="mb-4"  th:text="#{terms.title}">TERMS FOR USE AND CONFIDENTIALITY</h1>
+                        <h3 class="mb-4" th:text="#{terms.general_provisions.title}">1. General provisions</h3>
+                        <p th:text="#{terms.general_provisions.text}">By accessing the Website and the information contained therein (the "Website") you declare that you have read, understood and agreed to these Terms (the "Terms"). The website is administered by Wave Financial and is created for information purposes. The information posted on the website shall not be considered under any circumstances as a direct offer or a consultation for usage of the bank’s products and services. Wave Financial reserves the right to change the contents of the website and the present terms without preliminary notice.</p>
+                            <h3 class="mb-4" th:text="#{terms.data_collected.title}">2. Types of data collected</h3>
+                        <p th:text="#{terms.data_collected.text}">Wave Financial collects information during your visits to the website, through widely used tools for data collection – ‘cookies’. In accordance with the applicable law, the Bank respects the confidentiality of your data and ensures its lawful processing and protection. These Terms are intended to give you a clear explanation of how cookies are used on the website.</p>
+                            <h3 class="mb-4" th:text="#{terms.cookie_definition.title}">3. What is a cookie?</h3>
+                        <p th:text="#{terms.cookie_definition.text}">Cookies are small files with information that the internet website sends to the visitor’s browser. The browser stores this information in a file on the end user device – that means your computer, mobile phone, tablet or other smart device. Cookies allow visitors to navigate the website and, when applicable, enable the Bank to personalise the website and its content to the needs of the visitor as well as to improve the results of their actions.
 
                             The cookies are also used to memorize your preferences when searching information on our website, to personalize information shown, to count website visitors, to facilitate user’s registration for services offered via the website and for the protection of user’s data.</p>
-                            <h3 class="mb-4">4. How cookies are used</h3>
-                        <p>The cookies that the Wave Financialemploys on the website do not store any data that can directly identify users. If, in the course of using a service provided through the website, you provide your personal data, they shall not be disclosed to third parties except as specified in the Notice on the processing of personal data.</p>
+                            <h3 class="mb-4" th:text="#{terms.cookie_usage.title}">4. How cookies are used</h3>
+                        <p th:text="#{terms.cookie_usage.text}">The cookies that the Wave Financialemploys on the website do not store any data that can directly identify users. If, in the course of using a service provided through the website, you provide your personal data, they shall not be disclosed to third parties except as specified in the Notice on the processing of personal data.</p>
                     </div>
                     <!-- Blog Detail End -->
-    
+
                     <!-- Comment List Start -->
                     <div class="mb-5">
                         <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                            <h3 class="mb-0">The Bank uses cookies on the website:</h3>
+                            <h3 class="mb-0" th:text="#{terms.cookie_usage_list.title}">The Bank uses cookies on the website:</h3>
                         </div>
                         <div class="d-flex mb-4">
                             <img src="img/tik.png" class="img-fluid rounded" style="width: 45px; height: 45px;">
                             <div class="ps-3">
-                                
-                                <p>To analyse trends, manage the website, track users’ activities on the website and collect general information about them;</p>
-                               
+
+                                <p th:text="#{terms.cookie_usage_list.analysis}">To analyse trends, manage the website, track users’ activities on the website and collect general information about them;</p>
+
                             </div>
                         </div>
                         <div class="d-flex mb-4">
                             <img src="img/tik.png" class="img-fluid rounded" style="width: 45px; height: 45px;">
                             <div class="ps-3">
-                                
-                                <p>To protect the confidentiality of its customers and prevent fraud;</p>
-                               
+
+                                <p th:text="#{terms.cookie_usage_list.confidentiality}">To protect the confidentiality of its customers and prevent fraud;</p>
+
                             </div>
                         </div>
                         <div class="d-flex mb-4">
                             <img src="img/tik.png" class="img-fluid rounded" style="width: 45px; height: 45px;">
                             <div class="ps-3">
-                                
-                                <p>In online application forms. If the cookie storage feature is not active, the user will not be able to access the website and / or use the Bank's services;</p>
-                               
+
+                                <p th:text="#{terms.cookie_usage_list.application_forms}">In online application forms. If the cookie storage feature is not active, the user will not be able to access the website and / or use the Bank's services;</p>
+
                             </div>
                         </div>
                         <div class="d-flex mb-4">
                             <img src="img/tik.png" class="img-fluid rounded" style="width: 45px; height: 45px;">
                             <div class="ps-3">
-                                
-                                <p>To learn how users log in and use the page. This helps us improve the quality of the services we provide. To this end, the Bank uses Google Analytics – an Internet-based service by Google which utilises cookies to help the Bank analyse how visitors use the website. You can find more about using the service in the 
-                                    <a href="https://policies.google.com/privacy?hl=en##">Google Privacy Policy</a>;</p>
-                               
+
+                                <p th:text="#{terms.cookie_usage_list.login_analysis}">To learn how users log in and use the page. This helps us improve the quality of the services we provide. To this end, the Bank uses Google Analytics – an Internet-based service by Google which utilises cookies to help the Bank analyse how visitors use the website. You can find more about using the service in the
+                                    <a href="https://policies.google.com/privacy?hl=en##" th:text="#{terms.cookie_usage_list.google_privacy_policy}">Google Privacy Policy</a>;</p>
+
                             </div>
                         </div>
                         <div class="d-flex mb-4">
                             <img src="img/tik.png" class="img-fluid rounded" style="width: 45px; height: 45px;">
                             <div class="ps-3">
-                                
-                                <p>To monitor and manage the data flow on the website, as well as to determine the effect of marketing campaigns. This helps the Bank to improve the design and structure of the website and develop its products and services.</p>
-                               
+
+                                <p th:text="#{terms.cookie_usage_list.data_flow}">To monitor and manage the data flow on the website, as well as to determine the effect of marketing campaigns. This helps the Bank to improve the design and structure of the website and develop its products and services.</p>
+
                             </div>
                         </div>
-                        
+
                         <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                            <h3 class="mb-0">Types of cookies on our website:</h3>
+                            <h3 class="mb-0" th:text="#{terms.cookie_types.title}">Types of cookies on our website:</h3>
                         </div>
                         <div class="d-flex mb-4">
                             <img src="img/tik.png" class="img-fluid rounded" style="width: 45px; height: 45px;">
                             <div class="ps-3">
-                                <h5>Strictly necessary</h5>
-                                <p>They are essential for the website's usage by enabling basic functions like page navigation and access to secure areas of the website. Our website cannot function properly without these cookies.</p>
-                               
+                                <h5 th:text="#{terms.cookie_types.necessary.title}">Strictly necessary</h5>
+                                <p th:text="#{terms.cookie_types.necessary.text}">They are essential for the website's usage by enabling basic functions like page navigation and access to secure areas of the website. Our website cannot function properly without these cookies.</p>
+
                             </div>
                         </div>
                         <div class="d-flex mb-4">
                             <img src="img/tik.png" class="img-fluid rounded" style="width: 45px; height: 45px;">
                             <div class="ps-3">
-                                <h5>Preferences</h5>
-                                <p>Preference cookies enable a website to remember information that changes the way the website behaves or looks, like your preferred language or the region that you are in.</p>
-                               
+                                <h5 th:text="#{terms.cookie_types.preferences.title}">Preferences</h5>
+                                <p th:text="#{terms.cookie_types.preferences.text}">Preference cookies enable a website to remember information that changes the way the website behaves or looks, like your preferred language or the region that you are in.</p>
+
                             </div>
                         </div>
                         <div class="d-flex mb-4">
                             <img src="img/tik.png" class="img-fluid rounded" style="width: 45px; height: 45px;">
                             <div class="ps-3">
-                                <h5>Statistical
+                                <h5 th:text="#{terms.cookie_types.statistical.title}">Statistical
                                 </h5>
-                                <p>Statistical cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. We study all this data to improve the performance of our services and the products we provide.</p>
-                               
+                                <p th:text="#{terms.cookie_types.statistical.text}">Statistical cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. We study all this data to improve the performance of our services and the products we provide.</p>
+
                             </div>
                         </div>
                         <div class="d-flex mb-4">
                             <img src="img/tik.png" class="img-fluid rounded" style="width: 45px; height: 45px;">
                             <div class="ps-3">
-                                <h5>Marketing</h5>
-                    
-                                <p>Marketing cookies are used to track visitors across websites. The intention is to display ads that are relevant and engaging for the individual user and thereby more valuable for publishers and third party advertisers. We may use this data to tailor the ads you see on other sites after you have been to our website. If you turn off marketing cookies, you will still see ads online, but they will not be tailored to things that may interest you.</p>
-                               
+                                <h5 th:text="#{terms.cookie_types.marketing.title}">Marketing</h5>
+
+                                <p th:text="#{terms.cookie_types.marketing.text}">Marketing cookies are used to track visitors across websites. The intention is to display ads that are relevant and engaging for the individual user and thereby more valuable for publishers and third party advertisers. We may use this data to tailor the ads you see on other sites after you have been to our website. If you turn off marketing cookies, you will still see ads online, but they will not be tailored to things that may interest you.</p>
+
                             </div>
                         </div>
-                       
-                        
+
+
                     </div>
                     <!-- Comment List End -->
 
                     <!-- Blog Detail Start -->
                     <div class="mb-5">
-                       
-                        <h3 class="mb-4">5. Cookie settings</h3>
-                        <p>Before you start using the website, the Bank presents clear and detailed information for the purpose of cookies storage and access to the information, as well as for the objectives of such processing. In addition, the Bank is also obliged to provide you with the option to refuse the storage of cookies. When you navigate to our website, a pop-up window notifies you that general cookie settings are in place and asks for a confirmation on your side. Should you not agree with these predefined settings, then you are provided with the option to set them according to your choice.</p>
-                            <h3 class="mb-4">6. Responsibility</h3>
-                        <p>The Bank is committed to protecting the privacy of the information disclosed by the users of our online services under the present Terms. The Bank is not responsible for the consequences, including any direct and indirect damages, engendered by or related in any way to your access and usage of this website. The Bank aims to warrant for the actuality, correctness and thoroughness of the information contained on the website and may change or rectify the information whenever this is deemed appropriate. The Bank does not guarantee for the constant and uninterrupted access to this website and does not warrant that the information will remain accessible with the exception of the obligations for provision of information on durable medium.</p>
-                          
-                        <p>If you are interested in the Bank’s services or products described here, please contact us and ask for additional information.</p>
-                         
-                        <p>Our website may contain links to the sites of third parties, which are no managed by the Bank. Wave Financial does not take responsibility for the content and accuracy of such sites and recommends you to read their Terms and Conditions.</p>
+
+                        <h3 class="mb-4" th:text="#{terms.cookie_settings.title}">5. Cookie settings</h3>
+                        <p th:text="#{terms.cookie_settings.text}">Before you start using the website, the Bank presents clear and detailed information for the purpose of cookies storage and access to the information, as well as for the objectives of such processing. In addition, the Bank is also obliged to provide you with the option to refuse the storage of cookies. When you navigate to our website, a pop-up window notifies you that general cookie settings are in place and asks for a confirmation on your side. Should you not agree with these predefined settings, then you are provided with the option to set them according to your choice.</p>
+                            <h3 class="mb-4" th:text="#{terms.responsibility.title}">6. Responsibility</h3>
+                        <p th:text="#{terms.responsibility.text}">The Bank is committed to protecting the privacy of the information disclosed by the users of our online services under the present Terms. The Bank is not responsible for the consequences, including any direct and indirect damages, engendered by or related in any way to your access and usage of this website. The Bank aims to warrant for the actuality, correctness and thoroughness of the information contained on the website and may change or rectify the information whenever this is deemed appropriate. The Bank does not guarantee for the constant and uninterrupted access to this website and does not warrant that the information will remain accessible with the exception of the obligations for provision of information on durable medium.</p>
+
+                        <p th:text="#{terms.contact_info.text}">If you are interested in the Bank’s services or products described here, please contact us and ask for additional information.</p>
+
+                        <p th:text="#{terms.third_party_links.text}">Our website may contain links to the sites of third parties, which are no managed by the Bank. Wave Financial does not take responsibility for the content and accuracy of such sites and recommends you to read their Terms and Conditions.</p>
                     </div>
                     <!-- Blog Detail End -->
-    
-        
+
+
                 </div>
-    
+
                 <!-- Sidebar Start -->
                 <div class="col-lg-4">
                     <!-- Search Form Start -->
@@ -266,23 +273,22 @@
                         </div>
                     </div>
                     <!-- Search Form End -->
-    
+
                     <!-- Category Start -->
                     <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
                         <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                            <h3 class="mb-0">Quick Links</h3>
+                            <h3 class="mb-0" th:text="#{terms.quick_links.title}">Quick Links</h3>
                         </div>
                         <div class="link-animated d-flex flex-column justify-content-start">
-                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" th:href="@{/about}"><i class="bi bi-arrow-right me-2"></i>About as</a>
-                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" th:href="@{/productAndService}"><i class="bi bi-arrow-right me-2"></i>Products and Service</a>
-                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" th:href="@{/contact}"><i class="bi bi-arrow-right me-2"></i>Contact Us</a>
+                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" th:href="@{/about}"><i class="bi bi-arrow-right me-2"></i><span th:text="#{terms.quick_links.about_us}">About us</span></a>
+                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" th:href="@{/productAndService}"><i class="bi bi-arrow-right me-2"></i><span th:text="#{terms.quick_links.products_services}">Products and Service</span></a>
+                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" th:href="@{/contact}"><i class="bi bi-arrow-right me-2"></i><span th:text="#{terms.quick_links.contact_us}">Contact Us</span></a>
 
                         </div>
                     </div>
                     <!-- Category End -->
-    
-    
-                
+
+
                 <!-- Sidebar End -->
             </div>
         </div>
@@ -293,87 +299,10 @@
 
 
 
+
         <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="container">
-                <div class="row gx-5">
-                    <div class="col-lg-4 col-md-6 footer-about">
-                        <div class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
-                            <a href="index.html" class="navbar-brand">
-                                <h1 class="m-0 text-white">
-                                    <!-- Bank Icon SVG -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="50px" fill="#ffffff">
-                                        <path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/>
-                                    </svg>
-                                    Wave Financial
-                                </h1>
-                            </a>
-                            <p class="mt-3 mb-4">In the world of finance, innovation and trust go hand in hand. Wave Financial is your partner in achieving financial stability and growth.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-8 col-md-6">
-                        <div class="row gx-5">
-                            <div class="col-lg-4 col-md-12 pt-5 mb-5">
-                                <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                                    <h3 class="text-light mb-0">Get In Touch</h3>
-                                </div>
-                                <div class="d-flex mb-2">
-                                    <i class="bi bi-geo-alt text-primary me-2"></i>
-                                    <p class="mb-0">Expo2000,Sofia, Bulgaria</p>
-                                </div>
-                                <div class="d-flex mb-2">
-                                    <i class="bi bi-envelope-open text-primary me-2"></i>
-                                    <p class="mb-0">wave@financial.com</p>
-                                </div>
-                                <div class="d-flex mb-2">
-                                    <i class="bi bi-telephone text-primary me-2"></i>
-                                    <p class="mb-0">+359 87 123 4567</p>
-                                </div>
-                                <div class="d-flex mt-4">
-                                    <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-twitter fw-normal"></i></a>
-                                    <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                                    <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                                    <a class="btn btn-primary btn-square" href="#"><i class="fab fa-instagram fw-normal"></i></a>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-                                <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                                    <h3 class="text-light mb-0">Quick Links</h3>
-                                </div>
-                                <div class="link-animated d-flex flex-column justify-content-start">
-                                    <a class="text-light mb-2" th:href="@{/}"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
-                                    <a class="text-light mb-2" th:href="@{/about}"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
-                                    <a class="text-light mb-2" th:href="@{/productAndService}"><i class="bi bi-arrow-right text-primary me-2"></i>Products And Service</a>
-                                    <a class="text-light mb-2" th:href="@{/contact}"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
-                                    <a class="text-light" th:href="@{/users/register}"><i class="bi bi-arrow-right text-primary me-2"></i>Become a Client</a>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-                                <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                                    <h3 class="text-light mb-0">Careers</h3>
-                                </div>
-                                <div class="link-animated d-flex flex-column justify-content-start">
-                                    <a class="text-light mb-2" th:href="@{/openPositions}"><i class="bi bi-arrow-right text-primary me-2"></i>Open Positions</a>
-                                    <a class="text-light mb-2" th:href="@{/applicationProcess}"><i class="bi bi-arrow-right text-primary me-2"></i>Application Process</a>
-                                    <a class="text-light mb-2" th:href="@{/benefits}"><i class="bi bi-arrow-right text-primary me-2"></i>Our Benefits</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid text-white" style="background: #061429;">
-            <div class="container text-center">
-                <div class="row justify-content-end">
-                    <div class="col-lg-8 col-md-6">
-                        <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
-                            <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">2024 Wave Financial. All Rights Reserved.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <th:block th:replace="fragments/commons::footer">
+        </th:block>
         <!-- Footer End -->
 
     <!-- Back to Top -->

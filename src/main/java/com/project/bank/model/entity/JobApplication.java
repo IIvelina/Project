@@ -3,7 +3,6 @@ package com.project.bank.model.entity;
 import com.project.bank.model.enums.ApplicationStatus;
 import com.project.bank.model.enums.UserGenderEnum;
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
