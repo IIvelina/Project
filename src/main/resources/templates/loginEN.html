@@ -24,7 +24,7 @@
     </div>
     <form th:action="@{/users/login}" th:method="post" th:object="${userLoginDTO}" class="login-form">
         <div th:if="${loginError}" class="mt-5 text-center">
-            <strong class="errorsforinputs">Wrong username and password combination.</strong>
+            <strong th:text="#{login_message}" class="errorsforinputs">Wrong username and password combination.</strong>
         </div>
 
         <i class="fa-solid fa-user"></i>

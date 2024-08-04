@@ -8,6 +8,8 @@ import com.project.bank.service.EmployeeService;
 import com.project.bank.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -90,7 +92,7 @@ public class RoleController {
 
     @DeleteMapping("/admin/delete/{id}")
     public String deleteClient(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
-        //TODO IF HAS APPLICATION IN D, IF HAS TRANSACTION, IF HAS ACCOUNTS
+
         Optional<User> userOptional = userService.findByUserById(id);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
@@ -101,6 +103,7 @@ public class RoleController {
                 userService.delete(user);
                 redirectAttributes.addFlashAttribute("successMessage", "User deleted successfully.");
             } else {
+
                 redirectAttributes.addFlashAttribute("errorMessage", "User cannot be deleted. Make sure they have zero balance in both accounts and are not an employee.");
             }
         } else {
@@ -108,6 +111,7 @@ public class RoleController {
         }
         return "redirect:/user/admin/dashboard";
     }
+
 
 
 }

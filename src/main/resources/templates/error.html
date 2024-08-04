@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 50px;
+            font-family: "Helvetica", sans-serif;
+        }
+        .error-container {
+            display: inline-block;
+            text-align: center;
+        }
+        .error-message {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        .success-icon {
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="error-container">
+    <img src="/img/error.png" alt="Error Icon" class="success-icon"/>
+    <div class="error-message">
+        <p th:text="${errorMessage}"></p>
+        <span><a href="/user/admin/dashboard">Back to admin dashboard...</a></span>
+    </div>
+</div>
+</body>
+</html>
