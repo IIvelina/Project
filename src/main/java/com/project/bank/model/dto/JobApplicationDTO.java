@@ -1,6 +1,5 @@
 package com.project.bank.model.dto;
 
-import com.project.bank.model.entity.User;
 import com.project.bank.model.enums.UserGenderEnum;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -10,29 +9,42 @@ import java.time.LocalDate;
 public class JobApplicationDTO {
     @NotBlank(message = "First name is required!")
     private String firstName;
+
     @NotBlank(message = "Last name is required!")
     private String lastName;
+
     @Email
     @NotBlank(message = "Email is required!")
     private String email;
+
     @NotNull
     private UserGenderEnum gender;
+
     @NotBlank(message = "Phone number is required!")
     private String phone;
+
     @NotBlank(message = "Position is required!")
     private String applyingPosition;
+
     @NotNull(message = "Starting date is required!")
     private LocalDate startDate;
+
     @NotBlank(message = "Address is required!")
     private String address;
+
     private String address2;
+
     @NotBlank(message = "Cover letter is required!")
     private String coverLetter;
+
     private String resumePath;
-    private User user;
+
+    private Long userId;
 
     public JobApplicationDTO() {
     }
+
+
 
     public String getFirstName() {
         return firstName;
@@ -66,6 +78,14 @@ public class JobApplicationDTO {
         this.gender = gender;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getApplyingPosition() {
         return applyingPosition;
     }
@@ -90,6 +110,14 @@ public class JobApplicationDTO {
         this.address = address;
     }
 
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
     public String getCoverLetter() {
         return coverLetter;
     }
@@ -106,27 +134,11 @@ public class JobApplicationDTO {
         this.resumePath = resumePath;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getAddress2() {
-        return address2;
-    }
-
-    public void setAddress2(String address2) {
-        this.address2 = address2;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

@@ -1,8 +1,8 @@
 package com.project.bank.model.serviceModel;
 
-import com.project.bank.model.entity.User;
 import com.project.bank.model.enums.ApplicationStatus;
 import com.project.bank.model.enums.UserGenderEnum;
+import com.project.bank.model.entity.User;
 import java.time.LocalDate;
 
 public class JobApplicationServiceModel {
@@ -19,7 +19,12 @@ public class JobApplicationServiceModel {
     private String coverLetter;
     private String resumePath;
     private ApplicationStatus status;
+    private Long userId;
     private User user;
+
+
+
+
     public JobApplicationServiceModel() {
     }
 
@@ -125,6 +130,14 @@ public class JobApplicationServiceModel {
 
     public void setStatus(ApplicationStatus status) {
         this.status = status;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public User getUser() {

@@ -118,31 +118,7 @@ WHERE NOT EXISTS (
 
 
 
--- Insert job application for Pesho
-INSERT INTO job_applications (first_name, last_name, email, gender, phone, applying_position, start_date, address, address2, cover_letter, resume_path, user_id, director_id, status)
-SELECT
-    'Pesho',
-    'Petrov',
-    'pesho.petrov@example.com',
-    'MALE',
-    '0887766335',
-    'Application Admin',
-    CURRENT_DATE,
-    '123 Main St',
-    'Apt 4B',
-    'I am very interested in the Application Admin position. I have extensive experience and am eager to contribute to your team.',
-    NULL,
-    u.id,
-    NULL,
-    'PENDING'
-FROM users u
-WHERE u.username = 'pesho'
-  AND NOT EXISTS (
-    SELECT 1
-    FROM job_applications
-    WHERE email = 'pesho.petrov@example.com'
-      AND applying_position = 'Application Admin'
-);
+
 
 
 -- нов потребител Georgi

@@ -1,75 +1,64 @@
 package com.project.bank.service.impl;
 
-import com.project.bank.model.entity.JobApplication;
 import com.project.bank.model.entity.User;
-import com.project.bank.model.enums.ApplicationStatus;
 import com.project.bank.model.serviceModel.JobApplicationServiceModel;
-import com.project.bank.repository.JobApplicationRepository;
 import com.project.bank.service.JobApplicationService;
 import com.project.bank.service.UserService;
+import com.project.bank.web.JobApplicationClient;
+import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class JobApplicationServiceImpl implements JobApplicationService {
 
-    private final ModelMapper modelMapper;
-    private final JobApplicationRepository jobApplicationRepository;
+    private final JobApplicationClient jobApplicationClient;
     private final UserService userService;
+    private final ModelMapper modelMapper;
 
-    public JobApplicationServiceImpl(ModelMapper modelMapper, JobApplicationRepository jobApplicationRepository, UserService userService) {
-        this.modelMapper = modelMapper;
-        this.jobApplicationRepository = jobApplicationRepository;
+    public JobApplicationServiceImpl(JobApplicationClient jobApplicationClient, UserService userService, ModelMapper modelMapper) {
+        this.jobApplicationClient = jobApplicationClient;
         this.userService = userService;
+        this.modelMapper = modelMapper;
     }
 
     @Override
     public void addApplication(JobApplicationServiceModel jobApplicationServiceModel) {
-        JobApplication jobApplication = modelMapper.map(jobApplicationServiceModel, JobApplication.class);
-
-        User director = userService.findById(1L);
-        jobApplication.setDirector(director);
-
-        jobApplication.setStatus(ApplicationStatus.PENDING);
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         User currentUser = userService.findByUsername(username);
-
-        jobApplication.setUser(currentUser);
-
-        jobApplicationRepository.save(jobApplication);
+        jobApplicationServiceModel.setUserId(currentUser.getId());
+        jobApplicationClient.addApplication(jobApplicationServiceModel);
     }
 
     @Override
     public List<JobApplicationServiceModel> findAllApplications() {
-        return jobApplicationRepository.findAll()
-                .stream()
-                .map(application -> modelMapper.map(application, JobApplicationServiceModel.class))
-                .collect(Collectors.toList());
+        return jobApplicationClient.getAllApplications();
     }
 
     @Override
     public void deleteApplication(Long id) {
-        jobApplicationRepository.deleteById(id);
+        jobApplicationClient.deleteApplication(id);
     }
 
     @Override
     public JobApplicationServiceModel findApplicationById(Long id) {
-        return jobApplicationRepository.findById(id)
-                .map(app -> modelMapper.map(app, JobApplicationServiceModel.class))
-                .orElse(null);
+        JobApplicationServiceModel jobApplication = jobApplicationClient.getApplicationById(id);
+        User user = userService.findById(jobApplication.getUserId());
+
+        Hibernate.initialize(user.getRoles());
+
+        jobApplication.setUser(user);
+
+        return jobApplication;
     }
 
     @Override
     public void updateApplicationStatus(JobApplicationServiceModel jobApplicationServiceModel) {
-        JobApplication jobApplication = jobApplicationRepository.findById(jobApplicationServiceModel.getId())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid job application ID: " + jobApplicationServiceModel.getId()));
-        jobApplication.setStatus(jobApplicationServiceModel.getStatus());
-        jobApplicationRepository.save(jobApplication);
+        jobApplicationClient.updateApplicationStatus(jobApplicationServiceModel);
     }
 }

@@ -1,32 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error</title>
-    <style>
-        body {
-            text-align: center;
-            padding: 50px;
-            font-family: "Helvetica", sans-serif;
-        }
-        .error-container {
-            display: inline-block;
-            text-align: center;
-        }
-        .error-message {
-            font-size: 24px;
-            margin-top: 20px;
-        }
-        .success-icon {
-            width: 100px;
-            height: auto;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/error.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23234659'><path d='M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z'/></svg>" type="image/svg+xml" />
 </head>
 <body>
+
 <div class="error-container">
-    <img src="/img/error.png" alt="Error Icon" class="success-icon"/>
+
+    <div class="error-header">
+        <img src="/img/logo2.png" alt="Wave Financial" class="e-logo">
+    </div>
     <div class="error-message">
+        <img src="/img/error.png" alt="Error Icon" class="error-icon"/>
         <p th:text="${errorMessage}"></p>
         <span><a href="/user/admin/dashboard">Back to admin dashboard...</a></span>
     </div>

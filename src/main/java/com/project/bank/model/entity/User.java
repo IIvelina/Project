@@ -1,5 +1,6 @@
 package com.project.bank.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.bank.model.enums.UserGenderEnum;
 import jakarta.persistence.*;
 import java.util.HashSet;
@@ -36,14 +37,22 @@ public class User extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String clientNumber;
 
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name = "users_roles",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id")
+//    )
+//    private Set<Role> roles;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+    @JsonIgnore // Игнориране на колекцията при сереализация
     private Set<Role> roles;
-
     @OneToOne
     private CheckingAccount checkingAccount;
 
