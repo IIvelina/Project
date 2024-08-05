@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('/img/wave.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.error-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+}
+
+.error-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.error-header .logo {
+    max-width: 190px;
+    margin-bottom: 10px;
+}
+
+.error-header .e-logo {
+    max-width: 300px;
+    margin-bottom: 10px;
+}
+
+.error-message {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+.error-icon {
+    width: 100px;
+    height: auto;
+}
+
+

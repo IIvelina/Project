@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'
+>
+
+<head th:replace="fragments/commons::head">
+</head>
+
+<body>
+<!-- Spinner Start -->
+<div th:replace="fragments/commons::spinner"></div>
+<!-- Spinner End -->
+
+<!-- Topbar Start -->
+<div th:replace="fragments/commons::topbar"></div>
+<!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+            <a th:href="@{/}" class="navbar-brand p-0">
+                <h1 class="m-0">
+                    <!-- Bank Icon SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#ffffff">
+                        <path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/>
+                    </svg> 
+                    Wave Financial
+                </h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a th:href="@{/}" class="nav-item nav-link" th:text="#{nav_bar_home}">HOME</a>
+                    <a th:href="@{/about}" class="nav-item nav-link" th:text="#{nav_bar_about}">ABOUT US</a>
+                    <a th:href="@{/productAndService}" class="nav-item nav-link" th:text="#{nav_bar_service}">PRODUCTS AND
+                        SERVICES</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" th:text="#{nav_bar_careers}">CAREERS</a>
+                        <div class="dropdown-menu m-0">
+                            <a th:href="@{/openPositions}" class="dropdown-item" th:text="#{nav_bar_position}">Open
+                                Positions</a>
+                            <a th:href="@{/applicationProcess}" class="dropdown-item" th:text="#{nav_bar_process}">Application
+                                process</a>
+                            <a th:href="@{/benefits}" class="dropdown-item" th:text="#{nav_bar_benefits}">Our Benefits</a>
+                        </div>
+                    </div>
+                    <a th:href="@{/contact}" class="nav-item nav-link" th:text="#{nav_bar_contact}">CONTACTS</a>
+
+                    <th:block sec:authorize="!isAuthenticated()">
+                        <a th:href="@{/users/register}" class="nav-item nav-link" th:text="#{nav_bar_become}">BECOME A
+                            CLIENT</a>
+                    </th:block>
+                </div>
+                <button type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i
+                        class="fa fa-search"></i></button>
+
+                <th:block sec:authorize="!isAuthenticated()">
+                    <a th:href="@{/users/login}" class="btn btn-primary py-2 px-4 ms-3" th:text="#{nav_bar_login}">LOGIN</a>
+                </th:block>
+
+                <th:block sec:authorize="isAuthenticated()">
+                    <form th:action="@{/logout}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-primary py-2 px-4 ms-3"
+                                th:text="#{nav_bar_logout}">LOGOUT
+                        </button>
+                    </form>
+                </th:block>
+
+                <th:block sec:authorize="isAuthenticated()">
+                    <a th:href="@{/users/profile}" class="btn btn-primary py-2 px-4 ms-3"
+                       th:text="#{nav_bar_profile}">PROFILE</a>
+                </th:block>
+
+                <th:block sec:authorize="isAuthenticated() and hasRole('DIRECTOR')">
+                    <a th:href="@{/director/dashboard}" class="btn btn-primary py-2 px-4 ms-3" th:text="#{nav_bar_director}">DIRECTOR</a>
+                </th:block>
+
+                <th:block sec:authorize="isAuthenticated() and hasRole('ADMIN')">
+                    <a th:href="@{/user/admin/login}" class="btn btn-primary py-2 px-4 ms-3"
+                       th:text="#{nav_bar_admin}">ADMIN</a>
+                </th:block>
+
+                <!--  <a href="" class="btn btn-primary py-2 px-4 ms-3">BG</a> -->
+
+                <form th:method="get">
+                    <label class="text-white" for="lang" th:text="#{nav_bar_language}">Language</label>
+                    <select
+                            id="lang"
+                            name="lang"
+                            onchange="this.form.submit()">
+                        <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                        <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                    </select>
+                </form>
+            </div>
+        </nav>
+
+        <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+            <div class="row py-5">
+                <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                    <h1 class="display-4 text-white animated zoomIn" th:text="#{application_process}">Application process</h1>
+                    <a th:href="@{/}" class="h5 text-white" th:text="#{application_process_home}">Home</a>
+                    <i class="far fa-circle text-white px-2"></i>
+                    <a href="" class="h5 text-white" th:text="#{application_process}">Application process</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Full Screen Search Start -->
+    <div class="modal fade" id="searchModal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center justify-content-center">
+                    <div class="input-group" style="max-width: 600px;">
+                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
+                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Full Screen Search End -->
+
+
+    <!-- Pricing Plan Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 1000px;">
+                <h5 class="fw-bold text-primary text-uppercase" th:text="#{application_process}">APPLICATION PROCESS</h5>
+                <h1 class="mb-0" th:text="#{application_process_h1}">At Wave Financial, our application process is designed to be straightforward and user-friendly.
+                    <br> Follow these simple steps to get started:</h1>
+            </div>
+            <div class="d-flex flex-wrap justify-content-between">
+                <div class="col-lg-3 wow slideInUp" data-wow-delay="0.6s" style="flex: 0 0 24%;">
+                    <div class="bg-light rounded">
+                        <div class="border-bottom py-4 px-5 mb-4">
+                            <h4 class="text-primary mb-1">01</h4>
+                            <small class="text-uppercase" th:text="#{application_process_application}">APPLICATION
+                                <br>
+                                <br>
+                        </small>
+                        </div>
+                        <div class="p-5 pt-0">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <img src="img/1.png" alt="">
+                            </div>                           
+                             <div class="d-flex justify-content-between mb-3"><i class="fa fa-check text-primary pt-1"></i>
+                                <span th:text="#{application_process_application_p}"> Your CV arrives. We review applicants based on various criteria to ensure the best fit for our team.
+                                    <br><br><br>
+                                </span></div>
+                           
+                           
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 wow slideInUp" data-wow-delay="0.3s" style="flex: 0 0 24%;">
+                    <div class="bg-white rounded shadow position-relative" style="z-index: 1;">
+                        <div class="border-bottom py-4 px-5 mb-4">
+                            <h4 class="text-primary mb-1">02</h4>
+                            <small class="text-uppercase" th:text="#{application_process_screening}">SCREENING
+                                <br>
+                                <br>
+                            </small>
+                            
+                        </div>
+                        <div class="p-5 pt-0">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <img src="img/2.png" alt="">
+                            </div>  
+                            <div class="d-flex justify-content-between mb-3"><i class="fa fa-check text-primary pt-1"></i>
+                                <span th:text="#{application_process_screening_p}"> HR interview - you will meet a member of the Talent Acquisition team (~30 min). Technical testing (20 min - 1 h) to assess your skills.
+                                   
+                                    <br>
+                                </span></div>
+                         
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-3 wow slideInUp" data-wow-delay="0.9s" style="flex: 0 0 24%;">
+                    <div class="bg-light rounded">
+                        <div class="border-bottom py-4 px-5 mb-4">
+                            <h4 class="text-primary mb-1">03</h4>
+                            <small class="text-uppercase" th:text="#{application_process_interview}">INTERVIEWING + TECHNICAL ASSESSMENT</small>
+                        </div>
+                        <div class="p-5 pt-0">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <img src="img/3.png" alt="">
+                            </div>  
+                            <div class="d-flex justify-content-between mb-3"><i class="fa fa-check text-primary pt-1"></i><span th:text="#{application_process_interview_p}"> You will meet the technical lead of your team (~1 h). For some positions, we combine the HR and Technical interview.</span></div>
+                            
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-3 wow slideInUp" data-wow-delay="0.3s" style="flex: 0 0 24%;">
+                    <div class="bg-white rounded shadow position-relative" style="z-index: 1;">
+                        <div class="border-bottom py-4 px-5 mb-4">
+                            <h4 class="text-primary mb-1">4</h4>
+                            <small class="text-uppercase" th:text="#{application_process_offer}">JOB OFFER
+                                <br>
+                                <br>
+                            </small>
+                        </div>
+                        <div class="p-5 pt-0">
+                            
+                            <div class="d-flex justify-content-center align-items-center">
+                                <img src="img/4.png" alt="">
+                            </div>  
+
+                            
+                            <div class="d-flex justify-content-between mb-3"><i class="fa fa-check text-primary pt-1"></i>
+                                <span th:text="#{application_process_offer_p}"> Brace yourself and enjoy the ride. Expect our offer via email once the selection process is completed.
+                                    <br>
+                                    <br>
+                                </span></div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Pricing Plan End -->
+
+
+
+
+
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-4 col-md-6 footer-about">
+                    <div class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
+                        <a href="index.html" class="navbar-brand">
+                            <h1 class="m-0 text-white">
+                                <!-- Bank Icon SVG -->
+                                <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="50px" fill="#ffffff">
+                                    <path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/>
+                                </svg>
+                                Wave Financial
+                            </h1>
+                        </a>
+                        <p class="mt-3 mb-4">In the world of finance, innovation and trust go hand in hand. Wave Financial is your partner in achieving financial stability and growth.</p>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-6">
+                    <div class="row gx-5">
+                        <div class="col-lg-4 col-md-12 pt-5 mb-5">
+                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                                <h3 class="text-light mb-0">Get In Touch</h3>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-geo-alt text-primary me-2"></i>
+                                <p class="mb-0">Expo2000,Sofia, Bulgaria</p>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-envelope-open text-primary me-2"></i>
+                                <p class="mb-0">wave@financial.com</p>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-telephone text-primary me-2"></i>
+                                <p class="mb-0">+359 87 123 4567</p>
+                            </div>
+                            <div class="d-flex mt-4">
+                                <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-twitter fw-normal"></i></a>
+                                <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                                <a class="btn btn-primary btn-square" href="#"><i class="fab fa-instagram fw-normal"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                                <h3 class="text-light mb-0">Quick Links</h3>
+                            </div>
+                            <div class="link-animated d-flex flex-column justify-content-start">
+                                <a class="text-light mb-2" th:href="@{/}"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
+                                <a class="text-light mb-2" th:href="@{/about}"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
+                                <a class="text-light mb-2" th:href="@{/productAndService}"><i class="bi bi-arrow-right text-primary me-2"></i>Products And Service</a>
+                                <a class="text-light mb-2" th:href="@{/contact}"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
+                                <a class="text-light" th:href="@{/users/register}"><i class="bi bi-arrow-right text-primary me-2"></i>Become a Client</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                                <h3 class="text-light mb-0">Careers</h3>
+                            </div>
+                            <div class="link-animated d-flex flex-column justify-content-start">
+                                <a class="text-light mb-2" th:href="@{/openPositions}"><i class="bi bi-arrow-right text-primary me-2"></i>Open Positions</a>
+                                <a class="text-light mb-2" th:href="@{/applicationProcess}"><i class="bi bi-arrow-right text-primary me-2"></i>Application Process</a>
+                                <a class="text-light mb-2" th:href="@{/benefits}"><i class="bi bi-arrow-right text-primary me-2"></i>Our Benefits</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid text-white" style="background: #061429;">
+        <div class="container text-center">
+            <div class="row justify-content-end">
+                <div class="col-lg-8 col-md-6">
+                    <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
+                        <p class="mb-0">&copy; <a class="text-white border-bottom" href="#">2024 Wave Financial. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

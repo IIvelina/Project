@@ -1,7 +1,11 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
+<<<<<<< HEAD
     url: "jdbc:mysql://localhost:3306/applications?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
+=======
+    url: "jdbc:mysql://localhost:3306/bank?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
+>>>>>>> dcce424fdebaefd10670f209247818f4492b12da
     username: root
     password: ${PASSWORD}
   servlet:
@@ -12,11 +16,15 @@ spring:
     init:
       mode: never
   jpa:
+<<<<<<< HEAD
     # Choose either MySQL 8 or MySQL 5 below
     # For MySQL 8
     database-platform: org.hibernate.dialect.MySQL8Dialect
     # For MySQL 5
     # database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+=======
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+>>>>>>> dcce424fdebaefd10670f209247818f4492b12da
     hibernate:
       ddl-auto: update
     open-in-view: false
@@ -24,6 +32,23 @@ spring:
       hibernate:
         format_sql: true
     defer-datasource-initialization: true
+<<<<<<< HEAD
 
 server:
   port: 8081
+=======
+  messages:
+    basename: messages
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+    locale:
+      resolver: cookie
+    default-locale: en
+forex:
+  api:
+    key: ${FOREX_API_KEY:}
+    url: "https://openexchangerates.org/api/latest.json?app_id={app_id}"
+    base: "USD"
+>>>>>>> dcce424fdebaefd10670f209247818f4492b12da

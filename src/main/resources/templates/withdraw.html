@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wave Financial</title>
+    <link rel="stylesheet" href="/css/withdraw.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23234659'><path d='M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z'/></svg>" type="image/svg+xml" />
+</head>
+<body>
+<div class="container">
+    <div class="language-switch" id="language-switch">
+        <button onclick="window.location.href='#'">BG</button>
+    </div>
+    <img src="/img/logo1.png" alt="Logo" class="logo" id="logowf">
+    <nav class="nav">
+        <ul>
+            <li><a th:href="@{/users/profile}">My Profile</a></li>
+            <li><a th:href="@{/user/accounts}">My Accounts</a></li>
+            <li><a th:href="@{/user/transactions}">Recent Transactions</a></li>
+            <li><a th:href="@{/user/request-new-product}">Request New Product</a></li>
+            <li><a th:href="@{/user/add-money}">Add Money</a></li>
+            <li><a th:href="@{/user/withdraw}">Withdraw</a></li>
+            <li><a th:href="@{/user/transfer}">Transfer</a></li>
+        </ul>
+    </nav>
+    <div class="profile-content">
+        <h2 id="title">Withdraw</h2>
+        <form id="withdrawForm" th:action="@{/user/withdraw}" method="post">
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" placeholder="Amount BGN" required>
+            </div>
+            <div class="form-group">
+                <label for="accountType">Select Account:</label>
+                <select id="accountType" name="accountType" required>
+                    <option value="" disabled selected>Select Account</option>
+                    <option value="CHECKING" th:if="${hasCheckingAccount}" th:text="'Checking Account'"></option>
+                    <option value="SAVINGS" th:if="${hasSavingsAccount}" th:text="'Savings Account'"></option>
+                </select>
+            </div>
+            <button type="submit">Withdraw</button>
+        </form>
+        <div th:if="${error}" class="error-message">
+            <p th:text="${error}"></p>
+        </div>
+    </div>
+    <div class="footer">
+        <img src="/img/logo2.png" alt="e-Wave Financial" class="logo">
+    </div>
+</div>
+<a th:href="@{/}" class="back-button">Back to Home Page</a>
+</body>
+</html>

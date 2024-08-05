@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec='http://www.thymeleaf.org/extras/spring-security'
+>
+
+<head th:replace="fragments/commons::head">
+</head>
+
+<body>
+<!-- Spinner Start -->
+<div th:replace="fragments/commons::spinner"></div>
+<!-- Spinner End -->
+
+<!-- Topbar Start -->
+<div th:replace="fragments/commons::topbar"></div>
+<!-- Topbar End -->
+
+<!-- Navbar Start -->
+<div class="container-fluid position-relative p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+        <a th:href="@{/}" class="navbar-brand p-0">
+            <h1 class="m-0">
+                <!-- Bank Icon SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#ffffff">
+                    <path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/>
+                </svg>
+                Wave Financial
+            </h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a th:href="@{/}" class="nav-item nav-link" th:text="#{nav_bar_home}">HOME</a>
+                <a th:href="@{/about}" class="nav-item nav-link" th:text="#{nav_bar_about}">ABOUT US</a>
+                <a th:href="@{/productAndService}" class="nav-item nav-link active" th:text="#{nav_bar_service}">PRODUCTS AND
+                    SERVICES</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" th:text="#{nav_bar_careers}">CAREERS</a>
+                    <div class="dropdown-menu m-0">
+                        <a th:href="@{/openPositions}" class="dropdown-item" th:text="#{nav_bar_position}">Open
+                            Positions</a>
+                        <a th:href="@{/applicationProcess}" class="dropdown-item" th:text="#{nav_bar_process}">Application
+                            process</a>
+                        <a th:href="@{/benefits}" class="dropdown-item" th:text="#{nav_bar_benefits}">Our Benefits</a>
+                    </div>
+                </div>
+                <a th:href="@{/contact}" class="nav-item nav-link" th:text="#{nav_bar_contact}">CONTACTS</a>
+
+                <th:block sec:authorize="!isAuthenticated()">
+                    <a th:href="@{/users/register}" class="nav-item nav-link" th:text="#{nav_bar_become}">BECOME A
+                        CLIENT</a>
+                </th:block>
+            </div>
+            <button type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i
+                    class="fa fa-search"></i></button>
+
+            <th:block sec:authorize="!isAuthenticated()">
+                <a th:href="@{/users/login}" class="btn btn-primary py-2 px-4 ms-3" th:text="#{nav_bar_login}">LOGIN</a>
+            </th:block>
+
+            <th:block sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-primary py-2 px-4 ms-3"
+                            th:text="#{nav_bar_logout}">LOGOUT
+                    </button>
+                </form>
+            </th:block>
+
+            <th:block sec:authorize="isAuthenticated()">
+                <a th:href="@{/users/profile}" class="btn btn-primary py-2 px-4 ms-3"
+                   th:text="#{nav_bar_profile}">PROFILE</a>
+            </th:block>
+
+            <th:block sec:authorize="isAuthenticated() and hasRole('DIRECTOR')">
+                <a th:href="@{/director/dashboard}" class="btn btn-primary py-2 px-4 ms-3" th:text="#{nav_bar_director}">DIRECTOR</a>
+            </th:block>
+
+            <th:block sec:authorize="isAuthenticated() and hasRole('ADMIN')">
+                <a th:href="@{/user/admin/login}" class="btn btn-primary py-2 px-4 ms-3"
+                   th:text="#{nav_bar_admin}">ADMIN</a>
+            </th:block>
+
+            <!--  <a href="" class="btn btn-primary py-2 px-4 ms-3">BG</a> -->
+
+            <form th:method="get">
+                <label class="text-white" for="lang" th:text="#{nav_bar_language}">Language</label>
+                <select
+                        id="lang"
+                        name="lang"
+                        onchange="this.form.submit()">
+                    <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                    <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                </select>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+        <div class="row py-5">
+            <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-4 text-white animated zoomIn" th:text="#{loans_title_h1}">Loans and Financing</h1>
+                <a th:href="@{/productAndService}" class="h5 text-white" th:text="#{loans_title_home}">Products and Services</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="" class="h5 text-white" th:text="#{loans_title_h5}">Loans and Financing</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Navbar End -->
+
+<!-- Full Screen Search Start -->
+<div class="modal fade" id="searchModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+            <div class="modal-header border-0">
+                <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex align-items-center justify-content-center">
+                <div class="input-group" style="max-width: 600px;">
+                    <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
+                    <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Full Screen Search End -->
+
+<!-- Features Start -->
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+
+            <h1 class="mb-0" th:text="#{loans_title_h1}">Loans and Financing</h1>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-4">
+                <div class="row g-5">
+                    <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
+                        <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="material-symbols-outlined" style="font-size: 2em; color: white;">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 -960 960 960" width="1em" fill="white">
+                                    <path d="m480-560-56-56 63-64H320v-80h167l-64-64 57-56 160 160-160 160ZM280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/>
+                                </svg>
+                            </i>
+
+                        </div>
+                        <h4 th:text="#{loans_title_personal}">Personal Loans</h4>
+                        <p class="mb-0" th:text="#{loans_title_personal_p}">Now the consumer loans from Wave Financial come with new, more attractive interest conditions. You can also take advantage of the option for expedited review of your loan application.</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.1s" src="img/loans.jpg" style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="row g-5">
+                    <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
+                        <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="material-symbols-outlined" style="font-size: 2em; color: white;">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 -960 960 960" width="1em" fill="white">
+                                    <path d="M760-400v-260L560-800 360-660v60h-80v-100l280-200 280 200v300h-80ZM560-800Zm20 160h40v-40h-40v40Zm-80 0h40v-40h-40v40Zm80 80h40v-40h-40v40Zm-80 0h40v-40h-40v40ZM280-220l278 76 238-74q-5-9-14.5-15.5T760-240H558q-27 0-43-2t-33-8l-93-31 22-78 81 27q17 5 40 8t68 4q0-11-6.5-21T578-354l-234-86h-64v220ZM40-80v-440h304q7 0 14 1.5t13 3.5l235 87q33 12 53.5 42t20.5 66h80q50 0 85 33t35 87v40L560-60l-280-78v58H40Zm80-80h80v-280h-80v280Z"/>
+                                </svg>
+                            </i>
+
+                        </div>
+                        <h4 th:text="#{loans_title_mortgage}">Mortgage Loans</h4>
+                        <p class="mb-0" th:text="#{loans_title_mortgage_p}">Take advantage of our diverse range of home financing products under favorable conditions.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Features Start -->
+
+<!-- Footer Start -->
+<th:block th:replace="fragments/commons::footer">
+</th:block>
+<!-- Footer End -->
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/counterup/counterup.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
+</body>
+
+</html>

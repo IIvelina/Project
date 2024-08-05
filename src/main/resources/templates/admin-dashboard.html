@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/admin-dashboard.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23234659'><path d='M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z'/></svg>" type="image/svg+xml" />
+</head>
+<body>
+
+<a href="/" class="back-button">Sign out of Admin Dashboard</a>
+
+<div class="dashboard-container">
+    <h1>Admin Dashboard</h1>
+    <table class="clients-table">
+        <thead>
+        <tr>
+            <th>Client Name</th>
+            <th>Client Number</th>
+            <th>Checking Balance</th>
+            <th>Savings Balance</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="client : ${clients}">
+            <td th:text="${client.fullName}">Client Name</td>
+            <td th:text="${client.clientNumber}">Client Number</td>
+            <td th:text="${client.checkingAccount?.balance ?: '$0.00'}">$0.00</td>
+            <td th:text="${client.savingsAccount?.balance ?: '$0.00'}">$0.00</td>
+            <td class="action-buttons">
+                <form th:action="@{/user/admin/delete/{id}(id=${client.id})}" method="post">
+                    <input type="hidden" name="_method" value="delete" />
+                    <button type="submit" class="delete">DELETE</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

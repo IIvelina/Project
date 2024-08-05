@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Form</title>
+    <link rel="stylesheet" href="/css/applyForJob.css">
+
+    <!-- Добавено: Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23234659'><path d='M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z'/></svg>" type="image/svg+xml" />
+</head>
+<body>
+<a href="openPositions.html" class="back-button">Back to Open Positions</a>
+
+<div class="formbold-main-wrapper">
+    <div class="formbold-form-wrapper">
+        <img src="/img/jobSearch.png" alt="Job Application Image" class="formbold-img">
+        <form th:action="@{/job/apply}" th:method="post" th:object="${jobApplicationDTO}">
+            <div class="formbold-input-flex">
+                <div>
+                    <label for="firstname" class="formbold-form-label"> First Name </label>
+                    <input th:field="*{firstName}" type="text" name="firstname" id="firstname" placeholder="Your first name" class="formbold-form-input"/>
+                    <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error-message"></div>
+                </div>
+                <div>
+                    <label for="lastname" class="formbold-form-label"> Last Name </label>
+                    <input th:field="*{lastName}" type="text" name="lastname" id="lastname" placeholder="Your last name" class="formbold-form-input"/>
+                    <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error-message"></div>
+                </div>
+            </div>
+            <div class="formbold-input-flex">
+                <div>
+                    <label for="email" class="formbold-form-label"> Email </label>
+                    <input th:field="*{email}" type="email" name="email" id="email" placeholder="example@email.com" class="formbold-form-input"/>
+                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-message"></div>
+                </div>
+                <div>
+                    <label class="formbold-form-label">Gender</label>
+                    <select th:field="*{gender}" class="formbold-form-input" name="gender" id="gender">
+                        <option th:each="g : ${T(com.project.bank.model.enums.UserGenderEnum).values()}"
+                                th:value="${g}"
+                                th:text="${g}">Select gender</option>
+                    </select>
+                    <div th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" class="error-message"></div>
+                </div>
+            </div>
+            <div class="formbold-mb-3">
+                <label for="phone" class="formbold-form-label"> Phone </label>
+                <input th:field="*{phone}" type="text" name="phone" id="phone" placeholder="Phone number" class="formbold-form-input"/>
+                <div th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="error-message"></div>
+            </div>
+            <div class="formbold-mb-3">
+                <label for="position" class="formbold-form-label"> Applying for Position: </label>
+                <input th:field="*{applyingPosition}" type="text" name="position" id="position" class="formbold-form-input"/>
+                <div th:if="${#fields.hasErrors('applyingPosition')}" th:errors="*{applyingPosition}" class="error-message"></div>
+            </div>
+            <div class="formbold-mb-3">
+                <label for="start_date" class="formbold-form-label"> When can you start? </label>
+                <input th:field="*{startDate}" type="date" name="start_date" id="start_date" class="formbold-form-input"/>
+                <div th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" class="error-message"></div>
+            </div>
+            <div class="formbold-mb-3">
+                <label for="address" class="formbold-form-label"> Address </label>
+                <input th:field="*{address}" type="text" name="address" id="address" placeholder="Street address" class="formbold-form-input formbold-mb-3"/>
+                <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error-message"></div>
+                <input th:field="*{address2}" type="text" name="address2" id="address2" placeholder="Street address line 2" class="formbold-form-input"/>
+            </div>
+            <div class="formbold-mb-3">
+                <label for="message" class="formbold-form-label"> Cover Letter </label>
+                <textarea th:field="*{coverLetter}" rows="6" name="coverLetter" id="message" class="formbold-form-input"></textarea>
+                <div th:if="${#fields.hasErrors('coverLetter')}" th:errors="*{coverLetter}" class="error-message"></div>
+            </div>
+            <div class="formbold-form-file-flex">
+                <label for="upload" class="formbold-form-label"> Upload Resume </label>
+                <input th:field="*{resumePath}" type="file" name="upload" id="upload" class="formbold-form-file"/>
+                <div th:if="${#fields.hasErrors('resumePath')}" th:errors="*{resumePath}" class="error-message"></div>
+            </div>
+            <button class="formbold-btn">Apply Now</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

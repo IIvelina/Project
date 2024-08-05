@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 HELP.md
+=======
+../HELP.md
+>>>>>>> dcce424fdebaefd10670f209247818f4492b12da
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -18,7 +22,11 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
+<<<<<<< HEAD
 .idea
+=======
+bank/.idea
+>>>>>>> dcce424fdebaefd10670f209247818f4492b12da
 *.iws
 *.iml
 *.ipr

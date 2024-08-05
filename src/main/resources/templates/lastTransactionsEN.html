@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wave Financial</title>
+    <link rel="stylesheet" href="/css/lastTransactions.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23234659'><path d='M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z'/></svg>" type="image/svg+xml" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        .positive {
+            color: green;
+        }
+        .negative {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="language-switch" id="language-switch">
+        <button onclick="window.location.href='#'">BG</button>
+    </div>
+    <img src="/img/logo1.png" alt="Лого" class="logo" id="logowf">
+    <nav class="nav">
+        <ul>
+            <li><a th:href="@{/users/profile}">My Profile</a></li>
+            <li><a th:href="@{/user/accounts}">My Accounts</a></li>
+            <li><a th:href="@{/user/transactions}">Recent Transactions</a></li>
+            <li><a th:href="@{/user/request-new-product}">Request New Product</a></li>
+            <li><a th:href="@{/user/add-money}">Add Money</a></li>
+            <li><a th:href="@{/user/withdraw}">Withdraw</a></li>
+            <li><a th:href="@{/user/transfer}">Transfer</a></li>
+        </ul>
+    </nav>
+    <div class="profile-content">
+        <h2 id="title">Recent Transactions</h2>
+        <div class="transactions">
+            <div th:each="transaction : ${transactions}" class="transaction">
+                <i class="material-icons">sync_alt</i>
+                <div class="transaction-info">
+                    <p th:text="${currentUserName}">IVELINA IVANOVA IVANO...</p>
+                    <p th:text="${transaction.fromAccount != null && transaction.toAccount != null ? 'TRANSFER' : (transaction.amount < 0 ? 'WITHDRAW' : 'ADD MONEY')}">TRANSACTION TYPE</p>
+                </div>
+                <div th:classappend="${transaction.amount < 0 || (transaction.fromAccount != null && transaction.toAccount != null && transaction.fromAccount.user.id == currentUserId) ? 'negative' : 'positive'}"
+                     th:text="${transaction.amount < 0 || (transaction.fromAccount != null && transaction.toAccount != null && transaction.fromAccount.user.id == currentUserId) ? '-' + transaction.amount.abs() : '+' + transaction.amount.abs()} + ' BGN'">
+                    -50.00 BGN
+                </div>
+                <div class="transaction-date" th:text="${#temporals.format(transaction.timestamp, 'dd/MM')}">24/06</div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <img src="/img/logo2.png" alt="e-Wave Financial" class="logo">
+    </div>
+</div>
+<a href="/" class="back-button">Back to Home Page</a>
+</body>
+</html>
