@@ -9,13 +9,16 @@
 </head>
 <body>
 
-<a href="index.html" class="back-button">Back to Home Page</a>
+<a th:href="@{/}" class="back-button">Back to Home Page</a>
 
 <div class="container">
     <header>
         <div class="header-content">
             <img src="/img/logo1.png" alt="Logo" class="logo">
             <h1>Registration</h1>
+            <div class="language-switch" id="language-switch">
+                <button onclick="window.location.href=''">BG</button>
+            </div>
         </div>
     </header>
 
@@ -32,11 +35,23 @@
             <h2>Identification</h2>
             <p>Please provide additional identification information.</p>
             <div class="input-group">
-                <label for="name">Full name</label>
+                <label for="name">Full name </label>
+                
                 <input th:field="*{fullName}" th:errorclass="bg-danger" type="text" id="name" name="name" required placeholder="Full name">
                 <p th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="errorsforinputs">Full name is required.</p>
-            </div>
-            <div class="input-group">
+                <div class="input-group">
+                    <label for="gender">Gender</label>
+                    <select th:field="*{gender}" th:errorclass="bg-danger" id="gender" name="gender" class="custom-select" required>
+                        <option value="" disabled selected>Select gender</option>
+                        <option th:each="g : ${T(com.project.bank.model.enums.UserGenderEnum).values()}" th:value="${g}" th:text="${g}"></option>
+                    </select>
+                    <p th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" class="errorsforinputs">Gender is required.</p>
+                </div>
+
+
+
+
+                <div class="input-group">
                 <label for="id-number">ID Card Number</label>
                 <input th:field="*{cardIdNumber}" th:errorclass="bg-danger" type="text" id="id-number" name="cardIdNumber" required pattern="\d{9}" title="ID card number must be exactly 9 digits" placeholder="123456789">
                 <p th:if="${#fields.hasErrors('cardIdNumber')}" th:errors="*{cardIdNumber}" class="errorsforinputs">ID card number must be exactly 9 digits.</p>
@@ -53,12 +68,13 @@
             </div>
             <h2>Login Settings</h2>
             <p>Please create your login settings.</p>
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input th:field="*{username}" th:errorclass="bg-danger" type="text" id="username" name="username" placeholder="Username" required>
-                <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="errorsforinputs">Username is required and should be between 2 and 20 symbols.</p>
-            </div>
-            <div class="input-group">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input th:field="*{username}" th:errorclass="bg-danger" type="text" id="username" name="username" placeholder="Username" required>
+                    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="errorsforinputs">Username is required and should be between 5 and 20 symbols.</p>
+                </div>
+
+                <div class="input-group">
                 <label for="password">Password</label>
                 <input th:field="*{password}" th:errorclass="bg-danger" type="password" id="password" name="password" placeholder="Password" required>
                 <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="errorsforinputs">Password is required and should be at least five symbols.</p>

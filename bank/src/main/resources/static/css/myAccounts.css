@@ -15,12 +15,12 @@ body {
     background: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
     padding: 20px;
-    max-width: 800px;
-    max-height: 700px;
+    max-width: 950px;
+    max-height: 800px;
     width: 100%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    position: relative; 
+    position: relative;
 
 }
 
@@ -113,12 +113,12 @@ body {
     background: rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 10px;
-    width: 200px;
+    width: 250px;
     text-align: center;
     transition: background 0.3s;
     color: #0c2d3a;
     font-weight: bold;
-    
+
 }
 
 .product-option:hover {
@@ -132,7 +132,7 @@ body {
 }
 
 .language-switch {
-    position: absolute; 
+    position: absolute;
     top: 10px;
     right: 10px;
 }
@@ -144,6 +144,53 @@ body {
     font-weight: bold;
     margin: 0 5px;
     cursor: pointer;
+}
+
+.language-switch button:hover {
+    text-decoration: underline;
+}
+
+.info-button {
+    background-color: #0f3f52;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.info-button:hover {
+    background-color: #09506d;
+    transform: scale(1.05);
+}
+
+.info-button:active {
+    background-color: #083f5c;
+    transform: scale(1);
+}
+
+.info-button {
+    background-color: #0f3f52;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none; /* Добави този ред */
+}
+
+.language-switch button {
+    background: none;
+    border: none;
+    color: #09242F;
+    font-weight: bold;
+    margin: 0 5px;
+    cursor: pointer;
+    text-decoration: none; /* Добави този ред */
 }
 
 .language-switch button:hover {

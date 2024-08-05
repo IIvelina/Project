@@ -14,13 +14,12 @@ body {
     background: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
     padding: 20px;
-    max-width: 800px;
-    max-height: 700px;
+    max-width: 950px;
+    max-height: 800px;
     width: 100%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     position: relative; 
-
 }
 
 .nav {
@@ -79,12 +78,27 @@ body {
     margin-bottom: 5px;
 }
 
-.form-group input {
+.form-group input,
+.form-group select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    appearance: none;
+    background-color: white;
+    color: #0c2d3a;
+    font-size: 16px;
+}
+
+/* Добавени стилове за select елемента */
+.form-group select {
+    -webkit-appearance: none;  /* Safari и Chrome */
+    -moz-appearance: none;     /* Firefox */
+    appearance: none;          /* Други браузъри */
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>') no-repeat right 10px center;
+    background-size: 12px;
+    padding-right: 30px;
 }
 
 button[type="submit"] {
@@ -116,7 +130,6 @@ button[type="submit"]:hover {
 .back-button:hover {
     background-color: #0c2d3a;
 }
-
 
 .language-switch {
     position: absolute; 

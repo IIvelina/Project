@@ -1,66 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wave Financial</title>
     <link rel="stylesheet" href="/css/login.css">
-     <!-- Добавено: Favicon -->
-     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23234659'><path d='M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z'/></svg>" type="image/svg+xml" />
-   
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23234659'><path d='M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z'/></svg>" type="image/svg+xml" />
 </head>
 <body>
+<a th:href="@{/}" class="back-button">Back to Home Page</a>
+<div class="login-container">
+    <div class="language-switch">
+      <!--  <a th:href="@{/locale/change(lang=${#locale.language == 'en' ? 'bg' : 'en'})}" class="btn btn-primary py-2 px-4 ms-3"
+           th:text="${#locale.language == 'en' ? 'BG' : 'EN'}"></a> -->
 
-    <a href="index.html" class="back-button">Back to Home Page</a>
-
-    <div class="login-container">
-        <div class="language-switch">
-            <a href="loginBG.html">БГ</a>
-        </div>
-        <div class="login-header">
-            <img src="/img/logo1.png" alt="Wave Financial" class="logo">
-        </div>
-        <div class="login-header">
-            <img src="/img/logo2.png" alt="Wave Financial" class="e-logo">
-            <span class="tagline">Login to Wave Financial</span>
-        </div>
-        <form class="login-form">
-            <i class="fa-solid fa-user"></i>
-            <input type="text" id="username" name="username" placeholder="Username" required="true"
-            maxlength="20" pattern="[a-zA-Z0-9]+" autocomplete="off" />
-            <p id="errorsforinputs">
-                Invalid username.
-            </p>    
-
-                <!-- title="Only letters and numbers are allowed" -->
-                <i class="fa-solid fa-lock"></i>
-            <input type="password" id="password" name="password" placeholder="Password" required="true"
-            autocomplete="off" minlength="8" maxlength="20"
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"/>
-
-                <!-- title="Password must contain at least one digit, one lowercase and one uppercase letter, and be at least 8 characters long." -->
-                <p id="errorsforinputs">
-                    Invalid password.
-                </p>    
-
-            <button type="submit" name="submit" class="login-button">LOGIN</button>
-
-               <!-- If one or both fields are not filled or if the password and username are incorrect, 
-                    display "Invalid username or password" with an X on top and OK, which closes the message and stays on the same page.-->
-        </form>
-
-        
-        <div class="remember-me-container">
-            <input type="checkbox" name="saveme" id="saveme" value="Remember me">
-            <label for="saveme">Remember me</label>
-        </div>
-
-        <div class="login-footer">
-            <a href="forgotPassEN.html" class="forgot-password-link">Forgot Password</a>
-            <br>
-            <a href="#" class="security-tips-link">Security Tips</a>
-            <p><a href="/contact.html">Contact us</a> | <a href="">Terms of Use and Privacy</a></p>
-        </div>
     </div>
+    <div class="login-header">
+        <img src="/img/logo1.png" alt="Wave Financial" class="logo">
+    </div>
+    <div class="login-header">
+        <img src="/img/logo2.png" alt="Wave Financial" class="e-logo">
+        <span class="tagline" th:text="#{login_wave_financial}">Login to Wave Financial</span>
+    </div>
+    <form th:action="@{/users/login}" th:method="post" th:object="${userLoginDTO}" class="login-form">
+        <div th:if="${loginError}" class="mt-5 text-center">
+            <strong th:text="#{login_message}" class="errorsforinputs">Wrong username and password combination.</strong>
+        </div>
+
+        <i class="fa-solid fa-user"></i>
+        <input th:field="*{username}" th:errorclass="bg-danger"
+               type="text" id="username" name="username" th:placeholder="#{login_username}" required="true"
+               maxlength="20" pattern="[a-zA-Z0-9]+" autocomplete="off" />
+        <p class="errorsforinputs" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
+            Invalid username.
+        </p>
+
+        <i class="fa-solid fa-lock"></i>
+        <input th:field="*{password}" th:errorclass="bg-danger"
+               type="password" id="password" name="password" th:placeholder="#{login_password}" required="true"
+               autocomplete="off" minlength="5" maxlength="20" />
+
+        <p class="errorsforinputs" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+            Invalid password.
+        </p>
+
+        <button type="submit" name="submit" class="login-button">LOGIN</button>
+    </form>
+
+    <div class="remember-me-container">
+        <input type="checkbox" name="remember-me" id="saveme" value="Remember me">
+        <label for="saveme" th:text="#{login_remember_me}">Remember me</label>
+    </div>
+
+    <div class="login-footer">
+        <a href="/user/forgot-password" class="forgot-password-link" th:text="#{login_forgot_password}">Forgot Password</a>
+        <br>
+        <a th:href="@{/security-tips}" class="security-tips-link" th:text="#{login_security_tips}">Security Tips</a>
+        <p>
+            <a th:href="@{/contact}" th:text="#{login_contact_us}">Contact us</a> |
+            <a href="/terms" th:text="#{login_terms_of_use}">Terms of Use and Privacy</a>
+        </p>
+    </div>
+</div>
 </body>
 </html>

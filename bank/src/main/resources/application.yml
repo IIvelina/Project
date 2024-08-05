@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://localhost:3306/bank?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
+    username: root
+    password: ${PASSWORD}
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 5MB
+  sql:
+    init:
+      mode: never
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+  messages:
+    basename: messages
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+    locale:
+      resolver: cookie
+    default-locale: en
+forex:
+  api:
+    key: ${FOREX_API_KEY:}
+    url: "https://openexchangerates.org/api/latest.json?app_id={app_id}"
+    base: "USD"

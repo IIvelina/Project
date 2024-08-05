@@ -139,7 +139,7 @@ body {
     cursor: pointer;
 }
 
-#errorsforinputs {
+.errorsforinputs {
     background-color: rgb(231, 211, 188);
     color: rgb(97, 23, 23);
     font-weight: bold;
@@ -149,7 +149,7 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
     letter-spacing: 0.1px;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 #username{

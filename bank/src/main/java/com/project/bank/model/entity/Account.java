@@ -1,14 +1,61 @@
 package com.project.bank.model.entity;
 
+import com.project.bank.model.enums.AccountType;
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "accounts")
-public class Account extends BaseEntity{
-    //todo
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Account extends BaseEntity {
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private AccountType type;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @Column(nullable = false)
+    private BigDecimal balance;
+
+    @Column(nullable = false)
+    private String clientNumber;
+
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    public Account() {
+    }
+
+    public AccountType getType() {
+        return type;
+    }
+
+    public void setType(AccountType type) {
+        this.type = type;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
+    public String getClientNumber() {
+        return clientNumber;
+    }
+
+    public void setClientNumber(String clientNumber) {
+        this.clientNumber = clientNumber;
+    }
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

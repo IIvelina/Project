@@ -1,10 +1,8 @@
 package com.project.bank.model.dto;
 
+import com.project.bank.model.enums.UserGenderEnum;
 import com.project.bank.model.enums.UserRoleEnum;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public class UserRegisterDTO {
     @NotBlank(message = "SSN cannot be null or empty")
@@ -38,8 +36,12 @@ public class UserRegisterDTO {
     @NotBlank(message = "Password cannot be null or empty")
     @Size(min = 5, message = "Password must be the same")
     private String confirmPassword;
+    @NotNull(message = "Gender is required.")
+    private UserGenderEnum gender;
 
-    private UserRoleEnum role = UserRoleEnum.CLIENT;
+    private UserRoleEnum role;
+
+    private String clientNumber;
 
     public UserRegisterDTO() {
     }
@@ -115,4 +117,14 @@ public class UserRegisterDTO {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public UserGenderEnum getGender() {
+        return gender;
+    }
+
+    public void setGender(UserGenderEnum gender) {
+        this.gender = gender;
+    }
+
+
 }
