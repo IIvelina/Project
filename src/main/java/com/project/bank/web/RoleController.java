@@ -23,19 +23,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/user")
 public class RoleController {
-    //Отговаря за управлението на ролите.
-    //
-    //Добавяне на нови роли
-    //Присвояване на роли на потребители
-    //Премахване на роли от потребители
-    //profile/user
-
-//    @GetMapping("/user")
-//    public String profile(){
-//        return "profileEN";
-//    }
-
-    //href="/user/director"
+  
 
     private final EmployeeService employeeService;
     private final UserService userService;
