@@ -95,7 +95,7 @@ public class JobApplicationController {
 
             Hibernate.initialize(user.getRoles());
 
-            // Проверка дали потребителят вече има ролята ADMIN
+          
             if (!user.getRoles().contains(adminRole)) {
                 userService.addRoleToUser(user, adminRole);
             }
@@ -113,7 +113,7 @@ public class JobApplicationController {
             employee.setRole(UserRoleEnum.ADMIN); // This field should not be unique now
             employee.setUser(user);
 
-            // Запазване на новия служител
+         
             try {
                 employeeService.saveEmployee(employee);
             } catch (DataIntegrityViolationException e) {
