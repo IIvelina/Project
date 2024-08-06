@@ -21,10 +21,7 @@ private final UserService userService;
         this.userService = userService;
     }
 
-//    @GetMapping("/")
-//    public String index(){
-//        return "index";
-//    }
+
 
     @GetMapping("/")
     public String index(@AuthenticationPrincipal UserDetails userDetails,
@@ -62,22 +59,13 @@ private final UserService userService;
         return "terms";
     }
 
-    //forgot-password
+   
     @GetMapping("user/forgot-password")
     public String forgotPassword(){
         return "forgotPassword";
     }
 
-//    @PostMapping("user/forgot-password")
-//    public String forgotPassword(@RequestParam("email") String email, Model model) {
-//        boolean isEmailSent = userService.resetPassword(email);
-//        if (isEmailSent) {
-//            model.addAttribute("message", "A new password has been sent to your email.");
-//        } else {
-//            model.addAttribute("message", "Email address not found.");
-//        }
-//        return "forgotPassword";
-//    }
+
 
     @GetMapping("/productAndService")
     public String productAndService(){
