@@ -124,7 +124,7 @@ class RoleControllerTest {
         user.setId(1L);
         user.setUsername("testUser");
 
-        // User has a non-zero balance in checking account
+
         CheckingAccount checkingAccount = new CheckingAccount();
         checkingAccount.setBalance(new BigDecimal("100"));
         user.setCheckingAccount(checkingAccount);

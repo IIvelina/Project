@@ -17,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -180,7 +179,7 @@ class TransactionControllerTest {
         user.setId(1L);
         user.setUsername("testUser");
 
-        // Създаваме списък с конкретни подкласове на Account
+
         List<Account> accounts = new ArrayList<>();
         CheckingAccount account = new CheckingAccount();
         account.setUser(user);
@@ -219,7 +218,6 @@ class TransactionControllerTest {
         user.setId(1L);
         user.setUsername("testUser");
 
-        // Използваме конкретен подклас на Account
         CheckingAccount fromAccount = new CheckingAccount();
         fromAccount.setBalance(new BigDecimal("100"));
         fromAccount.setUser(user);
@@ -227,7 +225,6 @@ class TransactionControllerTest {
         User recipient = new User();
         recipient.setId(2L);
 
-        // Използваме конкретен подклас на Account
         CheckingAccount recipientAccount = new CheckingAccount();
         recipientAccount.setUser(recipient);
         recipientAccount.setBalance(new BigDecimal("50"));

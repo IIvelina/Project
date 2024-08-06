@@ -2,7 +2,6 @@ package com.project.bank.service.impl;
 import com.project.bank.model.entity.Role;
 import com.project.bank.model.enums.UserRoleEnum;
 import com.project.bank.repository.RoleRepository;
-import com.project.bank.service.RoleService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

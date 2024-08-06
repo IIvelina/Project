@@ -83,13 +83,7 @@ public class ExRateServiceImpl implements ExRateService {
         if (Objects.equals(from, to)){
             return Optional.of(BigDecimal.ONE);
         }
-        //USD/BGN=x
-        //USD/EUR=y
 
-        //USD = x * BGN
-        //USD = y * EUR
-
-        //EUR/BGN = x / y
 
         Optional<BigDecimal> fromOpt = forexApiConfig.getBase().equals(from) ?
                 Optional.of(BigDecimal.ONE) :

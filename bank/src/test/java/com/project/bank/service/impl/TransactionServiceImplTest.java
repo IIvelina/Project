@@ -1,7 +1,6 @@
 package com.project.bank.service.impl;
 import com.project.bank.model.entity.Transaction;
 import com.project.bank.repository.TransactionRepository;
-import com.project.bank.service.TransactionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -55,7 +54,7 @@ class TransactionServiceImplTest {
         List<Transaction> result = transactionServiceImpl.getLastThreeTransactionsByUserId(userId);
 
         assertEquals(3, result.size());
-        assertEquals(transaction3, result.get(0)); // Проверяваме дали са подредени правилно
+        assertEquals(transaction3, result.get(0));
         assertEquals(transaction2, result.get(1));
         assertEquals(transaction1, result.get(2));
 

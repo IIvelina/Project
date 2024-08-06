@@ -37,13 +37,7 @@ public class User extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String clientNumber;
 
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(
-//            name = "users_roles",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id")
-//    )
-//    private Set<Role> roles;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -51,7 +45,7 @@ public class User extends BaseEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    @JsonIgnore // Игнориране на колекцията при сереализация
+    @JsonIgnore
     private Set<Role> roles;
     @OneToOne
     private CheckingAccount checkingAccount;

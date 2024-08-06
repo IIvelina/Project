@@ -1,6 +1,5 @@
 package com.project.bank.web;
 
-import com.project.bank.model.dto.MyAccountDetailsDTO;
 import com.project.bank.model.entity.Account;
 import com.project.bank.model.entity.CheckingAccount;
 import com.project.bank.model.entity.SavingsAccount;
@@ -13,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 

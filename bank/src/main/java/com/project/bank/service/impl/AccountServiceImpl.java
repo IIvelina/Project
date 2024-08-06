@@ -3,7 +3,6 @@ import com.project.bank.model.entity.Account;
 import com.project.bank.model.enums.AccountType;
 import com.project.bank.repository.AccountRepository;
 import com.project.bank.service.AccountService;
-import com.project.bank.service.ExRateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

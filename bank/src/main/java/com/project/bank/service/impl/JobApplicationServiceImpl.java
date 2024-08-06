@@ -4,9 +4,8 @@ import com.project.bank.model.entity.User;
 import com.project.bank.model.serviceModel.JobApplicationServiceModel;
 import com.project.bank.service.JobApplicationService;
 import com.project.bank.service.UserService;
-import com.project.bank.web.JobApplicationClient;
+import com.project.bank.config.JobApplicationClient;
 import org.hibernate.Hibernate;
-import org.modelmapper.ModelMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -18,12 +17,12 @@ public class JobApplicationServiceImpl implements JobApplicationService {
 
     private final JobApplicationClient jobApplicationClient;
     private final UserService userService;
-    private final ModelMapper modelMapper;
 
-    public JobApplicationServiceImpl(JobApplicationClient jobApplicationClient, UserService userService, ModelMapper modelMapper) {
+
+    public JobApplicationServiceImpl(JobApplicationClient jobApplicationClient, UserService userService) {
         this.jobApplicationClient = jobApplicationClient;
         this.userService = userService;
-        this.modelMapper = modelMapper;
+
     }
 
     @Override

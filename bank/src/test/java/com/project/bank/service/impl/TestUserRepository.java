@@ -2,7 +2,6 @@ package com.project.bank.service.impl;
 
 import com.project.bank.model.entity.User;
 import com.project.bank.model.enums.UserGenderEnum;
-import com.project.bank.model.enums.UserRoleEnum;
 import com.project.bank.repository.UserRepository;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;

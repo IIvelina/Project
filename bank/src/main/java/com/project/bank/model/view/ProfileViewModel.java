@@ -41,7 +41,7 @@ public class ProfileViewModel {
         this.email = email;
     }
 
-    // Метод за получаване на първото име
+
     public String getFirstName() {
         if (fullName == null || fullName.isEmpty()) {
             return null;

@@ -1,30 +1,22 @@
 package com.project.bank.web;
 
-import com.project.bank.service.UserService;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Controller
 public class HomeController {
 
-private final UserService userService;
+    public HomeController() {
 
-    public HomeController(UserService userService) {
-        this.userService = userService;
     }
 
-//    @GetMapping("/")
-//    public String index(){
-//        return "index";
-//    }
 
     @GetMapping("/")
     public String index(@AuthenticationPrincipal UserDetails userDetails,
@@ -62,22 +54,11 @@ private final UserService userService;
         return "terms";
     }
 
-    //forgot-password
     @GetMapping("user/forgot-password")
     public String forgotPassword(){
         return "forgotPassword";
     }
 
-//    @PostMapping("user/forgot-password")
-//    public String forgotPassword(@RequestParam("email") String email, Model model) {
-//        boolean isEmailSent = userService.resetPassword(email);
-//        if (isEmailSent) {
-//            model.addAttribute("message", "A new password has been sent to your email.");
-//        } else {
-//            model.addAttribute("message", "Email address not found.");
-//        }
-//        return "forgotPassword";
-//    }
 
     @GetMapping("/productAndService")
     public String productAndService(){

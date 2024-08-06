@@ -19,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -83,7 +82,7 @@ class UserServiceImplTest {
             return existingClientNumbers.contains(clientNumber);
         });
 
-        // Използваме reflection за достъп до private метода
+
         Method generateUniqueClientNumberMethod = UserServiceImpl.class.getDeclaredMethod("generateUniqueClientNumber");
         generateUniqueClientNumberMethod.setAccessible(true);
 
@@ -212,10 +211,10 @@ class UserServiceImplTest {
     @Test
     void testAddRoleToUser() {
         User user = new User();
-        user.setRoles(new HashSet<>()); // Добавяме празен HashSet за ролите на потребителя
+        user.setRoles(new HashSet<>());
 
         Role adminRole = new Role();
-        adminRole.setRole(UserRoleEnum.ADMIN); // Задаваме ролята чрез setter метод
+        adminRole.setRole(UserRoleEnum.ADMIN);
 
         userServiceImpl.addRoleToUser(user, adminRole);
 

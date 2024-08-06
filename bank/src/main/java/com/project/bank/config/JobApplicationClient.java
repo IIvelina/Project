@@ -1,4 +1,4 @@
-package com.project.bank.web;
+package com.project.bank.config;
 
 import com.project.bank.model.serviceModel.JobApplicationServiceModel;
 import org.springframework.beans.factory.annotation.Autowired;

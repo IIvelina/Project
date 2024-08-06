@@ -92,10 +92,8 @@ public class JobApplicationController {
             User user = optionalUser.get();
             Role adminRole = roleService.findRoleByName(UserRoleEnum.ADMIN);
 
-            // Инициализиране на лениво зарежданите колекции
             Hibernate.initialize(user.getRoles());
 
-            // Проверка дали потребителят вече има ролята ADMIN
             if (!user.getRoles().contains(adminRole)) {
                 userService.addRoleToUser(user, adminRole);
             }
@@ -110,10 +108,9 @@ public class JobApplicationController {
             Employee employee = new Employee();
             employee.setBusinessEmail(businessEmail);
             employee.setPassword("topsicret");
-            employee.setRole(UserRoleEnum.ADMIN); // This field should not be unique now
+            employee.setRole(UserRoleEnum.ADMIN);
             employee.setUser(user);
 
-            // Запазване на новия служител
             try {
                 employeeService.saveEmployee(employee);
             } catch (DataIntegrityViolationException e) {
@@ -121,10 +118,10 @@ public class JobApplicationController {
                 return "redirect:/director/dashboard";
             }
 
-            // Обновяване на потребителя с employee_id
+
             userService.saveUser(user);
 
-            // Промяна на статуса на кандидатурата
+
             jobApplication.setStatus(ApplicationStatus.APPROVED);
             jobApplicationService.updateApplicationStatus(jobApplication);
         } else {

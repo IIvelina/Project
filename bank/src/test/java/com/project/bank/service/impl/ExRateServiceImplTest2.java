@@ -4,7 +4,6 @@ import com.project.bank.config.ForexApiConfig;
 import com.project.bank.model.dto.ExRatesDTO;
 import com.project.bank.model.entity.ExRateEntity;
 import com.project.bank.repository.ExRateRepository;
-import com.project.bank.service.ExRateService;
 import com.project.bank.exception.ObjectNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +11,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
 import org.springframework.web.client.RestClient;
 
 import java.math.BigDecimal;

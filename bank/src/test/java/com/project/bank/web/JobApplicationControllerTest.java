@@ -1,11 +1,11 @@
 package com.project.bank.web;
 
-import com.project.bank.model.dto.EmployeeLoginDTO;
+
 import com.project.bank.model.dto.JobApplicationDTO;
 import com.project.bank.model.entity.Employee;
 import com.project.bank.model.entity.Role;
 import com.project.bank.model.entity.User;
-import com.project.bank.model.enums.ApplicationStatus;
+
 import com.project.bank.model.enums.UserRoleEnum;
 import com.project.bank.model.serviceModel.JobApplicationServiceModel;
 import com.project.bank.service.EmployeeService;
@@ -13,14 +13,14 @@ import com.project.bank.service.JobApplicationService;
 import com.project.bank.service.RoleService;
 import com.project.bank.service.UserService;
 import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
-import org.springframework.dao.DataIntegrityViolationException;
+
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;

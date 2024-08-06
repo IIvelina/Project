@@ -23,19 +23,9 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/user")
 public class RoleController {
-    //Отговаря за управлението на ролите.
-    //
-    //Добавяне на нови роли
-    //Присвояване на роли на потребители
-    //Премахване на роли от потребители
-    //profile/user
 
-//    @GetMapping("/user")
-//    public String profile(){
-//        return "profileEN";
-//    }
-
-    //href="/user/director"
+    // Responsible for managing roles
+    // Assigning roles to users
 
     private final EmployeeService employeeService;
     private final UserService userService;
@@ -46,7 +36,7 @@ public class RoleController {
     }
 
     @GetMapping("/admin/login")
-    public String loginAsAdmin(){
+    public String loginAsAdmin() {
         return "loginAsAdmin";
     }
 
@@ -74,10 +64,9 @@ public class RoleController {
     }
 
     @ModelAttribute
-    public EmployeeLoginDTO employeeLoginDTO(){
+    public EmployeeLoginDTO employeeLoginDTO() {
         return new EmployeeLoginDTO();
     }
-
 
 
     @GetMapping("/admin/dashboard")
@@ -86,8 +75,6 @@ public class RoleController {
         model.addAttribute("clients", clients);
         return "admin-dashboard";
     }
-
-
 
 
     @DeleteMapping("/admin/delete/{id}")
@@ -111,7 +98,4 @@ public class RoleController {
         }
         return "redirect:/user/admin/dashboard";
     }
-
-
-
 }

@@ -68,7 +68,7 @@ class AccountControllerTest {
     void testCreateCheckingAccount() {
         User user = new User();
         user.setUsername("testUser");
-        user.setClientNumber("12345"); // Добавяме clientNumber за потребителя
+        user.setClientNumber("12345");
         when(userDetails.getUsername()).thenReturn("testUser");
         when(userService.findByUsername("testUser")).thenReturn(user);
         when(checkingAccountService.findAllByUsername("testUser")).thenReturn(new ArrayList<>());
