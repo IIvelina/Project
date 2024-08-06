@@ -92,7 +92,7 @@ public class JobApplicationController {
             User user = optionalUser.get();
             Role adminRole = roleService.findRoleByName(UserRoleEnum.ADMIN);
 
-            // Инициализиране на лениво зарежданите колекции
+
             Hibernate.initialize(user.getRoles());
 
             // Проверка дали потребителят вече има ролята ADMIN
@@ -121,10 +121,10 @@ public class JobApplicationController {
                 return "redirect:/director/dashboard";
             }
 
-            // Обновяване на потребителя с employee_id
+   
             userService.saveUser(user);
 
-            // Промяна на статуса на кандидатурата
+  
             jobApplication.setStatus(ApplicationStatus.APPROVED);
             jobApplicationService.updateApplicationStatus(jobApplication);
         } else {
